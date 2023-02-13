@@ -1,0 +1,18 @@
+{
+    "sourceFile": ".meteor/client/init.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1676316002856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1676316002856,
+            "name": "Commit-0",
+            "content": "import '../../imports/startup/client/index';"
+        }
+    ]
+}

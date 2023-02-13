@@ -1,0 +1,50 @@
+{
+    "sourceFile": "imports/startup/server/index.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1676319943782,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1676320664760,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-console.log('hi');\n\\ No newline at end of file\n+import { createApolloServer } from 'meteor/apollo';\n"
+                },
+                {
+                    "date": 1676320736430,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,3 @@\n import { createApolloServer } from 'meteor/apollo';\n+import { makeExecutableSchema } from 'graphql-tools';\n+\n"
+                },
+                {
+                    "date": 1676321311333,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,2 @@\n import { createApolloServer } from 'meteor/apollo';\n-import { makeExecutableSchema } from 'graphql-tools';\n \n"
+                },
+                {
+                    "date": 1676322656073,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,2 @@\n-import { createApolloServer } from 'meteor/apollo';\n+import { ApolloServer } from 'meteor/apollo';\n \n"
+                },
+                {
+                    "date": 1676322703857,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,4 @@\n import { ApolloServer } from 'meteor/apollo';\n \n+const server = new ApolloServer({});\n+\n"
+                },
+                {
+                    "date": 1676322797856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n import { ApolloServer } from 'meteor/apollo';\n \n-const server = new ApolloServer({});\n+// const server = new ApolloServer({});\n \n"
+                },
+                {
+                    "date": 1676324720713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n-import { ApolloServer } from 'meteor/apollo';\n+import { ApolloServer } from \"@apollo/server\";\n \n+\n // const server = new ApolloServer({});\n \n"
+                },
+                {
+                    "date": 1676325709388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,21 @@\n import { ApolloServer } from \"@apollo/server\";\n \n+const typeDefs = `\n+type Query {\n+    hi: String\n+}\n+`;\n \n-// const server = new ApolloServer({});\n+const resolver = {\n+    Query: {\n+        hi() {\n+            return \"Hello Fabrice\";\n+        }\n+    }\n+}\n \n+const server = new ApolloServer({\n+    typeDefs: typeDefs,\n+    resolvers : resolver\n+});\n+\n"
+                }
+            ],
+            "date": 1676319943782,
+            "name": "Commit-0",
+            "content": "console.log('hi');"
+        }
+    ]
+}

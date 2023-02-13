@@ -1,0 +1,18 @@
+{
+    "sourceFile": "server/init.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1676319878963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1676319878963,
+            "name": "Commit-0",
+            "content": "import \"../imports/startup/server\";"
+        }
+    ]
+}
