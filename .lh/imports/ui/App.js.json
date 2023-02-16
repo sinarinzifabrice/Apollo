@@ -3,11 +3,23 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1676317059113,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1676574524503,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n import React from 'react';\n+import gql from 'graphql-tag';\n+import { graphql } from 'react-apollo';\n \n \n const App = () => <h1>Hello</h1>;\n \n"
+                },
+                {
+                    "date": 1676574819177,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,5 +4,14 @@\n \n \n const App = () => <h1>Hello</h1>;\n \n-export default App;\n\\ No newline at end of file\n+\n+const hiQuery = gql`\n+    {\n+        hi\n+    }\n+`;\n+\n+\n+\n+export default graphql(hiQuery)(App);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676575080229,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n \n \n-const App = () => <h1>Hello</h1>;\n+const App = ({data}) => <h1>{data.hi}</h1>;\n \n \n const hiQuery = gql`\n     {\n"
                 }
             ],
             "date": 1676317059113,

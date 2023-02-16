@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 8,
+            "activePatchIndex": 26,
             "patches": [
                 {
                     "date": 1676315402318,
@@ -40,6 +40,78 @@
                 {
                     "date": 1676317730971,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,7 +5,7 @@\n import App from '../../ui/App';\n \n Meteor.startup(() => {\n     const container = document.getElementById('app');\n-    const root = createRoot(container); // createRoot(container!) if you use TypeScript\n+    const root = createRoot(container); \n     root.render(<App/>)\n });\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676563815072,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React from 'react';\n import { Meteor } from 'meteor/meteor';\n import { createRoot } from 'react-dom/client';\n-\n+import { ApolloClient } from 'apollo-client';\n import App from '../../ui/App';\n \n Meteor.startup(() => {\n     const container = document.getElementById('app');\n"
+                },
+                {
+                    "date": 1676564410036,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import React from 'react';\n import { Meteor } from 'meteor/meteor';\n import { createRoot } from 'react-dom/client';\n-import { ApolloClient } from 'apollo-client';\n+import { ApolloClient } from '@apollo/client';\n+import { HttpLink } from '@apollo/client';\n import App from '../../ui/App';\n \n Meteor.startup(() => {\n     const container = document.getElementById('app');\n"
+                },
+                {
+                    "date": 1676564860216,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n import React from 'react';\n import { Meteor } from 'meteor/meteor';\n import { createRoot } from 'react-dom/client';\n-import { ApolloClient } from '@apollo/client';\n+import { ApolloClient, InMemoryCache } from '@apollo/client';\n import { HttpLink } from '@apollo/client';\n+\n import App from '../../ui/App';\n \n Meteor.startup(() => {\n     const container = document.getElementById('app');\n"
+                },
+                {
+                    "date": 1676570243836,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,16 @@\n import React from 'react';\n import { Meteor } from 'meteor/meteor';\n+import { render } from 'react-dom';\n import { createRoot } from 'react-dom/client';\n import { ApolloClient, InMemoryCache } from '@apollo/client';\n import { HttpLink } from '@apollo/client';\n \n import App from '../../ui/App';\n \n Meteor.startup(() => {\n-    const container = document.getElementById('app');\n-    const root = createRoot(container); \n-    root.render(<App/>)\n\\ No newline at end of file\n-});\n+    render( \n+        <App/>, \n+        document.getElementById('react-target')\n+    );\n+});\n+\n"
+                },
+                {
+                    "date": 1676570254827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n import React from 'react';\n import { Meteor } from 'meteor/meteor';\n import { render } from 'react-dom';\n-import { createRoot } from 'react-dom/client';\n import { ApolloClient, InMemoryCache } from '@apollo/client';\n import { HttpLink } from '@apollo/client';\n \n import App from '../../ui/App';\n"
+                },
+                {
+                    "date": 1676570272062,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,8 @@\n \n Meteor.startup(() => {\n     render( \n         <App/>, \n-        document.getElementById('react-target')\n+        document.getElementById('app')\n     );\n });\n \n"
+                },
+                {
+                    "date": 1676571231769,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,14 @@\n import React from 'react';\n import { Meteor } from 'meteor/meteor';\n import { render } from 'react-dom';\n+import { createRoot } from 'react-dom/client';\n import { ApolloClient, InMemoryCache } from '@apollo/client';\n import { HttpLink } from '@apollo/client';\n \n import App from '../../ui/App';\n \n Meteor.startup(() => {\n-    render( \n-        <App/>, \n-        document.getElementById('app')\n-    );\n+    const container = document.getElementById('app');\n+    const root = createRoot(container); \n+    root.render(<App/>)\n });\n-\n"
+                },
+                {
+                    "date": 1676572347179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,23 @@\n import { ApolloClient, InMemoryCache } from '@apollo/client';\n import { HttpLink } from '@apollo/client';\n \n import App from '../../ui/App';\n+import { HttpLink } from 'apollo-client-preset';\n \n+//create instance to connect \n+// apollo to GraphQL Server\n+const httpLink = new HttpLink({\n+    uri: Meteor.absoluteUrl('graphql')\n+});\n+\n+const cache = new InMemoryCache();\n+\n+const client = new ApolloClient({\n+    link: httpLink,\n+    cache: cache,\n+});\n+\n Meteor.startup(() => {\n     const container = document.getElementById('app');\n     const root = createRoot(container); \n     root.render(<App/>)\n"
+                },
+                {
+                    "date": 1676572405009,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n import React from 'react';\n import { Meteor } from 'meteor/meteor';\n-import { render } from 'react-dom';\n import { createRoot } from 'react-dom/client';\n import { ApolloClient, InMemoryCache } from '@apollo/client';\n import { HttpLink } from '@apollo/client';\n \n"
+                },
+                {
+                    "date": 1676572565763,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import { Meteor } from 'meteor/meteor';\n import { createRoot } from 'react-dom/client';\n import { ApolloClient, InMemoryCache } from '@apollo/client';\n import { HttpLink } from '@apollo/client';\n+import { ApolloProvider } from 'react-apollo';\n \n import App from '../../ui/App';\n import { HttpLink } from 'apollo-client-preset';\n \n@@ -14,8 +15,9 @@\n });\n \n const cache = new InMemoryCache();\n \n+// create instance apollo client\n const client = new ApolloClient({\n     link: httpLink,\n     cache: cache,\n });\n"
+                },
+                {
+                    "date": 1676572610106,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,12 @@\n import { createRoot } from 'react-dom/client';\n import { ApolloClient, InMemoryCache } from '@apollo/client';\n import { HttpLink } from '@apollo/client';\n import { ApolloProvider } from 'react-apollo';\n-\n+import { HttpLink } from 'apollo-client-preset';\n import App from '../../ui/App';\n-import { HttpLink } from 'apollo-client-preset';\n \n+\n //create instance to connect \n // apollo to GraphQL Server\n const httpLink = new HttpLink({\n     uri: Meteor.absoluteUrl('graphql')\n"
+                },
+                {
+                    "date": 1676572805544,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,15 @@\n     link: httpLink,\n     cache: cache,\n });\n \n+const ApolloApp = () => {\n+    <ApolloProvider>\n+        <App/>\n+    </ApolloProvider>\n+}\n+\n Meteor.startup(() => {\n     const container = document.getElementById('app');\n     const root = createRoot(container); \n-    root.render(<App/>)\n+    root.render(<ApolloApp/>)\n });\n"
+                },
+                {
+                    "date": 1676572916167,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,9 @@\n import React from 'react';\n import { Meteor } from 'meteor/meteor';\n import { createRoot } from 'react-dom/client';\n-import { ApolloClient, InMemoryCache } from '@apollo/client';\n-import { HttpLink } from '@apollo/client';\n+import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';\n import { ApolloProvider } from 'react-apollo';\n-import { HttpLink } from 'apollo-client-preset';\n import App from '../../ui/App';\n \n \n //create instance to connect \n"
+                },
+                {
+                    "date": 1676572968377,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,13 +19,13 @@\n     link: httpLink,\n     cache: cache,\n });\n \n-const ApolloApp = () => {\n+const ApolloApp = () => (\n     <ApolloProvider>\n         <App/>\n     </ApolloProvider>\n-}\n+)\n \n Meteor.startup(() => {\n     const container = document.getElementById('app');\n     const root = createRoot(container); \n"
+                },
+                {
+                    "date": 1676573031365,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n const httpLink = new HttpLink({\n     uri: Meteor.absoluteUrl('graphql')\n });\n \n+//create cache\n const cache = new InMemoryCache();\n \n // create instance apollo client\n const client = new ApolloClient({\n@@ -20,9 +21,9 @@\n     cache: cache,\n });\n \n const ApolloApp = () => (\n-    <ApolloProvider>\n+    <ApolloProvider client={client}>\n         <App/>\n     </ApolloProvider>\n )\n \n"
+                },
+                {
+                    "date": 1676573914692,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \n //create instance to connect \n // apollo to GraphQL Server\n const httpLink = new HttpLink({\n-    uri: Meteor.absoluteUrl('graphql')\n+    uri: \"http://localhost:4000/\"\n });\n \n //create cache\n const cache = new InMemoryCache();\n"
+                },
+                {
+                    "date": 1676578449823,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \n //create instance to connect \n // apollo to GraphQL Server\n const httpLink = new HttpLink({\n-    uri: \"http://localhost:4000/\"\n+    uri: Meteor.absoluteUrl(\"graphql\")\n });\n \n //create cache\n const cache = new InMemoryCache();\n"
+                },
+                {
+                    "date": 1676578513470,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \n //create instance to connect \n // apollo to GraphQL Server\n const httpLink = new HttpLink({\n-    uri: Meteor.absoluteUrl(\"graphql\")\n+    uri: \"http://localhost:4000/\"\n });\n \n //create cache\n const cache = new InMemoryCache();\n"
                 }
             ],
             "date": 1676315402318,

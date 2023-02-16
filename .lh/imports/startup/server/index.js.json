@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 8,
+            "activePatchIndex": 20,
             "patches": [
                 {
                     "date": 1676319943782,
@@ -40,6 +40,54 @@
                 {
                     "date": 1676325709388,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,21 @@\n import { ApolloServer } from \"@apollo/server\";\n \n+const typeDefs = `\n+type Query {\n+    hi: String\n+}\n+`;\n \n-// const server = new ApolloServer({});\n+const resolver = {\n+    Query: {\n+        hi() {\n+            return \"Hello Fabrice\";\n+        }\n+    }\n+}\n \n+const server = new ApolloServer({\n+    typeDefs: typeDefs,\n+    resolvers : resolver\n+});\n+\n"
+                },
+                {
+                    "date": 1676498007307,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import { ApolloServer } from \"@apollo/server\";\n+import { makeExecutableSchema } from \"@graphql-tools/schema\";\n \n const typeDefs = `\n type Query {\n     hi: String\n@@ -18,4 +19,5 @@\n     typeDefs: typeDefs,\n     resolvers : resolver\n });\n \n+  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676556679539,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { ApolloServer } from \"@apollo/server\";\n+import { ApolloServer } from 'apollo-server-express';\n import { makeExecutableSchema } from \"@graphql-tools/schema\";\n \n const typeDefs = `\n type Query {\n@@ -15,9 +15,9 @@\n     }\n }\n \n const server = new ApolloServer({\n-    typeDefs: typeDefs,\n-    resolvers : resolver\n+    typeDefs,\n+    resolver\n });\n \n   \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676556740654,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     }\n }\n \n const server = new ApolloServer({\n-    typeDefs,\n-    resolver\n+    typeDefs: typeDefs,\n+    resolvers : resolver\n });\n \n   \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676556867316,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { ApolloServer } from 'apollo-server-express';\n+import { ApolloServer } from \"@apollo/server\";\n import { makeExecutableSchema } from \"@graphql-tools/schema\";\n \n const typeDefs = `\n type Query {\n"
+                },
+                {
+                    "date": 1676558898384,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,23 +1,23 @@\n-import { ApolloServer } from \"@apollo/server\";\n+import { createApolloServer } from \"meteor/apollo\";\n import { makeExecutableSchema } from \"@graphql-tools/schema\";\n \n-const typeDefs = `\n-type Query {\n-    hi: String\n-}\n-`;\n+// const typeDefs = `\n+// type Query {\n+//     hi: String\n+// }\n+// `;\n \n-const resolver = {\n-    Query: {\n-        hi() {\n-            return \"Hello Fabrice\";\n-        }\n-    }\n-}\n+// const resolver = {\n\\ No newline at end of file\n+//     Query: {\n+//         hi() {\n+//             return \"Hello Fabrice\";\n+//         }\n+//     }\n+// }\n \n-const server = new ApolloServer({\n-    typeDefs: typeDefs,\n-    resolvers : resolver\n-});\n+// const server = new ApolloServer({\n+//     typeDefs: typeDefs,\n+//     resolvers : resolver\n+// });\n \n-  \n+createApolloServer({});\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676558933032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,23 +1,23 @@\n-import { createApolloServer } from \"meteor/apollo\";\n+import { ApolloServer } from \"@apollo/server\";\n import { makeExecutableSchema } from \"@graphql-tools/schema\";\n \n-// const typeDefs = `\n-// type Query {\n-//     hi: String\n-// }\n-// `;\n+const typeDefs = `\n+type Query {\n+    hi: String\n+}\n+`;\n \n-// const resolver = {\n-//     Query: {\n-//         hi() {\n-//             return \"Hello Fabrice\";\n-//         }\n-//     }\n-// }\n+const resolver = {\n\\ No newline at end of file\n+    Query: {\n+        hi() {\n+            return \"Hello Fabrice\";\n+        }\n+    }\n+}\n \n-// const server = new ApolloServer({\n-//     typeDefs: typeDefs,\n-//     resolvers : resolver\n-// });\n+const server = new ApolloServer({\n+    typeDefs: typeDefs,\n+    resolvers : resolver\n+});\n \n-createApolloServer({});\n+  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676559130385,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,5 +19,11 @@\n     typeDefs: typeDefs,\n     resolvers : resolver\n });\n \n-  \n\\ No newline at end of file\n+// Passing an ApolloServer instance to the `startStandaloneServer` function:\n+//  1. creates an Express app\n+//  2. installs your ApolloServer instance as middleware\n+//  3. prepares your app to handle incoming requests\n+const { url } = await startStandaloneServer(server, {\n+    listen: { port: 4000 },\n+  });\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676559179057,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,24 @@\n import { ApolloServer } from \"@apollo/server\";\n import { makeExecutableSchema } from \"@graphql-tools/schema\";\n \n-const typeDefs = `\n-type Query {\n-    hi: String\n-}\n-`;\n+// const typeDefs = `\n+// type Query {\n+//     hi: String\n+// }\n+// `;\n \n-const resolver = {\n-    Query: {\n-        hi() {\n-            return \"Hello Fabrice\";\n-        }\n-    }\n-}\n+// const resolver = {\n+//     Query: {\n+//         hi() {\n+//             return \"Hello Fabrice\";\n+//         }\n+//     }\n+// }\n \n const server = new ApolloServer({\n-    typeDefs: typeDefs,\n-    resolvers : resolver\n+    ypeDefs,\n+    resolver\n });\n \n // Passing an ApolloServer instance to the `startStandaloneServer` function:\n //  1. creates an Express app\n"
+                },
+                {
+                    "date": 1676559208902,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,29 +1,22 @@\n import { ApolloServer } from \"@apollo/server\";\n import { makeExecutableSchema } from \"@graphql-tools/schema\";\n \n-// const typeDefs = `\n-// type Query {\n-//     hi: String\n-// }\n-// `;\n+const typeDefs = `\n+type Query {\n+    hi: String\n+}\n+`;\n \n-// const resolver = {\n-//     Query: {\n-//         hi() {\n-//             return \"Hello Fabrice\";\n-//         }\n-//     }\n-// }\n+const resolver = {\n+    Query: {\n+        hi() {\n+            return \"Hello Fabrice\";\n+        }\n+    }\n+}\n \n\\ No newline at end of file\n const server = new ApolloServer({\n-    ypeDefs,\n-    resolver\n+    typeDefs: typeDefs,\n+    resolvers : resolver\n });\n \n-// Passing an ApolloServer instance to the `startStandaloneServer` function:\n-//  1. creates an Express app\n-//  2. installs your ApolloServer instance as middleware\n-//  3. prepares your app to handle incoming requests\n-const { url } = await startStandaloneServer(server, {\n-    listen: { port: 4000 },\n-  });\n"
+                },
+                {
+                    "date": 1676559525668,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import { ApolloServer } from \"@apollo/server\";\n import { makeExecutableSchema } from \"@graphql-tools/schema\";\n+import { startStandaloneServer } from '@apollo/server/standalone';\n \n const typeDefs = `\n type Query {\n     hi: String\n@@ -18,4 +19,5 @@\n const server = new ApolloServer({\n     typeDefs: typeDefs,\n     resolvers : resolver\n });\n+\n"
+                },
+                {
+                    "date": 1676559546416,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,4 +20,7 @@\n     typeDefs: typeDefs,\n     resolvers : resolver\n });\n \n+const { url } = await startStandaloneServer(server);\n+\n+console.log(`🚀 Server ready at ${url}`);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676580374184,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n import { ApolloServer } from \"@apollo/server\";\n import { makeExecutableSchema } from \"@graphql-tools/schema\";\n import { startStandaloneServer } from '@apollo/server/standalone';\n \n+import '../server/register-api';\n+\n const typeDefs = `\n type Query {\n     hi: String\n }\n"
                 }
             ],
             "date": 1676319943782,

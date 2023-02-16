@@ -1,0 +1,22 @@
+{
+    "sourceFile": "imports/startup/server/register-api.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1676579990962,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1676580112611,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,2 @@\n-import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n\\ No newline at end of file\n+import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n+\n"
+                }
+            ],
+            "date": 1676579990962,
+            "name": "Commit-0",
+            "content": "import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';"
+        }
+    ]
+}

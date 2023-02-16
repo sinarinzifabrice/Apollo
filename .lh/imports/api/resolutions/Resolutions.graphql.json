@@ -1,0 +1,22 @@
+{
+    "sourceFile": "imports/api/resolutions/Resolutions.graphql",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1676577479735,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1676579748632,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,7 +2,7 @@\n # createdAt\n # [todoId]\n \n type Resolutions {\n-    _id: String\n-    \n+    _id: String!\n+    name: String! \n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1676577479735,
+            "name": "Commit-0",
+            "content": "# name\n# createdAt\n# [todoId]\n\ntype Resolutions {\n    _id: String\n    \n}"
+        }
+    ]
+}
