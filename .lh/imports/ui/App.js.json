@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 6,
             "patches": [
                 {
                     "date": 1676317059113,
@@ -20,6 +20,18 @@
                 {
                     "date": 1676575080229,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n \n \n-const App = () => <h1>Hello</h1>;\n+const App = ({data}) => <h1>{data.hi}</h1>;\n \n \n const hiQuery = gql`\n     {\n"
+                },
+                {
+                    "date": 1676649351029,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,10 @@\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n \n \n+// here were introduce tags \n+// to get data into our cache\n const App = ({data}) => <h1>{data.hi}</h1>;\n \n \n const hiQuery = gql`\n"
+                },
+                {
+                    "date": 1676653649061,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,12 @@\n \n const hiQuery = gql`\n     {\n         hi\n+        resolutions {\n+            _id\n+            name\n+          }\n     }\n `;\n \n \n"
+                },
+                {
+                    "date": 1676657120947,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,21 @@\n \n \n // here were introduce tags \n // to get data into our cache\n-const App = ({data}) => <h1>{data.hi}</h1>;\n+const App = ({data}) => {\n+    if(data.loading) return null;\n+    return (\n+        <div>\n+            <h1>{data.hi}</h1>\n+            <ul>\n+                {data.resolutions.map(resolution =>(\n+                    <li key={resolution._id}>{resolution.name}</li>\n+                ))}\n+            </ul>\n+        </div>  \n+    ); \n+};\n \n \n const hiQuery = gql`\n     {\n"
                 }
             ],
             "date": 1676317059113,

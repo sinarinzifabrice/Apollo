@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 20,
+            "activePatchIndex": 23,
             "patches": [
                 {
                     "date": 1676319943782,
@@ -88,6 +88,18 @@
                 {
                     "date": 1676580374184,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n import { ApolloServer } from \"@apollo/server\";\n import { makeExecutableSchema } from \"@graphql-tools/schema\";\n import { startStandaloneServer } from '@apollo/server/standalone';\n \n+import '../server/register-api';\n+\n const typeDefs = `\n type Query {\n     hi: String\n }\n"
+                },
+                {
+                    "date": 1676643087427,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,14 +3,19 @@\n import { startStandaloneServer } from '@apollo/server/standalone';\n \n import '../server/register-api';\n \n+\n+// it points to the query \"hi\" \n+// and wants a string as answer\n const typeDefs = `\n type Query {\n     hi: String\n }\n `;\n \n+//it's where we put the query \n+//like Meteor.method\n const resolver = {\n     Query: {\n         hi() {\n             return \"Hello Fabrice\";\n"
+                },
+                {
+                    "date": 1676646801592,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,12 +22,14 @@\n         }\n     }\n }\n \n-const server = new ApolloServer({\n+const schema = makeExecutableSchema({\n     typeDefs: typeDefs,\n     resolvers : resolver\n-});\n+})\n \n+const server = new ApolloServer({ schema });\n+\n const { url } = await startStandaloneServer(server);\n \n console.log(`🚀 Server ready at ${url}`);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676649343794,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,35 +1,2 @@\n-import { ApolloServer } from \"@apollo/server\";\n-import { makeExecutableSchema } from \"@graphql-tools/schema\";\n-import { startStandaloneServer } from '@apollo/server/standalone';\n-\n import '../server/register-api';\n \n-\n-// it points to the query \"hi\" \n-// and wants a string as answer\n-const typeDefs = `\n-type Query {\n-    hi: String\n-}\n-`;\n-\n-//it's where we put the query \n-//like Meteor.method\n-const resolver = {\n-    Query: {\n-        hi() {\n-            return \"Hello Fabrice\";\n-        }\n-    }\n-}\n-\n-const schema = makeExecutableSchema({\n-    typeDefs: typeDefs,\n-    resolvers : resolver\n-})\n-\n-const server = new ApolloServer({ schema });\n-\n-const { url } = await startStandaloneServer(server);\n-\n-console.log(`🚀 Server ready at ${url}`);\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1676319943782,

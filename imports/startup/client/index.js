@@ -6,6 +6,7 @@ import { ApolloProvider } from 'react-apollo';
 import App from '../../ui/App';
 
 
+
 //create instance to connect 
 // apollo to GraphQL Server
 const httpLink = new HttpLink({

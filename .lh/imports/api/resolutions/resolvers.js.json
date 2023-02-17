@@ -1,0 +1,22 @@
+{
+    "sourceFile": "imports/api/resolutions/resolvers.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1676663954434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1676664455285,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,8 @@\n //it's where we put the query \n //like Meteor.method\n export default {\n     Query: {\n-        hi() {\n-            return \"Hello Fabrice\";\n-        },\n         resolutions(){\n             return [\n                 {\n                     _id: \"sdfsdfgwer\",\n"
+                }
+            ],
+            "date": 1676663954434,
+            "name": "Commit-0",
+            "content": "\n//it's where we put the query \n//like Meteor.method\nexport default {\n    Query: {\n        hi() {\n            return \"Hello Fabrice\";\n        },\n        resolutions(){\n            return [\n                {\n                    _id: \"sdfsdfgwer\",\n                    name: \"Get stuff done\"\n                },\n                {\n                    _id: \"rrrrrrrrrrrrrr\",\n                    name: \"gains weight\"\n                }\n            ];\n        }\n    }\n}"
+        }
+    ]
+}

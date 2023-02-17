@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 12,
             "patches": [
                 {
                     "date": 1676579990962,
@@ -12,6 +12,50 @@
                 {
                     "date": 1676580112611,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,2 @@\n-import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n\\ No newline at end of file\n+import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n+\n"
+                },
+                {
+                    "date": 1676649337247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,35 @@\n+\n+import { ApolloServer } from \"@apollo/server\";\n+import { makeExecutableSchema } from \"@graphql-tools/schema\";\n+import { startStandaloneServer } from '@apollo/server/standalone';\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n \n+\n+// it points to the query \"hi\" \n+// and wants a string as answer\n+const typeDefs = `\n+type Query {\n+    hi: String\n+}\n+`;\n+\n+//it's where we put the query \n+//like Meteor.method\n+const resolver = {\n+    Query: {\n+        hi() {\n+            return \"Hello Fabrice\";\n+        }\n+    }\n+}\n+\n+const schema = makeExecutableSchema({\n+    typeDefs: typeDefs,\n+    resolvers : resolver\n+})\n+\n+const server = new ApolloServer({ schema });\n+\n+const { url } = await startStandaloneServer(server);\n+\n+console.log(`🚀 Server ready at ${url}`);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676650405448,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,15 @@\n import { startStandaloneServer } from '@apollo/server/standalone';\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n \n \n+const testSchema =  `\n+    type Query {\n+        hi: String\n+    }\n+`;\n+\n+\n // it points to the query \"hi\" \n // and wants a string as answer\n const typeDefs = `\n type Query {\n"
+                },
+                {
+                    "date": 1676650463332,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,13 +13,12 @@\n \n \n // it points to the query \"hi\" \n // and wants a string as answer\n-const typeDefs = `\n-type Query {\n-    hi: String\n-}\n-`;\n+const typeDefs = [\n+    testSchema,\n+    ResolutionsSchema\n+];\n \n //it's where we put the query \n //like Meteor.method\n const resolver = {\n"
+                },
+                {
+                    "date": 1676650513350,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,11 @@\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n \n \n const testSchema =  `\n-    type Query {\n-        hi: String\n-    }\n+type Query {\n+    hi: String\n+}\n `;\n \n \n // it points to the query \"hi\" \n"
+                },
+                {
+                    "date": 1676651765652,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,19 +13,24 @@\n \n \n // it points to the query \"hi\" \n // and wants a string as answer\n-const typeDefs = [\n-    testSchema,\n-    ResolutionsSchema\n-];\n+const typeDefs = [testSchema, ResolutionsSchema];\n \n //it's where we put the query \n //like Meteor.method\n const resolver = {\n     Query: {\n         hi() {\n             return \"Hello Fabrice\";\n+        },\n+        resolutions(){\n+            return [\n+                {\n+                    _id: \"sdfsdfgwer\",\n+                    name: \"Get stuff done\"\n+                }\n+            ]\n         }\n     }\n }\n \n"
+                },
+                {
+                    "date": 1676651947655,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n \n const testSchema =  `\n type Query {\n     hi: String\n+    resolutions: [Resolution]\n }\n `;\n \n \n"
+                },
+                {
+                    "date": 1676652354690,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n                 {\n                     _id: \"sdfsdfgwer\",\n                     name: \"Get stuff done\"\n                 }\n-            ]\n+            ];\n         }\n     }\n }\n \n"
+                },
+                {
+                    "date": 1676653855410,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,12 @@\n             return [\n                 {\n                     _id: \"sdfsdfgwer\",\n                     name: \"Get stuff done\"\n+                },\n+                {\n+                    _id: \"rrrrrrrrrrrrrr\",\n+                    name: \"gains weight\"\n                 }\n             ];\n         }\n     }\n"
+                },
+                {
+                    "date": 1676664774467,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,11 @@\n import { ApolloServer } from \"@apollo/server\";\n import { makeExecutableSchema } from \"@graphql-tools/schema\";\n import { startStandaloneServer } from '@apollo/server/standalone';\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n+import ResolutionsResolvers from '../../api/resolutions/resolvers';\n+import merge from \"lodash/merge\";\n \n-\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n@@ -22,20 +23,8 @@\n const resolver = {\n     Query: {\n         hi() {\n             return \"Hello Fabrice\";\n-        },\n-        resolutions(){\n-            return [\n-                {\n-                    _id: \"sdfsdfgwer\",\n-                    name: \"Get stuff done\"\n-                },\n-                {\n-                    _id: \"rrrrrrrrrrrrrr\",\n-                    name: \"gains weight\"\n-                }\n-            ];\n         }\n     }\n }\n \n"
+                },
+                {
+                    "date": 1676665357548,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,16 +19,18 @@\n const typeDefs = [testSchema, ResolutionsSchema];\n \n //it's where we put the query \n //like Meteor.method\n-const resolver = {\n+const testResolver = {\n     Query: {\n         hi() {\n             return \"Hello Fabrice\";\n         }\n     }\n-}\n+};\n \n+const resolvers = merge(testResolver, ResolutionsResolvers);\n+\n const schema = makeExecutableSchema({\n     typeDefs: typeDefs,\n     resolvers : resolver\n })\n"
+                },
+                {
+                    "date": 1676665378354,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n const resolvers = merge(testResolver, ResolutionsResolvers);\n \n const schema = makeExecutableSchema({\n     typeDefs: typeDefs,\n-    resolvers : resolver\n+    resolvers : resolvers\n })\n \n const server = new ApolloServer({ schema });\n \n"
                 }
             ],
             "date": 1676579990962,
