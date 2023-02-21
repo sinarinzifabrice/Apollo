@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 14,
             "patches": [
                 {
                     "date": 1676317059113,
@@ -32,6 +32,38 @@
                 {
                     "date": 1676657120947,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,21 @@\n \n \n // here were introduce tags \n // to get data into our cache\n-const App = ({data}) => <h1>{data.hi}</h1>;\n+const App = ({data}) => {\n+    if(data.loading) return null;\n+    return (\n+        <div>\n+            <h1>{data.hi}</h1>\n+            <ul>\n+                {data.resolutions.map(resolution =>(\n+                    <li key={resolution._id}>{resolution.name}</li>\n+                ))}\n+            </ul>\n+        </div>  \n+    ); \n+};\n \n \n const hiQuery = gql`\n     {\n"
+                },
+                {
+                    "date": 1676928489890,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     {\n         hi\n         resolutions {\n             _id\n-            name\n+            testname\n           }\n     }\n `;\n \n"
+                },
+                {
+                    "date": 1676928532554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     {\n         hi\n         resolutions {\n             _id\n-            testname\n+            name\n           }\n     }\n `;\n \n"
+                },
+                {
+                    "date": 1676928543036,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     {\n         hi\n         resolutions {\n             _id\n-            name\n+            dfname\n           }\n     }\n `;\n \n"
+                },
+                {
+                    "date": 1676928606711,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     {\n         hi\n         resolutions {\n             _id\n-            dfname\n+            name\n           }\n     }\n `;\n \n"
+                },
+                {
+                    "date": 1676997891188,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n         <div>\n             <h1>{data.hi}</h1>\n             <ul>\n                 {data.resolutions.map(resolution =>(\n-                    <li key={resolution._id}>{resolution.name}</li>\n+                    <li key={resolution._id}>{resolution.firstname}</li>\n                 ))}\n             </ul>\n         </div>  \n     ); \n@@ -24,9 +24,9 @@\n     {\n         hi\n         resolutions {\n             _id\n-            name\n+            firstname\n           }\n     }\n `;\n \n"
+                },
+                {
+                    "date": 1676998341723,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n         <div>\n             <h1>{data.hi}</h1>\n             <ul>\n                 {data.resolutions.map(resolution =>(\n-                    <li key={resolution._id}>{resolution.firstname}</li>\n+                    <li key={resolution._id}>{resolution.name}</li>\n                 ))}\n             </ul>\n         </div>  \n     ); \n@@ -24,9 +24,9 @@\n     {\n         hi\n         resolutions {\n             _id\n-            firstname\n+            name\n           }\n     }\n `;\n \n"
+                },
+                {
+                    "date": 1676998386776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n         <div>\n             <h1>{data.hi}</h1>\n             <ul>\n                 {data.resolutions.map(resolution =>(\n-                    <li key={resolution._id}>{resolution.name}</li>\n+                    <li key={resolution._id}>{resolution.firstname}</li>\n                 ))}\n             </ul>\n         </div>  \n     ); \n@@ -24,9 +24,9 @@\n     {\n         hi\n         resolutions {\n             _id\n-            name\n+            firstname\n           }\n     }\n `;\n \n"
+                },
+                {
+                    "date": 1677002940037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,12 @@\n         hi\n         resolutions {\n             _id\n             firstname\n-          }\n+        }\n+        contacts {\n+            name\n+        }\n     }\n `;\n \n \n"
                 }
             ],
             "date": 1676317059113,

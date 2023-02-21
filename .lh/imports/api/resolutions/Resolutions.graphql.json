@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 9,
             "patches": [
                 {
                     "date": 1676577479735,
@@ -16,6 +16,34 @@
                 {
                     "date": 1676651346043,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n # name\n # createdAt\n # [todoId]\n \n-type Resolutions {\n+type Resolution {\n     _id: String!\n     name: String! \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676926227104,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,6 +3,6 @@\n # [todoId]\n \n type Resolution {\n     _id: String!\n-    name: String! \n+    lastname: String! \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676929157230,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,6 +3,6 @@\n # [todoId]\n \n type Resolution {\n     _id: String!\n-    lastname: String! \n+    name: String! \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676997586893,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,6 +3,6 @@\n # [todoId]\n \n type Resolution {\n     _id: String!\n-    name: String! \n+    firstname: String! \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676997960174,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n # name\n # createdAt\n # [todoId]\n \n+\n type Resolution {\n     _id: String!\n     firstname: String! \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676998273830,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,6 +4,6 @@\n \n \n type Resolution {\n     _id: String!\n-    firstname: String! \n+    name: String! \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676998362096,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,6 +4,6 @@\n \n \n type Resolution {\n     _id: String!\n-    name: String! \n+    firstname: String! \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677001760196,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,5 +5,10 @@\n \n type Resolution {\n     _id: String!\n     firstname: String! \n+}\n+\n+type Contact {\n+    _id: String!\n+    name: String! \n }\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1676577479735,

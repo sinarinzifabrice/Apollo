@@ -6,10 +6,14 @@ import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';
 import ResolutionsResolvers from '../../api/resolutions/resolvers';
 import merge from "lodash/merge";
 
+//hi
+// 
+
 const testSchema =  `
 type Query {
     hi: String
     resolutions: [Resolution]
+    contacts:[Contact]
 }
 `;
 
@@ -28,6 +32,8 @@ const testResolver = {
     }
 };
 
+
+
 const resolvers = merge(testResolver, ResolutionsResolvers);
 
 const schema = makeExecutableSchema({
@@ -36,6 +42,7 @@ const schema = makeExecutableSchema({
 })
 
 const server = new ApolloServer({ schema });
+
 
 const { url } = await startStandaloneServer(server);
 

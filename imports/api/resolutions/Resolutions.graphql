@@ -2,7 +2,13 @@
 # createdAt
 # [todoId]
 
+
 type Resolution {
+    _id: String!
+    firstname: String! 
+}
+
+type Contact {
     _id: String!
     name: String! 
 }

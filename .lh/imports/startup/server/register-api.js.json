@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 12,
+            "activePatchIndex": 32,
             "patches": [
                 {
                     "date": 1676579990962,
@@ -56,6 +56,86 @@
                 {
                     "date": 1676665378354,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n const resolvers = merge(testResolver, ResolutionsResolvers);\n \n const schema = makeExecutableSchema({\n     typeDefs: typeDefs,\n-    resolvers : resolver\n+    resolvers : resolvers\n })\n \n const server = new ApolloServer({ schema });\n \n"
+                },
+                {
+                    "date": 1676922375224,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,15 @@\n import { startStandaloneServer } from '@apollo/server/standalone';\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n+import express from 'express';\n \n+\n+\n+const app = express();\n+\n+\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n@@ -36,7 +42,13 @@\n })\n \n const server = new ApolloServer({ schema });\n \n-const { url } = await startStandaloneServer(server);\n+server.applyMiddleware({ app });\n \n\\ No newline at end of file\n-console.log(`🚀 Server ready at ${url}`);\n+app.listen({ port: 4000 }, () =>\n+  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)\n+);\n+\n+// const { url } = await startStandaloneServer(server);\n+\n+// console.log(`🚀 Server ready at ${url}`);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676922582573,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,15 +4,10 @@\n import { startStandaloneServer } from '@apollo/server/standalone';\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n-import express from 'express';\n \n \n-\n-const app = express();\n-\n-\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n@@ -42,13 +37,8 @@\n })\n \n const server = new ApolloServer({ schema });\n \n-server.applyMiddleware({ app });\n \n-app.listen({ port: 4000 }, () =>\n-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)\n-);\n+const { url } = await startStandaloneServer(server);\n \n-// const { url } = await startStandaloneServer(server);\n-\n\\ No newline at end of file\n-// console.log(`🚀 Server ready at ${url}`);\n+console.log(`🚀 Server ready at ${url}`);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676923767481,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n \n-import { ApolloServer } from \"@apollo/server\";\n+import { createApolloServer } from \"meteor/apollo\";\n import { makeExecutableSchema } from \"@graphql-tools/schema\";\n import { startStandaloneServer } from '@apollo/server/standalone';\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n@@ -35,10 +35,10 @@\n     typeDefs: typeDefs,\n     resolvers : resolvers\n })\n \n-const server = new ApolloServer({ schema });\n+// const server = new ApolloServer({ schema });\n+createApolloServer({schema});\n \n+// const { url } = await startStandaloneServer(server);\n \n\\ No newline at end of file\n-const { url } = await startStandaloneServer(server);\n-\n-console.log(`🚀 Server ready at ${url}`);\n+// console.log(`🚀 Server ready at ${url}`);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676923827126,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n     resolvers : resolvers\n })\n \n // const server = new ApolloServer({ schema });\n-createApolloServer({schema});\n+createApolloServer({ schema });\n \n // const { url } = await startStandaloneServer(server);\n \n // console.log(`🚀 Server ready at ${url}`);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676924539487,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n \n-import { createApolloServer } from \"meteor/apollo\";\n+import { ApolloServer } from \"@apollo/server\";\n import { makeExecutableSchema } from \"@graphql-tools/schema\";\n import { startStandaloneServer } from '@apollo/server/standalone';\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n@@ -35,10 +35,10 @@\n     typeDefs: typeDefs,\n     resolvers : resolvers\n })\n \n-// const server = new ApolloServer({ schema });\n-createApolloServer({ schema });\n+const server = new ApolloServer({ schema });\n \n-// const { url } = await startStandaloneServer(server);\n \n\\ No newline at end of file\n-// console.log(`🚀 Server ready at ${url}`);\n+const { url } = await startStandaloneServer(server);\n+\n+console.log(`🚀 Server ready at ${url}`);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676924932264,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,53 @@\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n+import { expressMiddleware } from '@apollo/server/express4';\n+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';\n+import express from 'express';\n+import http from 'http';\n+import cors from 'cors';\n+import bodyParser from 'body-parser';\n \n+interface MyContext {\n+    token?: string;\n+  }\n+\n+\n+// Required logic for integrating with Express\n+const app = express();\n+\n+// Our httpServer handles incoming requests to our Express app.\n+// Below, we tell Apollo Server to \"drain\" this httpServer,\n+// enabling our servers to shut down gracefully.\n+const httpServer = http.createServer(app);\n+\n+\n+// Ensure we wait for our server to start\n+await server.start();\n+\n+// Set up our Express middleware to handle CORS, body parsing,\n+// and our expressMiddleware function.\n+app.use(\n+  '/',\n+  cors<cors.CorsRequest>(),\n+  bodyParser.json(),\n+  // expressMiddleware accepts the same arguments:\n+  // an Apollo Server instance and optional configuration options\n+  expressMiddleware(server, {\n+    context: async ({ req }) => ({ token: req.headers.token }),\n+  }),\n+);\n+\n+\n+// Modified server startup\n+await new Promise<void>((resolve) => httpServer.listen({ port: 4000 }, resolve));\n+console.log(`🚀 Server ready at http://localhost:4000/`);\n+\n+\n+\n+\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n@@ -33,12 +77,14 @@\n \n const schema = makeExecutableSchema({\n     typeDefs: typeDefs,\n     resolvers : resolvers\n+    \n })\n \n-const server = new ApolloServer({ schema });\n+const server = new ApolloServer({ schema,   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],\n+});\n \n \n\\ No newline at end of file\n-const { url } = await startStandaloneServer(server);\n+// const { url } = await startStandaloneServer(server);\n \n-console.log(`🚀 Server ready at ${url}`);\n+// console.log(`🚀 Server ready at ${url}`);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676925150514,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n // Set up our Express middleware to handle CORS, body parsing,\n // and our expressMiddleware function.\n app.use(\n   '/',\n-  cors<cors.CorsRequest>(),\n+  cors<cors.CorsRequest>,\n   bodyParser.json(),\n   // expressMiddleware accepts the same arguments:\n   // an Apollo Server instance and optional configuration options\n   expressMiddleware(server, {\n"
+                },
+                {
+                    "date": 1676925471150,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,53 +5,10 @@\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n-import { expressMiddleware } from '@apollo/server/express4';\n-import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';\n-import express from 'express';\n-import http from 'http';\n-import cors from 'cors';\n-import bodyParser from 'body-parser';\n \n-interface MyContext {\n-    token?: string;\n-  }\n \n-\n-// Required logic for integrating with Express\n-const app = express();\n-\n-// Our httpServer handles incoming requests to our Express app.\n-// Below, we tell Apollo Server to \"drain\" this httpServer,\n-// enabling our servers to shut down gracefully.\n-const httpServer = http.createServer(app);\n-\n-\n-// Ensure we wait for our server to start\n-await server.start();\n-\n-// Set up our Express middleware to handle CORS, body parsing,\n-// and our expressMiddleware function.\n-app.use(\n-  '/',\n-  cors<cors.CorsRequest>,\n-  bodyParser.json(),\n-  // expressMiddleware accepts the same arguments:\n-  // an Apollo Server instance and optional configuration options\n-  expressMiddleware(server, {\n-    context: async ({ req }) => ({ token: req.headers.token }),\n-  }),\n-);\n-\n-\n-// Modified server startup\n-await new Promise<void>((resolve) => httpServer.listen({ port: 4000 }, resolve));\n-console.log(`🚀 Server ready at http://localhost:4000/`);\n-\n-\n-\n-\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n@@ -77,14 +34,12 @@\n \n const schema = makeExecutableSchema({\n     typeDefs: typeDefs,\n     resolvers : resolvers\n-    \n })\n \n-const server = new ApolloServer({ schema,   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],\n-});\n+const server = new ApolloServer({ schema });\n \n \n-// const { url } = await startStandaloneServer(server);\n+const { url } = await startStandaloneServer(server);\n\\ No newline at end of file\n \n-// console.log(`🚀 Server ready at ${url}`);\n+console.log(`🚀 Server ready at ${url}`);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676929115043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,10 @@\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n+//hi\n \n-\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1676929175386,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n import merge from \"lodash/merge\";\n \n //hi\n \n+\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1676929229932,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n import merge from \"lodash/merge\";\n \n //hi\n \n-\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1676929260742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n //hi\n+// \n \n const testSchema =  `\n type Query {\n     hi: String\n"
+                },
+                {
+                    "date": 1676990246487,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,10 +37,30 @@\n     typeDefs: typeDefs,\n     resolvers : resolvers\n })\n \n-const server = new ApolloServer({ schema });\n+const server = new ApolloServer({ \n+    schema,\n+    context: async ({ req }) => ({\n+        user: await getUser(req.headers.authorization)\n+    })\n\\ No newline at end of file\n+});\n \n+export async function startApolloServer() {\n+    await server.start();\n+    const app = WebApp.connectHandlers;\n+  \n+    server.applyMiddleware({\n+      app,\n+      cors: true\n+    });\n+}\n \n-const { url } = await startStandaloneServer(server);\n \n-console.log(`🚀 Server ready at ${url}`);\n+try {\n+    startApolloServer().then();\n+  } catch (e) {\n+    console.error(e.reason);\n+}\n+// const { url } = await startStandaloneServer(server);\n+\n+// console.log(`🚀 Server ready at ${url}`);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676990747725,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n         user: await getUser(req.headers.authorization)\n     })\n });\n \n-export async function startApolloServer() {\n+async function startApolloServer() {\n     await server.start();\n     const app = WebApp.connectHandlers;\n   \n     server.applyMiddleware({\n"
+                },
+                {
+                    "date": 1676991561269,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,28 +39,11 @@\n })\n \n const server = new ApolloServer({ \n     schema,\n-    context: async ({ req }) => ({\n-        user: await getUser(req.headers.authorization)\n-    })\n+    context: async ({ req }) => ({ token: req.headers.token })\n });\n \n-async function startApolloServer() {\n-    await server.start();\n-    const app = WebApp.connectHandlers;\n-  \n-    server.applyMiddleware({\n-      app,\n-      cors: true\n-    });\n-}\n \n+const { url } = await startStandaloneServer(server);\n \n-try {\n-    startApolloServer().then();\n-  } catch (e) {\n-    console.error(e.reason);\n-}\n-// const { url } = await startStandaloneServer(server);\n\\ No newline at end of file\n-\n-// console.log(`🚀 Server ready at ${url}`);\n+console.log(`🚀 Server ready at ${url}`);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676991622505,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,12 +37,9 @@\n     typeDefs: typeDefs,\n     resolvers : resolvers\n })\n \n-const server = new ApolloServer({ \n-    schema,\n-    context: async ({ req }) => ({ token: req.headers.token })\n-});\n+const server = new ApolloServer({ schema });\n \n \n const { url } = await startStandaloneServer(server);\n \n"
+                },
+                {
+                    "date": 1676998284110,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,8 +30,9 @@\n         }\n     }\n };\n \n+\n const resolvers = merge(testResolver, ResolutionsResolvers);\n \n const schema = makeExecutableSchema({\n     typeDefs: typeDefs,\n"
+                },
+                {
+                    "date": 1676998456311,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,8 +30,9 @@\n         }\n     }\n };\n \n+// \n \n const resolvers = merge(testResolver, ResolutionsResolvers);\n \n const schema = makeExecutableSchema({\n"
+                },
+                {
+                    "date": 1677001757999,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n+    contacts:[Contact]\n }\n `;\n \n \n"
+                },
+                {
+                    "date": 1677001860891,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,10 +31,10 @@\n         }\n     }\n };\n \n-// \n \n+\n const resolvers = merge(testResolver, ResolutionsResolvers);\n \n const schema = makeExecutableSchema({\n     typeDefs: typeDefs,\n"
                 }
             ],
             "date": 1676579990962,

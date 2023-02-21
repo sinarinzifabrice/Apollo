@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 57,
             "patches": [
                 {
                     "date": 1676663954434,
@@ -12,6 +12,230 @@
                 {
                     "date": 1676664455285,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,8 @@\n //it's where we put the query \n //like Meteor.method\n export default {\n     Query: {\n-        hi() {\n-            return \"Hello Fabrice\";\n-        },\n         resolutions(){\n             return [\n                 {\n                     _id: \"sdfsdfgwer\",\n"
+                },
+                {
+                    "date": 1676922875420,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-\n+import { ResolutionsCollection } from \"./resolutions\";\n //it's where we put the query \n //like Meteor.method\n export default {\n     Query: {\n"
+                },
+                {
+                    "date": 1676922963042,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,8 @@\n import { ResolutionsCollection } from \"./resolutions\";\n+\n+const res = ResolutionsCollection.find({}).fetch();\n+console.log(res);\n //it's where we put the query \n //like Meteor.method\n export default {\n     Query: {\n"
+                },
+                {
+                    "date": 1676923043206,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,10 @@\n import { ResolutionsCollection } from \"./resolutions\";\n \n+ResolutionsCollection.insert({\n+    name: \"Test Res\"\n+})\n+\n const res = ResolutionsCollection.find({}).fetch();\n console.log(res);\n //it's where we put the query \n //like Meteor.method\n"
+                },
+                {
+                    "date": 1676923166346,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,24 +3,16 @@\n ResolutionsCollection.insert({\n     name: \"Test Res\"\n })\n \n-const res = ResolutionsCollection.find({}).fetch();\n-console.log(res);\n+// const res = ResolutionsCollection.find({}).fetch();\n+// console.log(res);\n //it's where we put the query \n //like Meteor.method\n export default {\n     Query: {\n+        \n         resolutions(){\n-            return [\n-                {\n-                    _id: \"sdfsdfgwer\",\n-                    name: \"Get stuff done\"\n-                },\n-                {\n-                    _id: \"rrrrrrrrrrrrrr\",\n-                    name: \"gains weight\"\n-                }\n-            ];\n+            return ResolutionsCollection.find({}).fetch();\n         }\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676923246342,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { ResolutionsCollection } from \"./resolutions\";\n \n ResolutionsCollection.insert({\n-    name: \"Test Res\"\n+    name: \"Test now\"\n })\n \n // const res = ResolutionsCollection.find({}).fetch();\n // console.log(res);\n"
+                },
+                {
+                    "date": 1676923259593,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { ResolutionsCollection } from \"./resolutions\";\n \n-ResolutionsCollection.insert({\n-    name: \"Test now\"\n-})\n+// ResolutionsCollection.insert({\n+//     name: \"Test now\"\n+// })\n \n // const res = ResolutionsCollection.find({}).fetch();\n // console.log(res);\n //it's where we put the query \n"
+                },
+                {
+                    "date": 1676923313484,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,10 +3,10 @@\n // ResolutionsCollection.insert({\n //     name: \"Test now\"\n // })\n \n-// const res = ResolutionsCollection.find({}).fetch();\n-// console.log(res);\n+const res = ResolutionsCollection.find({}).fetch();\n+console.log(res);\n //it's where we put the query \n //like Meteor.method\n export default {\n     Query: {\n"
+                },
+                {
+                    "date": 1676925591613,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,18 +1,27 @@\n import { ResolutionsCollection } from \"./resolutions\";\n \n-// ResolutionsCollection.insert({\n-//     name: \"Test now\"\n-// })\n+ResolutionsCollection.insert({\n+    name: \"Test Res\"\n+})\n \n-const res = ResolutionsCollection.find({}).fetch();\n-console.log(res);\n+// const res = ResolutionsCollection.find({}).fetch();\n+// console.log(res);\n //it's where we put the query \n //like Meteor.method\n export default {\n     Query: {\n         \n         resolutions(){\n-            return ResolutionsCollection.find({}).fetch();\n+            return [\n+                {\n+                    _id: \"sdfsdfgwer\",\n+                    name: \"Get stuff done\"\n+                },\n+                {\n+                    _id: \"rrrrrrrrrrrrrr\",\n+                    name: \"gains weight\"\n+                }\n+            ];\n         }\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676927891445,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { ResolutionsCollection } from \"./resolutions\";\n \n-ResolutionsCollection.insert({\n-    name: \"Test Res\"\n-})\n+// ResolutionsCollection.insert({\n+//     name: \"Test Res\"\n+// })\n \n // const res = ResolutionsCollection.find({}).fetch();\n // console.log(res);\n //it's where we put the query \n"
+                },
+                {
+                    "date": 1676927913255,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,10 +3,10 @@\n // ResolutionsCollection.insert({\n //     name: \"Test Res\"\n // })\n \n-// const res = ResolutionsCollection.find({}).fetch();\n-// console.log(res);\n+const res = ResolutionsCollection.find({}).fetch();\n+console.log(res);\n //it's where we put the query \n //like Meteor.method\n export default {\n     Query: {\n"
+                },
+                {
+                    "date": 1676927964081,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n //it's where we put the query \n //like Meteor.method\n export default {\n     Query: {\n-        \n+        console.log(\"sdfvsdf\");\n         resolutions(){\n             return [\n                 {\n                     _id: \"sdfsdfgwer\",\n"
+                },
+                {
+                    "date": 1676927976605,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n //it's where we put the query \n //like Meteor.method\n export default {\n     Query: {\n-        console.log(\"sdfvsdf\");\n+        console.log(\"sdfvsdf\")\n         resolutions(){\n             return [\n                 {\n                     _id: \"sdfsdfgwer\",\n"
+                },
+                {
+                    "date": 1676927993974,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,11 @@\n //it's where we put the query \n //like Meteor.method\n export default {\n     Query: {\n-        console.log(\"sdfvsdf\")\n+        \n         resolutions(){\n+            console.log(\"sdfvsdf\");\n             return [\n                 {\n                     _id: \"sdfsdfgwer\",\n                     name: \"Get stuff done\"\n"
+                },
+                {
+                    "date": 1676928043430,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n export default {\n     Query: {\n         \n         resolutions(){\n+            ResolutionsCollection.find({}).fetch();\n             console.log(\"sdfvsdf\");\n             return [\n                 {\n                     _id: \"sdfsdfgwer\",\n"
+                },
+                {
+                    "date": 1676928097067,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n export default {\n     Query: {\n         \n         resolutions(){\n-            ResolutionsCollection.find({}).fetch();\n+            // ResolutionsCollection.find({}).fetch();\n             console.log(\"sdfvsdf\");\n             return [\n                 {\n                     _id: \"sdfsdfgwer\",\n"
+                },
+                {
+                    "date": 1676929209517,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,17 +13,8 @@\n         \n         resolutions(){\n             // ResolutionsCollection.find({}).fetch();\n             console.log(\"sdfvsdf\");\n-            return [\n-                {\n-                    _id: \"sdfsdfgwer\",\n-                    name: \"Get stuff done\"\n-                },\n-                {\n-                    _id: \"rrrrrrrrrrrrrr\",\n-                    name: \"gains weight\"\n-                }\n-            ];\n+            return ResolutionsCollection.find({}).fetch();\n         }\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676988566268,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,17 +4,19 @@\n //     name: \"Test Res\"\n // })\n \n const res = ResolutionsCollection.find({}).fetch();\n+\n console.log(res);\n //it's where we put the query \n //like Meteor.method\n export default {\n     Query: {\n         \n         resolutions(){\n+            \n             // ResolutionsCollection.find({}).fetch();\n-            console.log(\"sdfvsdf\");\n+            console.log(getLinks: async () => ResolutionsCollection.find({}).fetch());\n             return ResolutionsCollection.find({}).fetch();\n         }\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676988584472,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n         \n         resolutions(){\n             \n             // ResolutionsCollection.find({}).fetch();\n-            console.log(getLinks: async () => ResolutionsCollection.find({}).fetch());\n+            console.log(async () => ResolutionsCollection.find({}).fetch());\n             return ResolutionsCollection.find({}).fetch();\n         }\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676988703781,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n         resolutions(){\n             \n             // ResolutionsCollection.find({}).fetch();\n             console.log(async () => ResolutionsCollection.find({}).fetch());\n+            console.log(\"hvliu\");\n             return ResolutionsCollection.find({}).fetch();\n         }\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676989087626,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,10 +14,10 @@\n         \n         resolutions(){\n             \n             // ResolutionsCollection.find({}).fetch();\n-            console.log(async () => ResolutionsCollection.find({}).fetch());\n+            // console.log(async () => ResolutionsCollection.find({}).fetch());\n             console.log(\"hvliu\");\n-            return ResolutionsCollection.find({}).fetch();\n+            return getLinks: async () => ResolutionsCollection.find({}).fetch();\n         }\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676990773553,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,8 @@\n             \n             // ResolutionsCollection.find({}).fetch();\n             // console.log(async () => ResolutionsCollection.find({}).fetch());\n             console.log(\"hvliu\");\n-            return getLinks: async () => ResolutionsCollection.find({}).fetch();\n+            getLinks: async () => ResolutionsCollection.find({}).fetch();\n         }\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676991831580,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,8 @@\n             \n             // ResolutionsCollection.find({}).fetch();\n             // console.log(async () => ResolutionsCollection.find({}).fetch());\n             console.log(\"hvliu\");\n-            getLinks: async () => ResolutionsCollection.find({}).fetch();\n+            return ResolutionsCollection.find({}).fetch();\n         }\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676991883222,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n         resolutions(){\n             \n             // ResolutionsCollection.find({}).fetch();\n             // console.log(async () => ResolutionsCollection.find({}).fetch());\n+            console.log(ResolutionsCollection.find({}).fetch());\n             console.log(\"hvliu\");\n             return ResolutionsCollection.find({}).fetch();\n         }\n     }\n"
+                },
+                {
+                    "date": 1676991997412,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,16 @@\n         resolutions(){\n             \n             // ResolutionsCollection.find({}).fetch();\n             // console.log(async () => ResolutionsCollection.find({}).fetch());\n-            console.log(ResolutionsCollection.find({}).fetch());\n+            try {\n+                const result = ResolutionsCollection.find({}).fetch();\n+                // Utilisez le résultat ici\n+                console.log(result);\n+              } catch (error) {\n+                // Gérer l'erreur ici\n+                console.error(\"Erreur lors de la récupération des données:\", error);\n+              }\n             console.log(\"hvliu\");\n             return ResolutionsCollection.find({}).fetch();\n         }\n     }\n"
+                },
+                {
+                    "date": 1676993478174,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n             \n             // ResolutionsCollection.find({}).fetch();\n             // console.log(async () => ResolutionsCollection.find({}).fetch());\n             try {\n-                const result = ResolutionsCollection.find({}).fetch();\n+                const result = async() => ResolutionsCollection.find({}).fetch();\n                 // Utilisez le résultat ici\n                 console.log(result);\n               } catch (error) {\n                 // Gérer l'erreur ici\n"
+                },
+                {
+                    "date": 1676993558984,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n             \n             // ResolutionsCollection.find({}).fetch();\n             // console.log(async () => ResolutionsCollection.find({}).fetch());\n             try {\n-                const result = async() => ResolutionsCollection.find({}).fetch();\n+                const result = async() => ResolutionsCollection.find().fetch();\n                 // Utilisez le résultat ici\n                 console.log(result);\n               } catch (error) {\n                 // Gérer l'erreur ici\n"
+                },
+                {
+                    "date": 1676993814001,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,16 +13,15 @@\n     Query: {\n         \n         resolutions(){\n             \n-            // ResolutionsCollection.find({}).fetch();\n-            // console.log(async () => ResolutionsCollection.find({}).fetch());\n+            \n             try {\n                 const result = async() => ResolutionsCollection.find().fetch();\n-                // Utilisez le résultat ici\n+                \n                 console.log(result);\n               } catch (error) {\n-                // Gérer l'erreur ici\n+                \n                 console.error(\"Erreur lors de la récupération des données:\", error);\n               }\n             console.log(\"hvliu\");\n             return ResolutionsCollection.find({}).fetch();\n"
+                },
+                {
+                    "date": 1676993842687,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n         resolutions(){\n             \n             \n             try {\n-                const result = async() => ResolutionsCollection.find().fetch();\n+                const result = async() => ResolutionsCollection.find({}).fetch();\n                 \n                 console.log(result);\n               } catch (error) {\n                 \n"
+                },
+                {
+                    "date": 1676993913052,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,8 @@\n                 \n                 console.error(\"Erreur lors de la récupération des données:\", error);\n               }\n             console.log(\"hvliu\");\n-            return ResolutionsCollection.find({}).fetch();\n+            return async() => ResolutionsCollection.find({}).fetch();\n         }\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676996461799,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,20 +11,20 @@\n //like Meteor.method\n export default {\n     Query: {\n         \n-        resolutions(){\n+        async resolutions(_,args){\n             \n             \n             try {\n-                const result = async() => ResolutionsCollection.find({}).fetch();\n+                const result = await Resolutions.ResolutionsCollection.find({}).fetch();\n                 \n                 console.log(result);\n               } catch (error) {\n                 \n                 console.error(\"Erreur lors de la récupération des données:\", error);\n               }\n             console.log(\"hvliu\");\n-            return async() => ResolutionsCollection.find({}).fetch();\n+            return ResolutionsCollection.find({}).fetch();\n         }\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676996554615,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n         async resolutions(_,args){\n             \n             \n             try {\n-                const result = await Resolutions.ResolutionsCollection.find({}).fetch();\n+                const result = await ResolutionsCollection.find({}).fetch();\n                 \n                 console.log(result);\n               } catch (error) {\n                 \n"
+                },
+                {
+                    "date": 1676996695282,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n //like Meteor.method\n export default {\n     Query: {\n         \n-        async resolutions(_,args){\n+        async resolutions{\n             \n             \n             try {\n                 const result = await ResolutionsCollection.find({}).fetch();\n"
+                },
+                {
+                    "date": 1676996706001,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n //like Meteor.method\n export default {\n     Query: {\n         \n-        async resolutions{\n+         resolutions{\n             \n             \n             try {\n                 const result = await ResolutionsCollection.find({}).fetch();\n"
+                },
+                {
+                    "date": 1676996720336,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n //like Meteor.method\n export default {\n     Query: {\n         \n-         resolutions{\n+        async resolutions(_,args){\n             \n             \n             try {\n                 const result = await ResolutionsCollection.find({}).fetch();\n"
+                },
+                {
+                    "date": 1676996730810,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n //like Meteor.method\n export default {\n     Query: {\n         \n-        async resolutions(_,args){\n+        async resolutions(args){\n             \n             \n             try {\n                 const result = await ResolutionsCollection.find({}).fetch();\n"
+                },
+                {
+                    "date": 1676996745008,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n //like Meteor.method\n export default {\n     Query: {\n         \n-        async resolutions(args){\n+        async resolutions(){\n             \n             \n             try {\n                 const result = await ResolutionsCollection.find({}).fetch();\n"
+                },
+                {
+                    "date": 1676996779432,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,8 @@\n     Query: {\n         \n         async resolutions(){\n             \n-            \n             try {\n                 const result = await ResolutionsCollection.find({}).fetch();\n                 \n                 console.log(result);\n"
+                },
+                {
+                    "date": 1676996926056,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,13 +12,13 @@\n export default {\n     Query: {\n         \n         async resolutions(){\n-            \n+\n             try {\n                 const result = await ResolutionsCollection.find({}).fetch();\n                 \n-                console.log(result);\n+                console.log(\"le resultat \"+result);\n               } catch (error) {\n                 \n                 console.error(\"Erreur lors de la récupération des données:\", error);\n               }\n"
+                },
+                {
+                    "date": 1676996949035,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n         \n         async resolutions(){\n \n             try {\n-                const result = await ResolutionsCollection.find({}).fetch();\n+                const result = ResolutionsCollection.find({}).fetch();\n                 \n                 console.log(\"le resultat \"+result);\n               } catch (error) {\n                 \n"
+                },
+                {
+                    "date": 1676997144755,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n // })\n \n const res = ResolutionsCollection.find({}).fetch();\n \n+\n console.log(res);\n //it's where we put the query \n //like Meteor.method\n export default {\n"
+                },
+                {
+                    "date": 1676997783095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n-import { ResolutionsCollection } from \"./resolutions\";\n+import { ResolutionsCollection, ContactsCollection } from \"./resolutions\";\n \n // ResolutionsCollection.insert({\n //     name: \"Test Res\"\n // })\n \n const res = ResolutionsCollection.find({}).fetch();\n+const contact = ContactsCollection.find({}).fetch();\n \n-\n console.log(res);\n //it's where we put the query \n //like Meteor.method\n export default {\n@@ -15,9 +15,9 @@\n         \n         async resolutions(){\n \n             try {\n-                const result = ResolutionsCollection.find({}).fetch();\n+                const result = ContactsCollection.find({}).fetch();\n                 \n                 console.log(\"le resultat \"+result);\n               } catch (error) {\n                 \n"
+                },
+                {
+                    "date": 1676997807264,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n \n const res = ResolutionsCollection.find({}).fetch();\n const contact = ContactsCollection.find({}).fetch();\n \n+\n console.log(res);\n //it's where we put the query \n //like Meteor.method\n export default {\n"
+                },
+                {
+                    "date": 1676997821981,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n const res = ResolutionsCollection.find({}).fetch();\n const contact = ContactsCollection.find({}).fetch();\n \n \n-console.log(res);\n+console.log(contact);\n //it's where we put the query \n //like Meteor.method\n export default {\n     Query: {\n"
+                },
+                {
+                    "date": 1676997915904,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,8 @@\n                 \n                 console.error(\"Erreur lors de la récupération des données:\", error);\n               }\n             console.log(\"hvliu\");\n-            return ResolutionsCollection.find({}).fetch();\n+            return ContactsCollection.find({}).fetch();\n         }\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676997979272,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,8 @@\n \n const res = ResolutionsCollection.find({}).fetch();\n const contact = ContactsCollection.find({}).fetch();\n \n-\n console.log(contact);\n //it's where we put the query \n //like Meteor.method\n export default {\n"
+                },
+                {
+                    "date": 1676998185691,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n //like Meteor.method\n export default {\n     Query: {\n         \n-        async resolutions(){\n+        async resolutions(_,args){\n \n             try {\n                 const result = ContactsCollection.find({}).fetch();\n                 \n"
+                },
+                {
+                    "date": 1676998207224,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n         \n         async resolutions(_,args){\n \n             try {\n-                const result = ContactsCollection.find({}).fetch();\n+                const result = await ContactsCollection.find({}).fetch();\n                 \n                 console.log(\"le resultat \"+result);\n               } catch (error) {\n                 \n"
+                },
+                {
+                    "date": 1676998226732,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n //like Meteor.method\n export default {\n     Query: {\n         \n-        async resolutions(_,args){\n+        async resolutions(){\n \n             try {\n                 const result = await ContactsCollection.find({}).fetch();\n                 \n"
+                },
+                {
+                    "date": 1676998247484,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n         \n         async resolutions(){\n \n             try {\n-                const result = await ContactsCollection.find({}).fetch();\n+                const result = ResolutionsCollection.find({}).fetch();\n                 \n                 console.log(\"le resultat \"+result);\n               } catch (error) {\n                 \n"
+                },
+                {
+                    "date": 1676998259493,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n const res = ResolutionsCollection.find({}).fetch();\n const contact = ContactsCollection.find({}).fetch();\n \n-console.log(contact);\n+console.log(res);\n //it's where we put the query \n //like Meteor.method\n export default {\n     Query: {\n"
+                },
+                {
+                    "date": 1676998321655,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,8 @@\n                 \n                 console.error(\"Erreur lors de la récupération des données:\", error);\n               }\n             console.log(\"hvliu\");\n-            return ContactsCollection.find({}).fetch();\n+            return ResolutionsCollection.find({}).fetch();\n         }\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676998428442,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,25 +6,25 @@\n \n const res = ResolutionsCollection.find({}).fetch();\n const contact = ContactsCollection.find({}).fetch();\n \n-console.log(res);\n+console.log(contact);\n //it's where we put the query \n //like Meteor.method\n export default {\n     Query: {\n         \n         async resolutions(){\n \n             try {\n-                const result = ResolutionsCollection.find({}).fetch();\n+                const result = ContactsCollection.find({}).fetch();\n                 \n                 console.log(\"le resultat \"+result);\n               } catch (error) {\n                 \n                 console.error(\"Erreur lors de la récupération des données:\", error);\n               }\n             console.log(\"hvliu\");\n-            return ResolutionsCollection.find({}).fetch();\n+            return ContactsCollection.find({}).fetch();\n         }\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1676999199284,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n //like Meteor.method\n export default {\n     Query: {\n         \n-        async resolutions(){\n+        async contacts(){\n \n             try {\n                 const result = ContactsCollection.find({}).fetch();\n                 \n@@ -24,7 +24,21 @@\n                 console.error(\"Erreur lors de la récupération des données:\", error);\n               }\n             console.log(\"hvliu\");\n             return ContactsCollection.find({}).fetch();\n+        },\n+\n+        async resolutions(){\n+\n+            try {\n+                const result = ResolutionsCollection.find({}).fetch();\n+                \n+                console.log(\"le resultat \"+result);\n+              } catch (error) {\n+                \n+                console.error(\"Erreur lors de la récupération des données:\", error);\n+              }\n+            console.log(\"hvliu\");\n+            return ResolutionsCollection.find({}).fetch();\n         }\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677001764285,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n //like Meteor.method\n export default {\n     Query: {\n         \n-        async contacts(){\n+        async resolutions(){\n \n             try {\n                 const result = ContactsCollection.find({}).fetch();\n                 \n@@ -24,21 +24,9 @@\n                 console.error(\"Erreur lors de la récupération des données:\", error);\n               }\n             console.log(\"hvliu\");\n             return ContactsCollection.find({}).fetch();\n-        },\n+        }\n \n-        async resolutions(){\n-\n-            try {\n-                const result = ResolutionsCollection.find({}).fetch();\n-                \n-                console.log(\"le resultat \"+result);\n-              } catch (error) {\n-                \n-                console.error(\"Erreur lors de la récupération des données:\", error);\n-              }\n-            console.log(\"hvliu\");\n-            return ResolutionsCollection.find({}).fetch();\n-        }\n+        \n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677002327619,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,22 @@\n                 console.error(\"Erreur lors de la récupération des données:\", error);\n               }\n             console.log(\"hvliu\");\n             return ContactsCollection.find({}).fetch();\n-        }\n+        },\n \n+        async contacts(){\n+\n+            try {\n+                const result = ResolutionsCollection.find({}).fetch();\n+                \n+                console.log(\"le resolver \"+result);\n+              } catch (error) {\n+                \n+                console.error(\"Erreur lors de la récupération des données:\", error);\n+              }\n+            console.log(\"resolver contact\");\n+            return ResolutionsCollection.find({}).fetch();\n+        },\n         \n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677002366472,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,11 +29,11 @@\n \n         async contacts(){\n \n             try {\n-                const result = ResolutionsCollection.find({}).fetch();\n+                const resu = ResolutionsCollection.find({}).fetch();\n                 \n-                console.log(\"le resolver \"+result);\n+                console.log(\"le resolver \"+resu);\n               } catch (error) {\n                 \n                 console.error(\"Erreur lors de la récupération des données:\", error);\n               }\n"
                 }
             ],
             "date": 1676663954434,
