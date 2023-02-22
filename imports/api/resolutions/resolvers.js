@@ -16,7 +16,7 @@ export default {
         async resolutions(){
 
             try {
-                const result = ContactsCollection.find({}).fetch();
+                const result = ResolutionsCollection.find({}).fetch();
                 
                 console.log("le resultat "+result);
               } catch (error) {
@@ -24,13 +24,13 @@ export default {
                 console.error("Erreur lors de la récupération des données:", error);
               }
             console.log("hvliu");
-            return ContactsCollection.find({}).fetch();
+            return ResolutionsCollection.find({}).fetch();
         },
 
         async contacts(){
 
             try {
-                const resu = ResolutionsCollection.find({}).fetch();
+                const resu = ContactsCollection.find({}).fetch();
                 
                 console.log("le resolver "+resu);
               } catch (error) {
@@ -38,8 +38,27 @@ export default {
                 console.error("Erreur lors de la récupération des données:", error);
               }
             console.log("resolver contact");
-            return ResolutionsCollection.find({}).fetch();
-        },
-        
+            return ContactsCollection.find({}).fetch();
+        }
+
+    },
+
+    Mutation: {
+        async createContact(obj, { firstname} , context) {
+            try {
+                
+                    console.log("insert contact "+ firstname);
+
+                    const contactId = ContactsCollection.insert({
+                        firstname: firstname
+                    });
+                    return ContactsCollection.findOne(contactId);
+            }
+            catch (error) {
+                
+                    console.error("Erreur l'insertion des données:", error);
+            }
+            
+        }
     }
 }

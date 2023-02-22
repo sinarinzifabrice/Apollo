@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 14,
             "patches": [
                 {
                     "date": 1676577479735,
@@ -44,6 +44,26 @@
                 {
                     "date": 1677001760196,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,5 +5,10 @@\n \n type Resolution {\n     _id: String!\n     firstname: String! \n+}\n+\n+type Contact {\n+    _id: String!\n+    name: String! \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677076700821,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,11 +4,20 @@\n \n \n type Resolution {\n     _id: String!\n-    firstname: String! \n+    name: String! \n }\n \n type Contact {\n     _id: String!\n-    name: String! \n+    firstname: String!\n+    lastname: String!\n+    email: String!\n+    phone: String!\n+    city: String!\n+    province: String!\n+    zipcode: String!\n+    country: String!\n+    comment1: String! \n+    comment2: String!\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677084642771,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,5 +19,9 @@\n     zipcode: String!\n     country: String!\n     comment1: String! \n     comment2: String!\n+}\n+\n+type Mutation {\n+    createContact: Contact\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677095063973,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,7 +21,7 @@\n     comment1: String! \n     comment2: String!\n }\n \n-type Mutation {\n-    createContact: Contact\n-}\n\\ No newline at end of file\n+# type Mutation {\n+#     createContact: Contact\n+# }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677096205414,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,7 +21,7 @@\n     comment1: String! \n     comment2: String!\n }\n \n-# type Mutation {\n-#     createContact: Contact\n-# }\n\\ No newline at end of file\n+type Mutation {\n+    createContact: Contact\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677099330185,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,6 +22,6 @@\n     comment2: String!\n }\n \n type Mutation {\n-    createContact: Contact\n+    createContact(firstname: String!): Contact\n }\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1676577479735,

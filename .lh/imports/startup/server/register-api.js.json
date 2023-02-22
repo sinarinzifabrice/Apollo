@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 32,
+            "activePatchIndex": 47,
             "patches": [
                 {
                     "date": 1676579990962,
@@ -136,6 +136,66 @@
                 {
                     "date": 1677001860891,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,10 +31,10 @@\n         }\n     }\n };\n \n-// \n \n+\n const resolvers = merge(testResolver, ResolutionsResolvers);\n \n const schema = makeExecutableSchema({\n     typeDefs: typeDefs,\n"
+                },
+                {
+                    "date": 1677076763549,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,10 @@\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n //hi\n-// \n \n+\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1677076781017,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n import merge from \"lodash/merge\";\n \n //hi\n \n+// \n \n const testSchema =  `\n type Query {\n     hi: String\n"
+                },
+                {
+                    "date": 1677076872823,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,10 +32,10 @@\n         }\n     }\n };\n \n+// \n \n-\n const resolvers = merge(testResolver, ResolutionsResolvers);\n \n const schema = makeExecutableSchema({\n     typeDefs: typeDefs,\n"
+                },
+                {
+                    "date": 1677084683925,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n import merge from \"lodash/merge\";\n \n //hi\n \n-// \n \n const testSchema =  `\n type Query {\n     hi: String\n"
+                },
+                {
+                    "date": 1677084695775,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,8 @@\n         }\n     }\n };\n \n-// \n \n const resolvers = merge(testResolver, ResolutionsResolvers);\n \n const schema = makeExecutableSchema({\n"
+                },
+                {
+                    "date": 1677084742423,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,9 @@\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n-//hi\n \n-\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1677085008486,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n+//helo\n \n const testSchema =  `\n type Query {\n     hi: String\n"
+                },
+                {
+                    "date": 1677091007475,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,10 +29,10 @@\n             return \"Hello Fabrice\";\n         }\n     }\n };\n+//\n \n-\n const resolvers = merge(testResolver, ResolutionsResolvers);\n \n const schema = makeExecutableSchema({\n     typeDefs: typeDefs,\n"
+                },
+                {
+                    "date": 1677091975284,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,8 @@\n             return \"Hello Fabrice\";\n         }\n     }\n };\n-//\n \n const resolvers = merge(testResolver, ResolutionsResolvers);\n \n const schema = makeExecutableSchema({\n"
+                },
+                {
+                    "date": 1677095084993,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,8 +30,10 @@\n         }\n     }\n };\n \n+// ter\n+\n const resolvers = merge(testResolver, ResolutionsResolvers);\n \n const schema = makeExecutableSchema({\n     typeDefs: typeDefs,\n"
+                },
+                {
+                    "date": 1677095198440,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,8 +31,9 @@\n     }\n };\n \n // ter\n+// \n \n const resolvers = merge(testResolver, ResolutionsResolvers);\n \n const schema = makeExecutableSchema({\n"
+                },
+                {
+                    "date": 1677096257558,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,11 +30,10 @@\n         }\n     }\n };\n \n-// ter\n-// \n \n+\n const resolvers = merge(testResolver, ResolutionsResolvers);\n \n const schema = makeExecutableSchema({\n     typeDefs: typeDefs,\n"
+                },
+                {
+                    "date": 1677096476879,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,10 +30,11 @@\n         }\n     }\n };\n \n+// sf\n+// sdf\n \n-\n const resolvers = merge(testResolver, ResolutionsResolvers);\n \n const schema = makeExecutableSchema({\n     typeDefs: typeDefs,\n"
+                },
+                {
+                    "date": 1677099339545,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,10 +30,8 @@\n         }\n     }\n };\n \n-// sf\n-// sdf\n \n const resolvers = merge(testResolver, ResolutionsResolvers);\n \n const schema = makeExecutableSchema({\n"
+                },
+                {
+                    "date": 1677100171542,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,10 @@\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n-//helo\n+//helolo\n+// sdfg\n \n const testSchema =  `\n type Query {\n     hi: String\n"
                 }
             ],
             "date": 1676579990962,

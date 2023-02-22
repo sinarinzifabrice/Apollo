@@ -1,6 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
+import  ContactForm  from './ContactForm';
 
 
 // here were introduce tags 
@@ -10,9 +11,10 @@ const App = ({data}) => {
     return (
         <div>
             <h1>{data.hi}</h1>
+            <ContactForm refetch={data.refetch}/>
             <ul>
-                {data.resolutions.map(resolution =>(
-                    <li key={resolution._id}>{resolution.firstname}</li>
+                {data.contacts.map(contact =>(
+                    <li key={contact._id}>{contact.firstname}</li>
                 ))}
             </ul>
         </div>  
@@ -23,13 +25,11 @@ const App = ({data}) => {
 const hiQuery = gql`
     {
         hi
-        resolutions {
+        contacts {
             _id
             firstname
         }
-        contacts {
-            name
-        }
+        
     }
 `;
 

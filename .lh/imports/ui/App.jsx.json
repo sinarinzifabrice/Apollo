@@ -1,0 +1,42 @@
+{
+    "sourceFile": "imports/ui/App.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1677008410143,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677008437620,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n-import { ContactForm } from './ContactForm.jsx';\n+import { ContactForm } from './ContactForm';\n \n \n // here were introduce tags \n // to get data into our cache\n"
+                },
+                {
+                    "date": 1677013821361,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,11 +28,9 @@\n         resolutions {\n             _id\n             firstname\n         }\n-        contacts {\n-            name\n-        }\n+        \n     }\n `;\n \n \n"
+                },
+                {
+                    "date": 1677076748263,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n \n const hiQuery = gql`\n     {\n         hi\n-        resolutions {\n+        contacts {\n             _id\n             firstname\n         }\n         \n"
+                },
+                {
+                    "date": 1677076969361,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,10 @@\n         <div>\n             <h1>{data.hi}</h1>\n             <ContactForm/>\n             <ul>\n-                {data.resolutions.map(resolution =>(\n-                    <li key={resolution._id}>{resolution.firstname}</li>\n+                {data.contacts.map(contact =>(\n+                    <li key={contact._id}>{contact.firstname}</li>\n                 ))}\n             </ul>\n         </div>  \n     ); \n"
+                },
+                {
+                    "date": 1677095984586,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n-import { ContactForm } from './ContactForm';\n+import  ContactForm  from './ContactForm';\n \n \n // here were introduce tags \n // to get data into our cache\n"
+                },
+                {
+                    "date": 1677102812669,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     if(data.loading) return null;\n     return (\n         <div>\n             <h1>{data.hi}</h1>\n-            <ContactForm/>\n+            <ContactForm refetch={data.refetch}/>\n             <ul>\n                 {data.contacts.map(contact =>(\n                     <li key={contact._id}>{contact.firstname}</li>\n                 ))}\n"
+                }
+            ],
+            "date": 1677008410143,
+            "name": "Commit-0",
+            "content": "import React from 'react';\nimport gql from 'graphql-tag';\nimport { graphql } from 'react-apollo';\nimport { ContactForm } from './ContactForm.jsx';\n\n\n// here were introduce tags \n// to get data into our cache\nconst App = ({data}) => {\n    if(data.loading) return null;\n    return (\n        <div>\n            <h1>{data.hi}</h1>\n            <ContactForm/>\n            <ul>\n                {data.resolutions.map(resolution =>(\n                    <li key={resolution._id}>{resolution.firstname}</li>\n                ))}\n            </ul>\n        </div>  \n    ); \n};\n\n\nconst hiQuery = gql`\n    {\n        hi\n        resolutions {\n            _id\n            firstname\n        }\n        contacts {\n            name\n        }\n    }\n`;\n\n\n\nexport default graphql(hiQuery)(App);"
+        }
+    ]
+}

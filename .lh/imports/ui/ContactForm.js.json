@@ -1,0 +1,30 @@
+{
+    "sourceFile": "imports/ui/ContactForm.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1677007278914,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677007461338,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n export default class ContactForm extends Component{\n \n     submitForm = () => {\n         console.log(this.name.value);\n-    }\n+    };\n \n     render(){\n         return (\n             <div>\n"
+                },
+                {
+                    "date": 1677007812585,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n-import React, { Component} from 'react';\n+import React from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n import { extend } from 'lodash';\n \n \n-export default class ContactForm extends Component{\n+export default class ContactForm {\n \n     submitForm = () => {\n         console.log(this.name.value);\n     };\n"
+                },
+                {
+                    "date": 1677007843946,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n-import React from 'react';\n+import React, { Component} from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n import { extend } from 'lodash';\n \n \n-export default class ContactForm {\n+export default class ContactForm extends Component{\n \n     submitForm = () => {\n         console.log(this.name.value);\n     };\n"
+                }
+            ],
+            "date": 1677007278914,
+            "name": "Commit-0",
+            "content": "import React, { Component} from 'react';\nimport gql from 'graphql-tag';\nimport { graphql } from 'react-apollo';\nimport { extend } from 'lodash';\n\n\nexport default class ContactForm extends Component{\n\n    submitForm = () => {\n        console.log(this.name.value);\n    }\n\n    render(){\n        return (\n            <div>\n                <input type=\"text\" ref={input => (this.name = input)} />\n                <button onClick={this.submitForm}>Envoyer</button>\n            </div>\n        );\n    }\n}"
+        }
+    ]
+}

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 14,
+            "activePatchIndex": 18,
             "patches": [
                 {
                     "date": 1676317059113,
@@ -64,6 +64,22 @@
                 {
                     "date": 1677002940037,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,12 @@\n         hi\n         resolutions {\n             _id\n             firstname\n-          }\n+        }\n+        contacts {\n+            name\n+        }\n     }\n `;\n \n \n"
+                },
+                {
+                    "date": 1677007401412,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,17 @@\n import React from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n \n-\n+import { ContactForm } from '../ui/ContactForm';\n // here were introduce tags \n // to get data into our cache\n const App = ({data}) => {\n     if(data.loading) return null;\n     return (\n         <div>\n             <h1>{data.hi}</h1>\n+            <ContactForm/>\n             <ul>\n                 {data.resolutions.map(resolution =>(\n                     <li key={resolution._id}>{resolution.firstname}</li>\n                 ))}\n"
+                },
+                {
+                    "date": 1677007861608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     if(data.loading) return null;\n     return (\n         <div>\n             <h1>{data.hi}</h1>\n-            <ContactForm/>\n+            <ContactForm><ContactForm/>\n             <ul>\n                 {data.resolutions.map(resolution =>(\n                     <li key={resolution._id}>{resolution.firstname}</li>\n                 ))}\n"
+                },
+                {
+                    "date": 1677008016759,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     if(data.loading) return null;\n     return (\n         <div>\n             <h1>{data.hi}</h1>\n-            <ContactForm><ContactForm/>\n+            <ContactForm/>\n             <ul>\n                 {data.resolutions.map(resolution =>(\n                     <li key={resolution._id}>{resolution.firstname}</li>\n                 ))}\n"
+                },
+                {
+                    "date": 1677008096391,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n import React from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n+import { ContactForm } from '../ui/ContactForm';\n \n-import { ContactForm } from '../ui/ContactForm';\n+\n // here were introduce tags \n // to get data into our cache\n const App = ({data}) => {\n     if(data.loading) return null;\n"
                 }
             ],
             "date": 1676317059113,

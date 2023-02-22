@@ -1,0 +1,126 @@
+{
+    "sourceFile": "imports/ui/ContactForm.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 27,
+            "patches": [
+                {
+                    "date": 1677008378805,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1677009175495,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n-import React from 'react';\n+import React, { Component} from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n import { extend } from 'lodash';\n \n \n-export default class ContactForm {\n+export default class ContactForm extends Component{\n \n     submitForm = () => {\n         console.log(this.name.value);\n     };\n"
+                },
+                {
+                    "date": 1677009230362,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { graphql } from 'react-apollo';\n import { extend } from 'lodash';\n \n \n-export default class ContactForm extends Component{\n+export default class ContactForm extends React.Component{\n \n     submitForm = () => {\n         console.log(this.name.value);\n     };\n"
+                },
+                {
+                    "date": 1677009241008,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,11 @@\n \n \n export default class ContactForm extends React.Component{\n \n-    submitForm = () => {\n-        console.log(this.name.value);\n-    };\n+    // submitForm = () => {\n+    //     console.log(this.name.value);\n+    // };\n \n     render(){\n         return (\n             <div>\n"
+                },
+                {
+                    "date": 1677010091615,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { graphql } from 'react-apollo';\n import { extend } from 'lodash';\n \n \n-export default class ContactForm extends React.Component{\n+export default class ContactForm extends Component{\n \n     // submitForm = () => {\n     //     console.log(this.name.value);\n     // };\n"
+                },
+                {
+                    "date": 1677010246994,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,19 +3,19 @@\n import { graphql } from 'react-apollo';\n import { extend } from 'lodash';\n \n \n-export default class ContactForm extends Component{\n+export const ContactForm = () => {\n \n     // submitForm = () => {\n     //     console.log(this.name.value);\n     // };\n \n-    render(){\n-        return (\n-            <div>\n-                <input type=\"text\" ref={input => (this.name = input)} />\n-                <button onClick={this.submitForm}>Envoyer</button>\n-            </div>\n-        );\n-    }\n+    \n+    return (\n+        <div>\n+            <input type=\"text\" ref={input => (this.name = input)} />\n+            <button onClick={this.submitForm}>Envoyer</button>\n+        </div>\n+    );\n+    \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677010267532,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,11 @@\n \n \n export const ContactForm = () => {\n \n-    // submitForm = () => {\n-    //     console.log(this.name.value);\n-    // };\n+    submitForm = () => {\n+        console.log(this.name.value);\n+    };\n \n     \n     return (\n         <div>\n"
+                },
+                {
+                    "date": 1677010637669,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n export const ContactForm = () => {\n \n     submitForm = () => {\n-        console.log(this.name.value);\n+        console.log(this.name);\n     };\n \n     \n     return (\n"
+                },
+                {
+                    "date": 1677010723778,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n export const ContactForm = () => {\n \n     submitForm = () => {\n-        console.log(this.name);\n+        console.log(this.name.value);\n     };\n \n     \n     return (\n"
+                },
+                {
+                    "date": 1677012986299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,20 +1,23 @@\n-import React, { Component} from 'react';\n+import React, { useRef} from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n import { extend } from 'lodash';\n \n \n export const ContactForm = () => {\n \n+    const nameRef = useRef(null);\n+\n     submitForm = () => {\n-        console.log(this.name.value);\n+        const name = nameRef.current.value;\n+        console.log(name);\n     };\n \n     \n     return (\n         <div>\n-            <input type=\"text\" ref={input => (this.name = input)} />\n+            <input type=\"text\" ref={nameRef} />\n             <button onClick={this.submitForm}>Envoyer</button>\n         </div>\n     );\n     \n"
+                },
+                {
+                    "date": 1677090618546,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,17 @@\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n import { extend } from 'lodash';\n \n+const createContact = gql`\n+    mutation createContact {\n+        createContact {\n+            _id\n+        }\n+    }\n+`;\n \n-export const ContactForm = () => {\n+const ContactForm = () => {\n \n     const nameRef = useRef(null);\n \n     submitForm = () => {\n@@ -20,5 +27,7 @@\n             <button onClick={this.submitForm}>Envoyer</button>\n         </div>\n     );\n     \n-}\n\\ No newline at end of file\n+}\n+\n+export default graphql(createContact)(ContactForm)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677091412385,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,19 +15,21 @@\n \n     const nameRef = useRef(null);\n \n     submitForm = () => {\n-        const name = nameRef.current.value;\n-        console.log(name);\n+        const firstname = firstnameRef.current.value;\n+        console.log(firstname);\n     };\n \n     \n     return (\n         <div>\n-            <input type=\"text\" ref={nameRef} />\n-            <button onClick={this.submitForm}>Envoyer</button>\n+            <input type=\"text\" ref={firstnameRef} />\n+            <button onClick={this.submitForm}>Ajouter</button>\n         </div>\n     );\n\\ No newline at end of file\n     \n }\n \n-export default graphql(createContact)(ContactForm)\n+export default graphql(createContact, {\n+    nam\n+})(ContactForm)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677091652709,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,6 +30,6 @@\n     \n }\n \n export default graphql(createContact, {\n-    nam\n+    name: \"createContact\"\n })(ContactForm)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677092753721,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import React, { useRef} from 'react';\n+import React, { Component, useRef} from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n import { extend } from 'lodash';\n \n@@ -10,24 +10,26 @@\n         }\n     }\n `;\n \n-const ContactForm = () => {\n+class ContactForm extends Component {\n \n-    const nameRef = useRef(null);\n+    const firstnameRef = useRef(null);\n \n     submitForm = () => {\n         const firstname = firstnameRef.current.value;\n         console.log(firstname);\n     };\n \n+    render(){\n+        return (\n+            <div>\n+                <input type=\"text\" ref={firstnameRef} />\n+                <button onClick={this.submitForm}>Ajouter</button>\n+            </div>\n+        );\n+    }\n     \n-    return (\n-        <div>\n-            <input type=\"text\" ref={firstnameRef} />\n-            <button onClick={this.submitForm}>Ajouter</button>\n-        </div>\n-    );\n     \n }\n \n export default graphql(createContact, {\n"
+                },
+                {
+                    "date": 1677094385594,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \n     const firstnameRef = useRef(null);\n \n     submitForm = () => {\n-        const firstname = firstnameRef.current.value;\n+         firstname = firstnameRef.current.value;\n         console.log(firstname);\n     };\n \n     render(){\n"
+                },
+                {
+                    "date": 1677094506286,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import React, { Component, useRef} from 'react';\n+import React, { useRef} from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n import { extend } from 'lodash';\n \n@@ -10,26 +10,24 @@\n         }\n     }\n `;\n \n-class ContactForm extends Component {\n+const ContactForm = () => {\n \n     const firstnameRef = useRef(null);\n \n     submitForm = () => {\n-         firstname = firstnameRef.current.value;\n+        const firstname = firstnameRef.current.value;\n         console.log(firstname);\n     };\n \n-    render(){\n-        return (\n-            <div>\n-                <input type=\"text\" ref={firstnameRef} />\n-                <button onClick={this.submitForm}>Ajouter</button>\n-            </div>\n-        );\n-    }\n     \n+    return (\n+        <div>\n+            <input type=\"text\" ref={firstnameRef} />\n+            <button onClick={this.submitForm}>Ajouter</button>\n+        </div>\n+    );\n     \n }\n \n export default graphql(createContact, {\n"
+                },
+                {
+                    "date": 1677094975889,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import React, { useRef} from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n import { extend } from 'lodash';\n+import { Component } from 'react';\n \n const createContact = gql`\n     mutation createContact {\n         createContact {\n@@ -10,24 +11,26 @@\n         }\n     }\n `;\n \n-const ContactForm = () => {\n+class ContactForm extends Component {\n \n-    const firstnameRef = useRef(null);\n+    // const firstnameRef = useRef(null);\n \n     submitForm = () => {\n-        const firstname = firstnameRef.current.value;\n-        console.log(firstname);\n+        // const firstname = firstnameRef.current.value;\n+        console.log(this.firstname.value);\n     };\n \n+    render(){\n+        return (\n+            <div>\n+                <input type=\"text\" ref={input =>(this.firstname = input)} />\n+                <button onClick={this.submitForm}>Ajouter</button>\n+            </div>\n+        );\n+    }\n     \n-    return (\n-        <div>\n-            <input type=\"text\" ref={firstnameRef} />\n-            <button onClick={this.submitForm}>Ajouter</button>\n-        </div>\n-    );\n     \n }\n \n export default graphql(createContact, {\n"
+                },
+                {
+                    "date": 1677095011908,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,17 +3,17 @@\n import { graphql } from 'react-apollo';\n import { extend } from 'lodash';\n import { Component } from 'react';\n \n-const createContact = gql`\n-    mutation createContact {\n-        createContact {\n-            _id\n-        }\n-    }\n-`;\n+// const createContact = gql`\n+//     mutation createContact {\n+//         createContact {\n+//             _id\n+//         }\n+//     }\n+// `;\n \n-class ContactForm extends Component {\n+export default class ContactForm extends Component {\n \n     // const firstnameRef = useRef(null);\n \n     submitForm = () => {\n@@ -32,7 +32,7 @@\n     \n     \n }\n \n-export default graphql(createContact, {\n-    name: \"createContact\"\n-})(ContactForm)\n\\ No newline at end of file\n+// export default graphql(createContact, {\n+//     name: \"createContact\"\n+// })(ContactForm)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677095288997,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n import React, { useRef} from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n-import { extend } from 'lodash';\n import { Component } from 'react';\n \n // const createContact = gql`\n //     mutation createContact {\n"
+                },
+                {
+                    "date": 1677095584256,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n //         }\n //     }\n // `;\n \n-export default class ContactForm extends Component {\n+export default class ContactForm extends React.Component {\n \n     // const firstnameRef = useRef(null);\n \n     submitForm = () => {\n"
+                },
+                {
+                    "date": 1677095894721,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     // const firstnameRef = useRef(null);\n \n     submitForm = () => {\n         // const firstname = firstnameRef.current.value;\n-        console.log(this.firstname.value);\n+        // console.log(this.firstname.value);\n     };\n \n     render(){\n         return (\n"
+                },
+                {
+                    "date": 1677095955366,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,10 +27,8 @@\n                 <button onClick={this.submitForm}>Ajouter</button>\n             </div>\n         );\n     }\n-    \n-    \n }\n \n // export default graphql(createContact, {\n //     name: \"createContact\"\n"
+                },
+                {
+                    "date": 1677096046202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,10 @@\n \n     // const firstnameRef = useRef(null);\n \n     submitForm = () => {\n-        // const firstname = firstnameRef.current.value;\n-        // console.log(this.firstname.value);\n+        const firstname = firstnameRef.current.value;\n+        console.log(this.firstname.value);\n     };\n \n     render(){\n         return (\n"
+                },
+                {
+                    "date": 1677096097371,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \n     // const firstnameRef = useRef(null);\n \n     submitForm = () => {\n-        const firstname = firstnameRef.current.value;\n+        // const firstname = firstnameRef.current.value;\n         console.log(this.firstname.value);\n     };\n \n     render(){\n"
+                },
+                {
+                    "date": 1677096247731,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,17 +2,17 @@\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n import { Component } from 'react';\n \n-// const createContact = gql`\n-//     mutation createContact {\n-//         createContact {\n-//             _id\n-//         }\n-//     }\n-// `;\n+const createContact = gql`\n+    mutation createContact {\n+        createContact {\n+            _id\n+        }\n+    }\n+`;\n \n-export default class ContactForm extends React.Component {\n+class ContactForm extends React.Component {\n \n     // const firstnameRef = useRef(null);\n \n     submitForm = () => {\n@@ -29,7 +29,7 @@\n         );\n     }\n }\n \n-// export default graphql(createContact, {\n-//     name: \"createContact\"\n-// })(ContactForm)\n\\ No newline at end of file\n+export default graphql(createContact, {\n+    name: \"createContact\"\n+})(ContactForm)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677096651986,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n \n     submitForm = () => {\n         // const firstname = firstnameRef.current.value;\n         console.log(this.firstname.value);\n+        this.props.createContact();\n     };\n \n     render(){\n         return (\n"
+                },
+                {
+                    "date": 1677099325572,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,10 +3,10 @@\n import { graphql } from 'react-apollo';\n import { Component } from 'react';\n \n const createContact = gql`\n-    mutation createContact {\n-        createContact {\n+    mutation createContact($firstname: String!) {\n+        createContact(firstname: $firstname ) {\n             _id\n         }\n     }\n `;\n@@ -17,9 +17,13 @@\n \n     submitForm = () => {\n         // const firstname = firstnameRef.current.value;\n         console.log(this.firstname.value);\n-        this.props.createContact();\n+        this.props.createContact({\n+            variables: {\n+                firstname: this.firstname.value\n+            }\n+        });\n     };\n \n     render(){\n         return (\n"
+                },
+                {
+                    "date": 1677102742455,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,13 @@\n         this.props.createContact({\n             variables: {\n                 firstname: this.firstname.value\n             }\n+        })\n+        .then(({data}) =>{\n+            this.props.refetch();\n+        }).catch(error =>{\n+            console.log(error);\n         });\n     };\n \n     render(){\n"
+                }
+            ],
+            "date": 1677008378805,
+            "name": "Commit-0",
+            "content": "import React from 'react';\nimport gql from 'graphql-tag';\nimport { graphql } from 'react-apollo';\nimport { extend } from 'lodash';\n\n\nexport default class ContactForm {\n\n    submitForm = () => {\n        console.log(this.name.value);\n    };\n\n    render(){\n        return (\n            <div>\n                <input type=\"text\" ref={input => (this.name = input)} />\n                <button onClick={this.submitForm}>Envoyer</button>\n            </div>\n        );\n    }\n}"
+        }
+    ]
+}
