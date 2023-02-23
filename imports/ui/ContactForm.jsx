@@ -22,9 +22,6 @@ class ContactForm extends React.Component {
             variables: {
                 firstname: this.firstname.value
             }
-        })
-        .then(({data}) =>{
-            this.props.refetch();
         }).catch(error =>{
             console.log(error);
         });
@@ -41,5 +38,8 @@ class ContactForm extends React.Component {
 }
 
 export default graphql(createContact, {
-    name: "createContact"
+    name: "createContact",
+    options: {
+        refetchQueries: ["Contacts"]
+    }
 })(ContactForm)

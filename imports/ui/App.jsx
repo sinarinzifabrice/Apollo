@@ -6,14 +6,14 @@ import  ContactForm  from './ContactForm';
 
 // here were introduce tags 
 // to get data into our cache
-const App = ({data}) => {
-    if(data.loading) return null;
+const App = ({loading, contacts, hi }) => {
+    if(loading) return null;
     return (
         <div>
-            <h1>{data.hi}</h1>
-            <ContactForm refetch={data.refetch}/>
+            <h1>{hi}</h1>
+            <ContactForm />
             <ul>
-                {data.contacts.map(contact =>(
+                {contacts.map(contact =>(
                     <li key={contact._id}>{contact.firstname}</li>
                 ))}
             </ul>
@@ -22,8 +22,8 @@ const App = ({data}) => {
 };
 
 
-const hiQuery = gql`
-    {
+const contactsQuery = gql`
+    query Contacts {
         hi
         contacts {
             _id
@@ -35,4 +35,6 @@ const hiQuery = gql`
 
 
 
-export default graphql(hiQuery)(App);
+export default graphql(contactsQuery,{
+    props: ({ data }) => ( { ...data })
+})(App);

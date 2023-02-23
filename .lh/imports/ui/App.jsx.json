@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 12,
             "patches": [
                 {
                     "date": 1677008410143,
@@ -32,6 +32,30 @@
                 {
                     "date": 1677102812669,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     if(data.loading) return null;\n     return (\n         <div>\n             <h1>{data.hi}</h1>\n-            <ContactForm/>\n+            <ContactForm refetch={data.refetch}/>\n             <ul>\n                 {data.contacts.map(contact =>(\n                     <li key={contact._id}>{contact.firstname}</li>\n                 ))}\n"
+                },
+                {
+                    "date": 1677187782199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n };\n \n \n const hiQuery = gql`\n-    {\n+    query Contacts {\n         hi\n         contacts {\n             _id\n             firstname\n"
+                },
+                {
+                    "date": 1677188164301,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     if(data.loading) return null;\n     return (\n         <div>\n             <h1>{data.hi}</h1>\n-            <ContactForm refetch={data.refetch}/>\n+            <ContactForm />\n             <ul>\n                 {data.contacts.map(contact =>(\n                     <li key={contact._id}>{contact.firstname}</li>\n                 ))}\n"
+                },
+                {
+                    "date": 1677188590284,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     ); \n };\n \n \n-const hiQuery = gql`\n+const contactsQuery = gql`\n     query Contacts {\n         hi\n         contacts {\n             _id\n@@ -34,5 +34,5 @@\n `;\n \n \n \n-export default graphql(hiQuery)(App);\n\\ No newline at end of file\n+export default graphql(contactsQuery)(App);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677189175801,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,16 +5,16 @@\n \n \n // here were introduce tags \n // to get data into our cache\n-const App = ({data}) => {\n-    if(data.loading) return null;\n+const App = ({loading, contacts }) => {\n+    if(loading) return null;\n     return (\n         <div>\n-            <h1>{data.hi}</h1>\n+            <h1>{hi}</h1>\n             <ContactForm />\n             <ul>\n-                {data.contacts.map(contact =>(\n+                {contacts.map(contact =>(\n                     <li key={contact._id}>{contact.firstname}</li>\n                 ))}\n             </ul>\n         </div>  \n@@ -34,5 +34,7 @@\n `;\n \n \n \n-export default graphql(contactsQuery)(App);\n\\ No newline at end of file\n+export default graphql(contactsQuery,{\n+    props: ({ data }) => ( {...data})\n+})(App);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677189360502,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,6 +35,6 @@\n \n \n \n export default graphql(contactsQuery,{\n-    props: ({ data }) => ( {...data})\n+    props: ({ data }) => ( { ...data })\n })(App);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677189686076,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \n \n // here were introduce tags \n // to get data into our cache\n-const App = ({loading, contacts }) => {\n+const App = ({loading, contacts, hi }) => {\n     if(loading) return null;\n     return (\n         <div>\n             <h1>{hi}</h1>\n"
                 }
             ],
             "date": 1677008410143,
