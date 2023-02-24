@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 14,
+            "activePatchIndex": 15,
             "patches": [
                 {
                     "date": 1676577479735,
@@ -64,6 +64,10 @@
                 {
                     "date": 1677099330185,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,6 +22,6 @@\n     comment2: String!\n }\n \n type Mutation {\n-    createContact: Contact\n+    createContact(firstname: String!): Contact\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677270140296,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,17 +10,17 @@\n \n type Contact {\n     _id: String!\n     firstname: String!\n-    lastname: String!\n-    email: String!\n-    phone: String!\n-    city: String!\n-    province: String!\n-    zipcode: String!\n-    country: String!\n-    comment1: String! \n-    comment2: String!\n+    lastname: String\n+    email: String\n+    phone: String\n+    city: String\n+    province: String\n+    zipcode: String\n+    country: String\n+    comment1: String \n+    comment2: String\n }\n \n type Mutation {\n     createContact(firstname: String!): Contact\n"
                 }
             ],
             "date": 1676577479735,

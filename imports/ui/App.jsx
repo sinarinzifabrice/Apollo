@@ -12,11 +12,11 @@ const App = ({loading, contacts, hi }) => {
         <div>
             <h1>{hi}</h1>
             <ContactForm />
-            <ul>
+            {/* <ul>
                 {contacts.map(contact =>(
                     <li key={contact._id}>{contact.firstname}</li>
                 ))}
-            </ul>
+            </ul> */}
         </div>  
     ); 
 };

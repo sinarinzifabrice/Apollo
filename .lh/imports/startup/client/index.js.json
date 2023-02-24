@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 32,
+            "activePatchIndex": 41,
             "patches": [
                 {
                     "date": 1676315402318,
@@ -136,6 +136,42 @@
                 {
                     "date": 1676652823751,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,11 +3,11 @@\n import { createRoot } from 'react-dom/client';\n import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';\n import { ApolloProvider } from 'react-apollo';\n import App from '../../ui/App';\n-import { onPageLoad } from \"meteor/server-render\";\n \n \n+\n //create instance to connect \n // apollo to GraphQL Server\n const httpLink = new HttpLink({\n     uri: \"http://localhost:4000/\"\n"
+                },
+                {
+                    "date": 1677251773846,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import { createRoot } from 'react-dom/client';\n import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';\n import { ApolloProvider } from 'react-apollo';\n import App from '../../ui/App';\n+import Contactlist from '../../ui/Contactlist';\n \n \n \n //create instance to connect \n@@ -23,9 +24,9 @@\n });\n \n const ApolloApp = () => (\n     <ApolloProvider client={client}>\n-        <App/>\n+        <Contactlist/>\n     </ApolloProvider>\n )\n \n Meteor.startup(() => {\n"
+                },
+                {
+                    "date": 1677251893582,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n import { createRoot } from 'react-dom/client';\n import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';\n import { ApolloProvider } from 'react-apollo';\n import App from '../../ui/App';\n-import Contactlist from '../../ui/Contactlist';\n \n \n \n //create instance to connect \n@@ -24,9 +23,9 @@\n });\n \n const ApolloApp = () => (\n     <ApolloProvider client={client}>\n-        <Contactlist/>\n+        <App/>\n     </ApolloProvider>\n )\n \n Meteor.startup(() => {\n"
+                },
+                {
+                    "date": 1677252203702,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import { createRoot } from 'react-dom/client';\n import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';\n import { ApolloProvider } from 'react-apollo';\n import App from '../../ui/App';\n+import Contactlist from '../../ui/Contactlist';\n \n \n \n //create instance to connect \n@@ -23,9 +24,9 @@\n });\n \n const ApolloApp = () => (\n     <ApolloProvider client={client}>\n-        <App/>\n+        <Contactlist/>\n     </ApolloProvider>\n )\n \n Meteor.startup(() => {\n"
+                },
+                {
+                    "date": 1677252239895,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n });\n \n const ApolloApp = () => (\n     <ApolloProvider client={client}>\n+        <App/>\n         <Contactlist/>\n     </ApolloProvider>\n )\n \n"
+                },
+                {
+                    "date": 1677252253517,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,8 @@\n });\n \n const ApolloApp = () => (\n     <ApolloProvider client={client}>\n-        <App/>\n         <Contactlist/>\n     </ApolloProvider>\n )\n \n"
+                },
+                {
+                    "date": 1677252536633,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n });\n \n const ApolloApp = () => (\n     <ApolloProvider client={client}>\n-        <Contactlist/>\n+        <App/>\n     </ApolloProvider>\n )\n \n Meteor.startup(() => {\n"
+                },
+                {
+                    "date": 1677252747109,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,12 @@\n import { createRoot } from 'react-dom/client';\n import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';\n import { ApolloProvider } from 'react-apollo';\n import App from '../../ui/App';\n-import Contactlist from '../../ui/Contactlist';\n \n \n \n+\n //create instance to connect \n // apollo to GraphQL Server\n const httpLink = new HttpLink({\n     uri: \"http://localhost:4000/\"\n"
+                },
+                {
+                    "date": 1677254770026,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n });\n \n const ApolloApp = () => (\n     <ApolloProvider client={client}>\n+        <h1>Page d'accueil</h1>\n         <App/>\n     </ApolloProvider>\n )\n \n"
+                },
+                {
+                    "date": 1677254933425,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,12 @@\n import { createRoot } from 'react-dom/client';\n import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';\n import { ApolloProvider } from 'react-apollo';\n import App from '../../ui/App';\n+import Navbar from '../../ui/Navbar';\n \n \n \n-\n //create instance to connect \n // apollo to GraphQL Server\n const httpLink = new HttpLink({\n     uri: \"http://localhost:4000/\"\n@@ -25,9 +25,9 @@\n \n const ApolloApp = () => (\n     <ApolloProvider client={client}>\n         <h1>Page d'accueil</h1>\n-        <App/>\n+        <Navbar/>\n     </ApolloProvider>\n )\n \n Meteor.startup(() => {\n"
                 }
             ],
             "date": 1676315402318,

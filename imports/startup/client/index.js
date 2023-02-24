@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 import { ApolloProvider } from 'react-apollo';
 import App from '../../ui/App';
+import Navbar from '../../ui/Navbar';
 
 
 
@@ -24,7 +25,8 @@ const client = new ApolloClient({
 
 const ApolloApp = () => (
     <ApolloProvider client={client}>
-        <App/>
+        <h1>Page d'accueil</h1>
+        <Navbar/>
     </ApolloProvider>
 )
 

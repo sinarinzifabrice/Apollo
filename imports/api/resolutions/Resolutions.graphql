@@ -11,15 +11,15 @@ type Resolution {
 type Contact {
     _id: String!
     firstname: String!
-    lastname: String!
-    email: String!
-    phone: String!
-    city: String!
-    province: String!
-    zipcode: String!
-    country: String!
-    comment1: String! 
-    comment2: String!
+    lastname: String
+    email: String
+    phone: String
+    city: String
+    province: String
+    zipcode: String
+    country: String
+    comment1: String 
+    comment2: String
 }
 
 type Mutation {

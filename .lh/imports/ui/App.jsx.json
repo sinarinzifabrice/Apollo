@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 12,
+            "activePatchIndex": 20,
             "patches": [
                 {
                     "date": 1677008410143,
@@ -56,6 +56,38 @@
                 {
                     "date": 1677189686076,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \n \n // here were introduce tags \n // to get data into our cache\n-const App = ({loading, contacts }) => {\n+const App = ({loading, contacts, hi }) => {\n     if(loading) return null;\n     return (\n         <div>\n             <h1>{hi}</h1>\n"
+                },
+                {
+                    "date": 1677251362724,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,40 +1,16 @@\n import React from 'react';\n-import gql from 'graphql-tag';\n-import { graphql } from 'react-apollo';\n-import  ContactForm  from './ContactForm';\n \n \n+\n // here were introduce tags \n // to get data into our cache\n-const App = ({loading, contacts, hi }) => {\n-    if(loading) return null;\n-    return (\n-        <div>\n-            <h1>{hi}</h1>\n-            <ContactForm />\n-            <ul>\n-                {contacts.map(contact =>(\n-                    <li key={contact._id}>{contact.firstname}</li>\n-                ))}\n-            </ul>\n-        </div>  \n-    ); \n+export const App = () => {\n+   \n+    <div>\n+        <h1>PAge d'accueil</h1>\n+    </div>  \n+\n };\n \n \n-const contactsQuery = gql`\n-    query Contacts {\n-        hi\n-        contacts {\n-            _id\n-            firstname\n-        }\n-        \n-    }\n\\ No newline at end of file\n-`;\n \n-\n-\n-export default graphql(contactsQuery,{\n-    props: ({ data }) => ( { ...data })\n-})(App);\n"
+                },
+                {
+                    "date": 1677251467660,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import React from 'react';\n+import Contactlist from './Contactlist';\n \n \n \n // here were introduce tags \n@@ -7,8 +8,9 @@\n export const App = () => {\n    \n     <div>\n         <h1>PAge d'accueil</h1>\n+        <Contactlist/>\n     </div>  \n \n };\n \n"
+                },
+                {
+                    "date": 1677251821559,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n export const App = () => {\n    \n     <div>\n         <h1>PAge d'accueil</h1>\n-        <Contactlist/>\n+        \n     </div>  \n \n };\n \n"
+                },
+                {
+                    "date": 1677251970213,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n export const App = () => {\n    \n     <div>\n         <h1>PAge d'accueil</h1>\n-        \n+        <Contactlist/>\n     </div>  \n \n };\n \n"
+                },
+                {
+                    "date": 1677252522949,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,18 +1,40 @@\n import React from 'react';\n-import Contactlist from './Contactlist';\n+import gql from 'graphql-tag';\n+import { graphql } from 'react-apollo';\n+import  ContactForm  from './ContactForm';\n \n \n-\n // here were introduce tags \n // to get data into our cache\n-export const App = () => {\n-   \n-    <div>\n-        <h1>PAge d'accueil</h1>\n-        <Contactlist/>\n-    </div>  \n-\n+const contactList = ({loading, contacts, hi }) => {\n+    if(loading) return null;\n+    return (\n+        <div>\n+            <h1>{hi}</h1>\n+            <ContactForm />\n+            <ul>\n+                {contacts.map(contact =>(\n+                    <li key={contact._id}>{contact.firstname}</li>\n+                ))}\n+            </ul>\n+        </div>  \n+    ); \n };\n \n \n+const contactsQuery = gql`\n+    query Contacts {\n+        hi\n+        contacts {\n+            _id\n+            firstname\n+        }\n+        \n+    }\n+`;\n \n+\n+\n+export default graphql(contactsQuery,{\n+    props: ({ data }) => ( { ...data })\n+})(contactList);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677252635459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \n \n // here were introduce tags \n // to get data into our cache\n-const contactList = ({loading, contacts, hi }) => {\n+const app = ({loading, contacts, hi }) => {\n     if(loading) return null;\n     return (\n         <div>\n             <h1>{hi}</h1>\n@@ -36,5 +36,5 @@\n \n \n export default graphql(contactsQuery,{\n     props: ({ data }) => ( { ...data })\n-})(contactList);\n\\ No newline at end of file\n+})(app);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677252654960,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \n \n // here were introduce tags \n // to get data into our cache\n-const app = ({loading, contacts, hi }) => {\n+const App = ({loading, contacts, hi }) => {\n     if(loading) return null;\n     return (\n         <div>\n             <h1>{hi}</h1>\n@@ -36,5 +36,5 @@\n \n \n export default graphql(contactsQuery,{\n     props: ({ data }) => ( { ...data })\n-})(app);\n\\ No newline at end of file\n+})(App);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677274311565,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,13 +11,13 @@\n     return (\n         <div>\n             <h1>{hi}</h1>\n             <ContactForm />\n-            <ul>\n+            {/* <ul>\n                 {contacts.map(contact =>(\n                     <li key={contact._id}>{contact.firstname}</li>\n                 ))}\n-            </ul>\n+            </ul> */}\n         </div>  \n     ); \n };\n \n"
                 }
             ],
             "date": 1677008410143,
