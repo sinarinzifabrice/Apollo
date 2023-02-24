@@ -45,7 +45,8 @@ const ListContact = ({loading, contacts, hi }) => {
     return (
         <div>
             {contacts.map(contact =>(
-                <Card sx={{ minWidth: 275 }} elevation={2} key={contact._id} margin="30px 30px">
+                <Box margin={2} key={contact._id}>
+                    <Card sx={{ minWidth: 275 }} elevation={2}>
                     <CardContent>
                         
                         <Typography variant="h5" component="div" fontWeight="bold">
@@ -72,7 +73,9 @@ const ListContact = ({loading, contacts, hi }) => {
             Supprimer
             </Button>
         </CardActions>
-        </Card>
+                </Card>
+                </Box>
+                
             ))}
             
         </div>

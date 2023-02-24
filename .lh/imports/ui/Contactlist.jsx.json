@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 28,
+            "activePatchIndex": 30,
             "patches": [
                 {
                     "date": 1677248624464,
@@ -120,6 +120,14 @@
                 {
                     "date": 1677273465919,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n     if(loading) return null;\n     return (\n         <div>\n             {contacts.map(contact =>(\n-                <Card sx={{ minWidth: 275 }} elevation={2} key={contact._id} margin=\"30px\">\n+                <Card sx={{ minWidth: 275 }} elevation={2} key={contact._id} margin=\"30px 30px\">\n                     <CardContent>\n                         \n                         <Typography variant=\"h5\" component=\"div\" fontWeight=\"bold\">\n                             {contact.firstname} {contact.lastname}\n"
+                },
+                {
+                    "date": 1677274948066,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n     if(loading) return null;\n     return (\n         <div>\n             {contacts.map(contact =>(\n-                <Card sx={{ minWidth: 275 }} elevation={2} key={contact._id} margin=\"30px 30px\">\n+                <Card sx={{ minWidth: 275 }} elevation={2} key={contact._id}>\n                     <CardContent>\n                         \n                         <Typography variant=\"h5\" component=\"div\" fontWeight=\"bold\">\n                             {contact.firstname} {contact.lastname}\n"
+                },
+                {
+                    "date": 1677275024297,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,10 @@\n     if(loading) return null;\n     return (\n         <div>\n             {contacts.map(contact =>(\n-                <Card sx={{ minWidth: 275 }} elevation={2} key={contact._id}>\n+                <Box margin={2} key={contact._id}>\n+                    <Card sx={{ minWidth: 275 }} elevation={2}>\n                     <CardContent>\n                         \n                         <Typography variant=\"h5\" component=\"div\" fontWeight=\"bold\">\n                             {contact.firstname} {contact.lastname}\n@@ -71,9 +72,11 @@\n             >\n             Supprimer\n             </Button>\n         </CardActions>\n-        </Card>\n+                </Card>\n+                </Box>\n+                \n             ))}\n             \n         </div>\n         \n"
                 }
             ],
             "date": 1677248624464,
