@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 29,
+            "activePatchIndex": 31,
             "patches": [
                 {
                     "date": 1677008378805,
@@ -124,6 +124,14 @@
                 {
                     "date": 1677189250050,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,11 +21,8 @@\n         this.props.createContact({\n             variables: {\n                 firstname: this.firstname.value\n             }\n-        })\n-        .then(({data}) =>{\n-            this.props.refetch();\n         }).catch(error =>{\n             console.log(error);\n         });\n     };\n"
+                },
+                {
+                    "date": 1677528061428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,10 +36,10 @@\n         );\n     }\n }\n \n-export default graphql(createContact, {\n-    name: \"createContact\",\n-    options: {\n-        refetchQueries: [\"Contacts\"]\n-    }\n-})(ContactForm)\n\\ No newline at end of file\n+// export default graphql(createContact, {\n+//     name: \"createContact\",\n+//     options: {\n+//         refetchQueries: [\"Contacts\"]\n+//     }\n+// })(ContactForm)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677528068645,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,10 +36,10 @@\n         );\n     }\n }\n \n-// export default graphql(createContact, {\n-//     name: \"createContact\",\n-//     options: {\n-//         refetchQueries: [\"Contacts\"]\n-//     }\n-// })(ContactForm)\n\\ No newline at end of file\n+export default graphql(createContact, {\n+    name: \"createContact\",\n+    options: {\n+        refetchQueries: [\"Contacts\"]\n+    }\n+})(ContactForm)\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1677008378805,

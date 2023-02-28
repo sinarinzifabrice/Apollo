@@ -6,7 +6,8 @@ import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';
 import ResolutionsResolvers from '../../api/resolutions/resolvers';
 import merge from "lodash/merge";
 
-// nullable
+// sdf
+// test
 
 const testSchema =  `
 type Query {

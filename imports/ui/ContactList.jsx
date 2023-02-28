@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import DeleteOutlineSharpIcon from "@mui/icons-material/DeleteOutlineSharp";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
+import { graphql, useMutation } from 'react-apollo';
 
 
 
@@ -30,6 +30,14 @@ const contactsQuery = gql`
 
 
 
+const DELETEContact = gql`
+    mutation DeleteContact($id: ID!) {
+        deleteContact(_id: $id) {
+            comment1
+        }
+    }
+`;
+
 
 const bull = (
   <Box
@@ -40,7 +48,14 @@ const bull = (
   </Box>
 );
 
+
+
 const ListContact = ({loading, contacts, hi }) => {
+
+    const [deleteContact] = useMutation(DELETEContact,{refetchQueries: mutationResult => [{query: contactsQuery}]});
+
+
+
     if(loading) return null;
     return (
         <div>
@@ -66,6 +81,7 @@ const ListContact = ({loading, contacts, hi }) => {
             changer
             </Button>
             <Button
+            onClick={() => deleteContact({variables:{id:contact._id}})}
             startIcon={<DeleteOutlineSharpIcon />}
             color="error"
             variant="outlined"
@@ -83,7 +99,7 @@ const ListContact = ({loading, contacts, hi }) => {
   );
 }
 
-
 export default graphql(contactsQuery,{
     props: ({ data }) => ( { ...data })
 })(ListContact);
+

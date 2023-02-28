@@ -24,4 +24,6 @@ type Contact {
 
 type Mutation {
     createContact(firstname: String!): Contact
+    deleteContact(_id: ID!): Contact
 }
+

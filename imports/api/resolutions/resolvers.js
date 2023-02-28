@@ -59,6 +59,22 @@ export default {
                     console.error("Erreur l'insertion des données:", error);
             }
             
-        }
+        },
+
+        async deleteContact(obj, {_id}) {
+          try {
+              
+                  console.log("id contact "+ _id);
+
+                  const contactId = ContactsCollection.remove(_id);
+                  return await ContactsCollection.remove(_id);
+          }
+          catch (error) {
+              
+                  console.error("Erreur suppression du contact:", error);
+          }
+          
+      }
+
     }
 }

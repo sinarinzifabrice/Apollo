@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 30,
+            "activePatchIndex": 81,
             "patches": [
                 {
                     "date": 1677248624464,
@@ -128,6 +128,210 @@
                 {
                     "date": 1677275024297,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,10 @@\n     if(loading) return null;\n     return (\n         <div>\n             {contacts.map(contact =>(\n-                <Card sx={{ minWidth: 275 }} elevation={2} key={contact._id}>\n+                <Box margin={2} key={contact._id}>\n+                    <Card sx={{ minWidth: 275 }} elevation={2}>\n                     <CardContent>\n                         \n                         <Typography variant=\"h5\" component=\"div\" fontWeight=\"bold\">\n                             {contact.firstname} {contact.lastname}\n@@ -71,9 +72,11 @@\n             >\n             Supprimer\n             </Button>\n         </CardActions>\n-        </Card>\n+                </Card>\n+                </Box>\n+                \n             ))}\n             \n         </div>\n         \n"
+                },
+                {
+                    "date": 1677519860877,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,8 +27,15 @@\n         \n     }\n `;\n \n+const createContact = gql`\n+    mutation deleteContact($id: ID!) {\n+        deleteContact(_id: $id) {\n+            _id\n+        }\n+    }\n+`;\n \n \n \n const bull = (\n@@ -65,8 +72,9 @@\n                 <Button startIcon={<ModeEditIcon />} color=\"primary\" variant=\"outlined\">\n             changer\n             </Button>\n             <Button\n+            onClick={() => { console.log('onClick'); }}\n             startIcon={<DeleteOutlineSharpIcon />}\n             color=\"error\"\n             variant=\"outlined\"\n             >\n"
+                },
+                {
+                    "date": 1677520177071,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,10 @@\n     •\n   </Box>\n );\n \n+\n+\n const ListContact = ({loading, contacts, hi }) => {\n     if(loading) return null;\n     return (\n         <div>\n@@ -72,9 +74,9 @@\n                 <Button startIcon={<ModeEditIcon />} color=\"primary\" variant=\"outlined\">\n             changer\n             </Button>\n             <Button\n-            onClick={() => { console.log('onClick'); }}\n+            onClick={() => { console.log(contact._id); }}\n             startIcon={<DeleteOutlineSharpIcon />}\n             color=\"error\"\n             variant=\"outlined\"\n             >\n"
+                },
+                {
+                    "date": 1677520348428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,19 @@\n     •\n   </Box>\n );\n \n+deleteContact = (contactId) => {\n+    // const firstname = firstnameRef.current.value;\n+    console.log(contactId);\n+    // this.props.createContact({\n+    //     variables: {\n+    //         firstname: this.firstname.value\n+    //     }\n+    // }).catch(error =>{\n+    //     console.log(error);\n+    // });\n+};\n \n \n const ListContact = ({loading, contacts, hi }) => {\n     if(loading) return null;\n@@ -74,9 +85,9 @@\n                 <Button startIcon={<ModeEditIcon />} color=\"primary\" variant=\"outlined\">\n             changer\n             </Button>\n             <Button\n-            onClick={() => { console.log(contact._id); }}\n+            onClick={this.deleteContact(contact._id)}\n             startIcon={<DeleteOutlineSharpIcon />}\n             color=\"error\"\n             variant=\"outlined\"\n             >\n"
+                },
+                {
+                    "date": 1677520433515,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,19 +46,19 @@\n     •\n   </Box>\n );\n \n-deleteContact = (contactId) => {\n-    // const firstname = firstnameRef.current.value;\n-    console.log(contactId);\n-    // this.props.createContact({\n-    //     variables: {\n-    //         firstname: this.firstname.value\n-    //     }\n-    // }).catch(error =>{\n-    //     console.log(error);\n-    // });\n-};\n+// deleteContact = (contactId) => {\n+//     // const firstname = firstnameRef.current.value;\n+//     console.log(contactId);\n+//     // this.props.createContact({\n+//     //     variables: {\n+//     //         firstname: this.firstname.value\n+//     //     }\n+//     // }).catch(error =>{\n+//     //     console.log(error);\n+//     // });\n+// };\n \n \n const ListContact = ({loading, contacts, hi }) => {\n     if(loading) return null;\n"
+                },
+                {
+                    "date": 1677520465288,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,19 +46,19 @@\n     •\n   </Box>\n );\n \n-// deleteContact = (contactId) => {\n-//     // const firstname = firstnameRef.current.value;\n-//     console.log(contactId);\n-//     // this.props.createContact({\n-//     //     variables: {\n-//     //         firstname: this.firstname.value\n-//     //     }\n-//     // }).catch(error =>{\n-//     //     console.log(error);\n-//     // });\n-// };\n+deleteContact = (contactId) => {\n+    // const firstname = firstnameRef.current.value;\n+    console.log(contactId);\n+    // this.props.createContact({\n+    //     variables: {\n+    //         firstname: this.firstname.value\n+    //     }\n+    // }).catch(error =>{\n+    //     console.log(error);\n+    // });\n+};\n \n \n const ListContact = ({loading, contacts, hi }) => {\n     if(loading) return null;\n"
+                },
+                {
+                    "date": 1677520683601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,22 +46,25 @@\n     •\n   </Box>\n );\n \n-deleteContact = (contactId) => {\n-    // const firstname = firstnameRef.current.value;\n-    console.log(contactId);\n-    // this.props.createContact({\n-    //     variables: {\n-    //         firstname: this.firstname.value\n-    //     }\n-    // }).catch(error =>{\n-    //     console.log(error);\n-    // });\n-};\n \n \n+\n const ListContact = ({loading, contacts, hi }) => {\n+\n+    deleteContact = (contactId) => {\n+        // const firstname = firstnameRef.current.value;\n+        console.log(contactId);\n+        // this.props.createContact({\n+        //     variables: {\n+        //         firstname: this.firstname.value\n+        //     }\n+        // }).catch(error =>{\n+        //     console.log(error);\n+        // });\n+    };\n+\n     if(loading) return null;\n     return (\n         <div>\n             {contacts.map(contact =>(\n"
+                },
+                {
+                    "date": 1677520846724,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,9 +88,9 @@\n                 <Button startIcon={<ModeEditIcon />} color=\"primary\" variant=\"outlined\">\n             changer\n             </Button>\n             <Button\n-            onClick={this.deleteContact(contact._id)}\n+            onClick={() => deleteContact(props.contactId)}\n             startIcon={<DeleteOutlineSharpIcon />}\n             color=\"error\"\n             variant=\"outlined\"\n             >\n"
+                },
+                {
+                    "date": 1677521423009,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,9 +88,9 @@\n                 <Button startIcon={<ModeEditIcon />} color=\"primary\" variant=\"outlined\">\n             changer\n             </Button>\n             <Button\n-            onClick={() => deleteContact(props.contactId)}\n+            onClick={() => deleteContact(this.props.contactId)}\n             startIcon={<DeleteOutlineSharpIcon />}\n             color=\"error\"\n             variant=\"outlined\"\n             >\n"
+                },
+                {
+                    "date": 1677521438508,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,9 +88,9 @@\n                 <Button startIcon={<ModeEditIcon />} color=\"primary\" variant=\"outlined\">\n             changer\n             </Button>\n             <Button\n-            onClick={() => deleteContact(this.props.contactId)}\n+            onClick={() => deleteContact(contactId)}\n             startIcon={<DeleteOutlineSharpIcon />}\n             color=\"error\"\n             variant=\"outlined\"\n             >\n"
+                },
+                {
+                    "date": 1677521493632,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,9 +88,9 @@\n                 <Button startIcon={<ModeEditIcon />} color=\"primary\" variant=\"outlined\">\n             changer\n             </Button>\n             <Button\n-            onClick={() => deleteContact(contactId)}\n+            onClick={() => deleteContact(props.contact._id)}\n             startIcon={<DeleteOutlineSharpIcon />}\n             color=\"error\"\n             variant=\"outlined\"\n             >\n"
+                },
+                {
+                    "date": 1677521784025,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,9 +88,9 @@\n                 <Button startIcon={<ModeEditIcon />} color=\"primary\" variant=\"outlined\">\n             changer\n             </Button>\n             <Button\n-            onClick={() => deleteContact(props.contact._id)}\n+            onClick={this.deleteContact(props.contact._id)}\n             startIcon={<DeleteOutlineSharpIcon />}\n             color=\"error\"\n             variant=\"outlined\"\n             >\n"
+                },
+                {
+                    "date": 1677521808701,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,9 +88,9 @@\n                 <Button startIcon={<ModeEditIcon />} color=\"primary\" variant=\"outlined\">\n             changer\n             </Button>\n             <Button\n-            onClick={this.deleteContact(props.contact._id)}\n+            onClick={this.deleteContact(contact._id)}\n             startIcon={<DeleteOutlineSharpIcon />}\n             color=\"error\"\n             variant=\"outlined\"\n             >\n"
+                },
+                {
+                    "date": 1677521850219,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,9 +88,9 @@\n                 <Button startIcon={<ModeEditIcon />} color=\"primary\" variant=\"outlined\">\n             changer\n             </Button>\n             <Button\n-            onClick={this.deleteContact(contact._id)}\n+            onClick={() => this.deleteContact(contact._id)}\n             startIcon={<DeleteOutlineSharpIcon />}\n             color=\"error\"\n             variant=\"outlined\"\n             >\n"
+                },
+                {
+                    "date": 1677524159317,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,15 +54,15 @@\n \n     deleteContact = (contactId) => {\n         // const firstname = firstnameRef.current.value;\n         console.log(contactId);\n-        // this.props.createContact({\n-        //     variables: {\n-        //         firstname: this.firstname.value\n-        //     }\n-        // }).catch(error =>{\n-        //     console.log(error);\n-        // });\n+        this.props.deleteContact({\n+            variables: {\n+                id: contactId\n+            }\n+        }).catch(error =>{\n+            console.log(error);\n+        });\n     };\n \n     if(loading) return null;\n     return (\n"
+                },
+                {
+                    "date": 1677526967167,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,8 +35,15 @@\n         }\n     }\n `;\n \n+const deleteContact = gql`\n+    mutation DeleteContact($id: ID!) {\n+        deleteContact(_id: $id) {\n+            _id\n+        }\n+    }\n+`;\n \n \n const bull = (\n   <Box\n"
+                },
+                {
+                    "date": 1677527068652,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,24 +53,24 @@\n     •\n   </Box>\n );\n \n+deleteContact = (contactId) => {\n+    // const firstname = firstnameRef.current.value;\n+    console.log(contactId);\n+    this.props.deleteContact({\n+        variables: {\n+            id: contactId\n+        }\n+    }).catch(error =>{\n+        console.log(error);\n+    });\n+};\n \n \n-\n const ListContact = ({loading, contacts, hi }) => {\n \n-    deleteContact = (contactId) => {\n-        // const firstname = firstnameRef.current.value;\n-        console.log(contactId);\n-        this.props.deleteContact({\n-            variables: {\n-                id: contactId\n-            }\n-        }).catch(error =>{\n-            console.log(error);\n-        });\n-    };\n+    \n \n     if(loading) return null;\n     return (\n         <div>\n"
+                },
+                {
+                    "date": 1677527865281,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,16 +27,10 @@\n         \n     }\n `;\n \n-const createContact = gql`\n-    mutation deleteContact($id: ID!) {\n-        deleteContact(_id: $id) {\n-            _id\n-        }\n-    }\n-`;\n \n+\n const deleteContact = gql`\n     mutation DeleteContact($id: ID!) {\n         deleteContact(_id: $id) {\n             _id\n@@ -116,5 +110,12 @@\n \n \n export default graphql(contactsQuery,{\n     props: ({ data }) => ( { ...data })\n-})(ListContact);\n\\ No newline at end of file\n+})(ListContact);\n+\n+export  graphql(deleteContact, {\n+    name: \"deleteContact\",\n+    options: {\n+        refetchQueries: [\"Contacts\"]\n+    }\n+})(ContactForm)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677528104213,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -117,5 +117,5 @@\n     name: \"deleteContact\",\n     options: {\n         refetchQueries: [\"Contacts\"]\n     }\n-})(ContactForm)\n\\ No newline at end of file\n+})(deleteContact)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677528136098,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -112,9 +112,9 @@\n export default graphql(contactsQuery,{\n     props: ({ data }) => ( { ...data })\n })(ListContact);\n \n-export  graphql(deleteContact, {\n+export const graphql(deleteContact, {\n     name: \"deleteContact\",\n     options: {\n         refetchQueries: [\"Contacts\"]\n     }\n"
+                },
+                {
+                    "date": 1677528148931,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -112,10 +112,10 @@\n export default graphql(contactsQuery,{\n     props: ({ data }) => ( { ...data })\n })(ListContact);\n \n-export const graphql(deleteContact, {\n-    name: \"deleteContact\",\n-    options: {\n-        refetchQueries: [\"Contacts\"]\n-    }\n-})(deleteContact)\n\\ No newline at end of file\n+// export const graphql(deleteContact, {\n+//     name: \"deleteContact\",\n+//     options: {\n+//         refetchQueries: [\"Contacts\"]\n+//     }\n+// })(deleteContact)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677528209846,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,15 +29,15 @@\n `;\n \n \n \n-const deleteContact = gql`\n-    mutation DeleteContact($id: ID!) {\n-        deleteContact(_id: $id) {\n-            _id\n-        }\n-    }\n-`;\n+// const deleteContact = gql`\n+//     mutation DeleteContact($id: ID!) {\n+//         deleteContact(_id: $id) {\n+//             _id\n+//         }\n+//     }\n+// `;\n \n \n const bull = (\n   <Box\n"
+                },
+                {
+                    "date": 1677528314738,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,8 +48,11 @@\n   </Box>\n );\n \n deleteContact = (contactId) => {\n+\n+\n+   \n     // const firstname = firstnameRef.current.value;\n     console.log(contactId);\n     this.props.deleteContact({\n         variables: {\n"
+                },
+                {
+                    "date": 1677528343505,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,15 +53,15 @@\n \n    \n     // const firstname = firstnameRef.current.value;\n     console.log(contactId);\n-    this.props.deleteContact({\n-        variables: {\n-            id: contactId\n-        }\n-    }).catch(error =>{\n-        console.log(error);\n-    });\n+    // this.props.deleteContact({\n+    //     variables: {\n+    //         id: contactId\n+    //     }\n+    // }).catch(error =>{\n+    //     console.log(error);\n+    // });\n };\n \n \n const ListContact = ({loading, contacts, hi }) => {\n"
+                },
+                {
+                    "date": 1677595136760,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,13 +8,13 @@\n import DeleteOutlineSharpIcon from \"@mui/icons-material/DeleteOutlineSharp\";\n import ModeEditIcon from \"@mui/icons-material/ModeEdit\";\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n+import { useMutation } from \"@apollo/client\";\n \n \n \n \n-\n const contactsQuery = gql`\n     query Contacts {\n         hi\n         contacts {\n@@ -29,15 +29,15 @@\n `;\n \n \n \n-// const deleteContact = gql`\n-//     mutation DeleteContact($id: ID!) {\n-//         deleteContact(_id: $id) {\n-//             _id\n-//         }\n-//     }\n-// `;\n+const deleteContact = gql`\n+    mutation DeleteContact($id: ID!) {\n+        deleteContact(_id: $id) {\n+            _id\n+        }\n+    }\n+`;\n \n \n const bull = (\n   <Box\n@@ -47,24 +47,24 @@\n     •\n   </Box>\n );\n \n-deleteContact = (contactId) => {\n+const [deleteContact] = useMutation(deleteContact);\n \n+// deleteContact = (contactId) => {\n+ \n+//     // const firstname = firstnameRef.current.value;\n+//     console.log(contactId);\n+//     // this.props.deleteContact({\n+//     //     variables: {\n+//     //         id: contactId\n+//     //     }\n+//     // }).catch(error =>{\n+//     //     console.log(error);\n+//     // });\n+// };\n \n-   \n-    // const firstname = firstnameRef.current.value;\n-    console.log(contactId);\n-    // this.props.deleteContact({\n-    //     variables: {\n-    //         id: contactId\n-    //     }\n-    // }).catch(error =>{\n-    //     console.log(error);\n-    // });\n-};\n \n-\n const ListContact = ({loading, contacts, hi }) => {\n \n     \n \n@@ -92,9 +92,9 @@\n                 <Button startIcon={<ModeEditIcon />} color=\"primary\" variant=\"outlined\">\n             changer\n             </Button>\n             <Button\n-            onClick={() => this.deleteContact(contact._id)}\n+            onClick={() => mutate}\n             startIcon={<DeleteOutlineSharpIcon />}\n             color=\"error\"\n             variant=\"outlined\"\n             >\n"
+                },
+                {
+                    "date": 1677595419422,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n `;\n \n \n \n-const deleteContact = gql`\n+const DELETEContact = gql`\n     mutation DeleteContact($id: ID!) {\n         deleteContact(_id: $id) {\n             _id\n         }\n@@ -47,9 +47,9 @@\n     •\n   </Box>\n );\n \n-const [deleteContact] = useMutation(deleteContact);\n+const [deleteContact] = useMutation(DELETEContact);\n \n // deleteContact = (contactId) => {\n  \n //     // const firstname = firstnameRef.current.value;\n@@ -92,9 +92,9 @@\n                 <Button startIcon={<ModeEditIcon />} color=\"primary\" variant=\"outlined\">\n             changer\n             </Button>\n             <Button\n-            onClick={() => mutate}\n+            onClick={() => deleteContact({variables:{id:contact._id}})}\n             startIcon={<DeleteOutlineSharpIcon />}\n             color=\"error\"\n             variant=\"outlined\"\n             >\n"
+                },
+                {
+                    "date": 1677595508598,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,22 +49,9 @@\n );\n \n const [deleteContact] = useMutation(DELETEContact);\n \n-// deleteContact = (contactId) => {\n- \n-//     // const firstname = firstnameRef.current.value;\n-//     console.log(contactId);\n-//     // this.props.deleteContact({\n-//     //     variables: {\n-//     //         id: contactId\n-//     //     }\n-//     // }).catch(error =>{\n-//     //     console.log(error);\n-//     // });\n-// };\n \n-\n const ListContact = ({loading, contacts, hi }) => {\n \n     \n \n"
+                },
+                {
+                    "date": 1677595658863,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n     •\n   </Box>\n );\n \n-const [deleteContact] = useMutation(DELETEContact);\n+const [deleteContact, { loading, error, data }] = useMutation(DELETEContact);\n \n \n const ListContact = ({loading, contacts, hi }) => {\n \n"
+                },
+                {
+                    "date": 1677595705084,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,15 +47,15 @@\n     •\n   </Box>\n );\n \n-const [deleteContact, { loading, error, data }] = useMutation(DELETEContact);\n \n \n const ListContact = ({loading, contacts, hi }) => {\n \n-    \n+    const [deleteContact] = useMutation(DELETEContact);\n \n+\n     if(loading) return null;\n     return (\n         <div>\n             {contacts.map(contact =>(\n"
+                },
+                {
+                    "date": 1677595736738,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n \n \n const ListContact = ({loading, contacts, hi }) => {\n \n-    const [deleteContact] = useMutation(DELETEContact);\n+    // const [deleteContact] = useMutation(DELETEContact);\n \n \n     if(loading) return null;\n     return (\n"
+                },
+                {
+                    "date": 1677595798507,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -97,10 +97,9 @@\n         \n   );\n }\n \n-\n-export default graphql(contactsQuery,{\n+graphql(contactsQuery,{\n     props: ({ data }) => ( { ...data })\n })(ListContact);\n \n // export const graphql(deleteContact, {\n"
+                },
+                {
+                    "date": 1677595835054,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n `;\n \n \n \n-const DELETEContact = gql`\n+export const DELETEContact = gql`\n     mutation DeleteContact($id: ID!) {\n         deleteContact(_id: $id) {\n             _id\n         }\n@@ -97,9 +97,9 @@\n         \n   );\n }\n \n-graphql(contactsQuery,{\n+export default graphql(contactsQuery,{\n     props: ({ data }) => ( { ...data })\n })(ListContact);\n \n // export const graphql(deleteContact, {\n"
+                },
+                {
+                    "date": 1677595875183,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n \n \n const ListContact = ({loading, contacts, hi }) => {\n \n-    // const [deleteContact] = useMutation(DELETEContact);\n+    const [deleteContact] = useMutation(DELETEContact);\n \n \n     if(loading) return null;\n     return (\n"
+                },
+                {
+                    "date": 1677596051109,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n `;\n \n \n \n-export const DELETEContact = gql`\n+const DELETEContact = gql`\n     mutation DeleteContact($id: ID!) {\n         deleteContact(_id: $id) {\n             _id\n         }\n@@ -101,10 +101,4 @@\n export default graphql(contactsQuery,{\n     props: ({ data }) => ( { ...data })\n })(ListContact);\n \n-// export const graphql(deleteContact, {\n-//     name: \"deleteContact\",\n-//     options: {\n-//         refetchQueries: [\"Contacts\"]\n-//     }\n-// })(deleteContact)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677596115659,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n \n \n const ListContact = ({loading, contacts, hi }) => {\n \n-    const [deleteContact] = useMutation(DELETEContact);\n+    // const [deleteContact] = useMutation(DELETEContact);\n \n \n     if(loading) return null;\n     return (\n"
+                },
+                {
+                    "date": 1677596330945,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,15 +29,15 @@\n `;\n \n \n \n-const DELETEContact = gql`\n-    mutation DeleteContact($id: ID!) {\n-        deleteContact(_id: $id) {\n-            _id\n-        }\n-    }\n-`;\n+// const DELETEContact = gql`\n+//     mutation DeleteContact($id: ID!) {\n+//         deleteContact(_id: $id) {\n+//             _id\n+//         }\n+//     }\n+// `;\n \n \n const bull = (\n   <Box\n"
+                },
+                {
+                    "date": 1677596639934,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,15 +29,15 @@\n `;\n \n \n \n-// const DELETEContact = gql`\n-//     mutation DeleteContact($id: ID!) {\n-//         deleteContact(_id: $id) {\n-//             _id\n-//         }\n-//     }\n-// `;\n+const DELETEContact = gql`\n+    mutation DeleteContact($id: ID!) {\n+        deleteContact(_id: $id) {\n+            _id\n+        }\n+    }\n+`;\n \n \n const bull = (\n   <Box\n@@ -51,9 +51,9 @@\n \n \n const ListContact = ({loading, contacts, hi }) => {\n \n-    // const [deleteContact] = useMutation(DELETEContact);\n+    const [deleteContact] = useMutation(DELETEContact);\n \n \n     if(loading) return null;\n     return (\n"
+                },
+                {
+                    "date": 1677596676183,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n \n \n const ListContact = ({loading, contacts, hi }) => {\n \n-    const [deleteContact] = useMutation(DELETEContact);\n+    // const [deleteContact] = useMutation(DELETEContact);\n \n \n     if(loading) return null;\n     return (\n"
+                },
+                {
+                    "date": 1677596736717,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n \n \n const ListContact = ({loading, contacts, hi }) => {\n \n-    // const [deleteContact] = useMutation(DELETEContact);\n+    const [deleteContact] = useMutation(DELETEContact);\n \n \n     if(loading) return null;\n     return (\n"
+                },
+                {
+                    "date": 1677597408049,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,13 +47,13 @@\n     •\n   </Box>\n );\n \n+const [deleteContact] = useMutation(DELETEContact);\n \n-\n const ListContact = ({loading, contacts, hi }) => {\n \n-    const [deleteContact] = useMutation(DELETEContact);\n+    \n \n \n     if(loading) return null;\n     return (\n"
+                },
+                {
+                    "date": 1677597997007,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,15 +47,16 @@\n     •\n   </Box>\n );\n \n-const [deleteContact] = useMutation(DELETEContact);\n \n+\n const ListContact = ({loading, contacts, hi }) => {\n \n-    \n+    // const [deleteContact] = useMutation(DELETEContact);\n \n \n+\n     if(loading) return null;\n     return (\n         <div>\n             {contacts.map(contact =>(\n"
+                },
+                {
+                    "date": 1677598048339,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n \n \n const ListContact = ({loading, contacts, hi }) => {\n \n-    // const [deleteContact] = useMutation(DELETEContact);\n+    const [deleteContact] = useMutation(DELETEContact);\n \n \n \n     if(loading) return null;\n"
+                },
+                {
+                    "date": 1677598185518,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n \n \n const ListContact = ({loading, contacts, hi }) => {\n \n-    const [deleteContact] = useMutation(DELETEContact);\n+    // const [deleteContact] = useMutation(DELETEContact);\n \n \n \n     if(loading) return null;\n"
+                },
+                {
+                    "date": 1677598293549,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n \n \n const ListContact = ({loading, contacts, hi }) => {\n \n-    // const [deleteContact] = useMutation(DELETEContact);\n+    const [deleteContact] = useMutation(DELETEContact);\n \n \n \n     if(loading) return null;\n"
+                },
+                {
+                    "date": 1677598501654,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,10 +30,10 @@\n \n \n \n const DELETEContact = gql`\n-    mutation DeleteContact($id: ID!) {\n-        deleteContact(_id: $id) {\n+    mutation DeleteContact($_id: ID!) {\n+        deleteContact(_id: $_id) {\n             _id\n         }\n     }\n `;\n"
+                },
+                {
+                    "date": 1677598552296,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,9 +80,9 @@\n                 <Button startIcon={<ModeEditIcon />} color=\"primary\" variant=\"outlined\">\n             changer\n             </Button>\n             <Button\n-            onClick={() => deleteContact({variables:{id:contact._id}})}\n+            onClick={() => deleteContact({variables:{_id:contact._id}})}\n             startIcon={<DeleteOutlineSharpIcon />}\n             color=\"error\"\n             variant=\"outlined\"\n             >\n"
+                },
+                {
+                    "date": 1677599241200,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,11 +30,11 @@\n \n \n \n const DELETEContact = gql`\n-    mutation DeleteContact($_id: ID!) {\n-        deleteContact(_id: $_id) {\n-            _id\n+    mutation DeleteContact($id: ID!) {\n+        deleteContact(_id: $id) {\n+            comment1\n         }\n     }\n `;\n \n@@ -80,9 +80,9 @@\n                 <Button startIcon={<ModeEditIcon />} color=\"primary\" variant=\"outlined\">\n             changer\n             </Button>\n             <Button\n-            onClick={() => deleteContact({variables:{_id:contact._id}})}\n+            onClick={() => deleteContact({variables:{id:contact._id}})}\n             startIcon={<DeleteOutlineSharpIcon />}\n             color=\"error\"\n             variant=\"outlined\"\n             >\n"
+                },
+                {
+                    "date": 1677599251802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n \n \n const ListContact = ({loading, contacts, hi }) => {\n \n-    const [deleteContact] = useMutation(DELETEContact);\n+    // const [deleteContact] = useMutation(DELETEContact);\n \n \n \n     if(loading) return null;\n"
+                },
+                {
+                    "date": 1677600270422,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n \n \n const ListContact = ({loading, contacts, hi }) => {\n \n-    // const [deleteContact] = useMutation(DELETEContact);\n+    const [deleteContact] = useMutation(DELETEContact);\n \n \n \n     if(loading) return null;\n"
+                },
+                {
+                    "date": 1677600425569,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n \n \n const ListContact = ({loading, contacts, hi }) => {\n \n-    const [deleteContact] = useMutation(DELETEContact);\n+    // const [deleteContact] = useMutation(DELETEContact);\n \n \n \n     if(loading) return null;\n"
+                },
+                {
+                    "date": 1677600544875,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,14 +7,14 @@\n import Typography from \"@mui/material/Typography\";\n import DeleteOutlineSharpIcon from \"@mui/icons-material/DeleteOutlineSharp\";\n import ModeEditIcon from \"@mui/icons-material/ModeEdit\";\n import gql from 'graphql-tag';\n-import { graphql } from 'react-apollo';\n-import { useMutation } from \"@apollo/client\";\n+import { graphql, useMutation } from 'react-apollo';\n \n \n \n \n+\n const contactsQuery = gql`\n     query Contacts {\n         hi\n         contacts {\n@@ -51,9 +51,9 @@\n \n \n const ListContact = ({loading, contacts, hi }) => {\n \n-    // const [deleteContact] = useMutation(DELETEContact);\n+    const [deleteContact] = useMutation(DELETEContact);\n \n \n \n     if(loading) return null;\n"
+                },
+                {
+                    "date": 1677600946422,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n \n \n const ListContact = ({loading, contacts, hi }) => {\n \n-    const [deleteContact] = useMutation(DELETEContact);\n+    const [deleteContact] = useMutation(DELETEContact,{refetchQueries: mutationResult => [{query: contactsQuery}]});\n \n \n \n     if(loading) return null;\n"
                 }
             ],
             "date": 1677248624464,

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 15,
+            "activePatchIndex": 19,
             "patches": [
                 {
                     "date": 1676577479735,
@@ -68,6 +68,22 @@
                 {
                     "date": 1677270140296,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,17 +10,17 @@\n \n type Contact {\n     _id: String!\n     firstname: String!\n-    lastname: String!\n-    email: String!\n-    phone: String!\n-    city: String!\n-    province: String!\n-    zipcode: String!\n-    country: String!\n-    comment1: String! \n-    comment2: String!\n+    lastname: String\n+    email: String\n+    phone: String\n+    city: String\n+    province: String\n+    zipcode: String\n+    country: String\n+    comment1: String \n+    comment2: String\n }\n \n type Mutation {\n     createContact(firstname: String!): Contact\n"
+                },
+                {
+                    "date": 1677510010233,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,5 +23,9 @@\n }\n \n type Mutation {\n     createContact(firstname: String!): Contact\n+}\n+\n+type Mutation {\n+    deleteContact(_id: String!): Contact\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677512736559,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,6 +26,6 @@\n     createContact(firstname: String!): Contact\n }\n \n type Mutation {\n-    deleteContact(_id: String!): Contact\n+    deleteContact(_id: Mixed!): Contact\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677514735800,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,6 +26,6 @@\n     createContact(firstname: String!): Contact\n }\n \n type Mutation {\n-    deleteContact(_id: Mixed!): Contact\n+    deleteContact(_id: String!): Contact\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677517276828,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,7 @@\n }\n \n type Mutation {\n     createContact(firstname: String!): Contact\n+    deleteContact(_id: ID!): Contact\n }\n \n-type Mutation {\n-    deleteContact(_id: String!): Contact\n\\ No newline at end of file\n-}\n"
                 }
             ],
             "date": 1676577479735,

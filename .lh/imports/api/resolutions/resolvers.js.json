@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 75,
+            "activePatchIndex": 83,
             "patches": [
                 {
                     "date": 1676663954434,
@@ -308,6 +308,38 @@
                 {
                     "date": 1677101436403,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n             try {\n                 \n                     console.log(\"insert contact \"+ firstname);\n \n-                    const contactId = ResolutionsCollection.insert({\n+                    const contactId = ContactsCollection.insert({\n                         firstname: firstname\n                     });\n                     return ContactsCollection.findOne(contactId);\n             }\n"
+                },
+                {
+                    "date": 1677509948195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,7 +58,23 @@\n                 \n                     console.error(\"Erreur l'insertion des données:\", error);\n             }\n             \n-        }\n+        },\n+\n+        async deleteContact(obj, { contactId} , context) {\n+          try {\n+              \n+                  console.log(\"id contact \"+ contactId);\n+\n+                  const contactId = ContactsCollection.remove(_id)\n+                  return ContactsCollection.findOne(contactId);\n+          }\n+          catch (error) {\n+              \n+                  console.error(\"Erreur suppression du contact:\", error);\n+          }\n+          \n+      }\n+\n     }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1677512790951,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n           try {\n               \n                   console.log(\"id contact \"+ contactId);\n \n-                  const contactId = ContactsCollection.remove(_id)\n+                  const contactId = ContactsCollection.remove(contactId)\n                   return ContactsCollection.findOne(contactId);\n           }\n           catch (error) {\n               \n"
+                },
+                {
+                    "date": 1677517576657,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,15 +60,15 @@\n             }\n             \n         },\n \n-        async deleteContact(obj, { contactId} , context) {\n+        async deleteContact(obj, { contactId}) {\n           try {\n               \n                   console.log(\"id contact \"+ contactId);\n \n-                  const contactId = ContactsCollection.remove(contactId)\n-                  return ContactsCollection.findOne(contactId);\n+                  const contactId = ContactsCollection.findByIdAndRemove(contactId);\n+                  return contactId;\n           }\n           catch (error) {\n               \n                   console.error(\"Erreur suppression du contact:\", error);\n"
+                },
+                {
+                    "date": 1677517799704,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,15 +60,15 @@\n             }\n             \n         },\n \n-        async deleteContact(obj, { contactId}) {\n+        async deleteContact(obj, {_id}) {\n           try {\n               \n-                  console.log(\"id contact \"+ contactId);\n+                  console.log(\"id contact \"+ _id);\n \n-                  const contactId = ContactsCollection.findByIdAndRemove(contactId);\n-                  return contactId;\n+                  const contactId = ContactsCollection.findByIdAndRemove(_id);\n+                  return ContactsCollection.findByIdAndRemove(_id);;\n           }\n           catch (error) {\n               \n                   console.error(\"Erreur suppression du contact:\", error);\n"
+                },
+                {
+                    "date": 1677518284892,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,10 +65,10 @@\n           try {\n               \n                   console.log(\"id contact \"+ _id);\n \n-                  const contactId = ContactsCollection.findByIdAndRemove(_id);\n-                  return ContactsCollection.findByIdAndRemove(_id);;\n+                  const contactId = ContactsCollection.Remove(_id);\n+                  return ContactsCollection.Remove(_id);;\n           }\n           catch (error) {\n               \n                   console.error(\"Erreur suppression du contact:\", error);\n"
+                },
+                {
+                    "date": 1677518640780,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,9 +66,9 @@\n               \n                   console.log(\"id contact \"+ _id);\n \n                   const contactId = ContactsCollection.Remove(_id);\n-                  return ContactsCollection.Remove(_id);;\n+                  return await ContactsCollection.Remove(_id);;\n           }\n           catch (error) {\n               \n                   console.error(\"Erreur suppression du contact:\", error);\n"
+                },
+                {
+                    "date": 1677518655796,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,9 +66,9 @@\n               \n                   console.log(\"id contact \"+ _id);\n \n                   const contactId = ContactsCollection.Remove(_id);\n-                  return await ContactsCollection.Remove(_id);;\n+                  return await ContactsCollection.Remove(_id);\n           }\n           catch (error) {\n               \n                   console.error(\"Erreur suppression du contact:\", error);\n"
+                },
+                {
+                    "date": 1677519244667,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,10 +65,10 @@\n           try {\n               \n                   console.log(\"id contact \"+ _id);\n \n-                  const contactId = ContactsCollection.Remove(_id);\n-                  return await ContactsCollection.Remove(_id);\n+                  const contactId = ContactsCollection.remove(_id);\n+                  return await ContactsCollection.remove(_id);\n           }\n           catch (error) {\n               \n                   console.error(\"Erreur suppression du contact:\", error);\n"
                 }
             ],
             "date": 1676663954434,
