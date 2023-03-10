@@ -1,0 +1,74 @@
+{
+    "sourceFile": "imports/api/resolutions/bridge.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 14,
+            "patches": [
+                {
+                    "date": 1678459991429,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1678462352442,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { GraphQLBridge } from 'uniforms-bridge-graphql';\n+import { GraphQLBridge } from '../resolutions/BridgeGraphQL';\n import { buildASTSchema, parse } from 'graphql';\n import { schema } from '../../api/resolutions/Resolutions.graphql'\n \n \n"
+                },
+                {
+                    "date": 1678462404958,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { GraphQLBridge } from '../resolutions/BridgeGraphQL';\n+import  GraphQLBridge  from '../resolutions/BridgeGraphQL';\n import { buildASTSchema, parse } from 'graphql';\n import { schema } from '../../api/resolutions/Resolutions.graphql'\n \n \n"
+                },
+                {
+                    "date": 1678462554239,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import  GraphQLBridge  from '../resolutions/BridgeGraphQL';\n+import { GraphQLBridge } from 'uniforms-bridge-graphql';\n import { buildASTSchema, parse } from 'graphql';\n import { schema } from '../../api/resolutions/Resolutions.graphql'\n \n \n"
+                },
+                {
+                    "date": 1678465964956,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,26 +1,32 @@\n-import { GraphQLBridge } from 'uniforms-bridge-graphql';\n-import { buildASTSchema, parse } from 'graphql';\n-import { schema } from '../../api/resolutions/Resolutions.graphql'\n+import Ajv from 'ajv';\n+import { JSONSchemaBridge } from 'uniforms-bridge-json-schema';\n \n+const ajv = new Ajv({ allErrors: true, useDefaults: true });\n \n-const schemaType = buildASTSchema(parse(schema)).getType('Contact');\n+const schema = {\n+  title: 'Contact',\n+  type: 'object',\n+  properties: {\n+    firstName: { type: 'string' },\n+    lastName: { type: 'string' },\n+    age: {\n+      description: 'Age in years',\n+      type: 'integer',\n+      minimum: 0,\n+    },\n+  },\n+  required: ['firstName', 'lastName'],\n+};\n \n-const schemaValidator = (model) => {\n-    const details = [];\n\\ No newline at end of file\n-  \n-    if (!model.firstname) {\n-      details.push({ name: 'firstname', message: 'le prenom est obligatoire!' });\n-    }\n-  \n-    if (!model.lastname) {\n-      details.push({ name: 'lastname', message: 'le nom est obligatoire!' });\n-    }\n-  \n-    if (details.length) {\n-        return { details };\n-    }\n+function createValidator(schema) {\n+  const validator = ajv.compile(schema);\n+\n+  return (model) => {\n+    validator(model);\n+    return validator.errors?.length ? { details: validator.errors } : null;\n   };\n+}\n \n-const options = null;\n+const schemaValidator = createValidator(schema);\n \n-export const bridge = new GraphQLBridge(schemaType, schemaValidator, options);\n+export const bridge = new JSONSchemaBridge(schema, schemaValidator);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678466944153,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     lastName: { type: 'string' },\n     age: {\n       description: 'Age in years',\n       type: 'integer',\n-      minimum: 0,\n+      minimum: 10,\n     },\n   },\n   required: ['firstName', 'lastName'],\n };\n"
+                },
+                {
+                    "date": 1678471244930,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n const schema = {\n   title: 'Contact',\n   type: 'object',\n   properties: {\n-    firstName: { type: 'string' },\n+    firstName: { type: 'string', 'minLength': 1 },\n     lastName: { type: 'string' },\n     age: {\n       description: 'Age in years',\n       type: 'integer',\n"
+                },
+                {
+                    "date": 1678471465720,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n const schema = {\n   title: 'Contact',\n   type: 'object',\n   properties: {\n-    firstName: { type: 'string', 'minLength': 1 },\n+    firstName: { type: 'string', 'pattern': '^(?=\\\\s*\\\\S).*$' },\n     lastName: { type: 'string' },\n     age: {\n       description: 'Age in years',\n       type: 'integer',\n"
+                },
+                {
+                    "date": 1678472108945,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,15 @@\n const schema = {\n   title: 'Contact',\n   type: 'object',\n   properties: {\n-    firstName: { type: 'string', 'pattern': '^(?=\\\\s*\\\\S).*$' },\n+    firstName: { \n+        'type': 'string',\n+        \"allOf\": [\n+            {\"pattern\": \"^(?=\\\\s*\\\\S).*$\", \"errorMessage\": \"Le nom est obligatoire\"},\n+            {\"pattern\": \"^[^0-9]*$\", \"errorMessage\": \"Le nom ne doit pas contenir de chiffre\"}\n+        ]\n+    },\n     lastName: { type: 'string' },\n     age: {\n       description: 'Age in years',\n       type: 'integer',\n"
+                },
+                {
+                    "date": 1678472172825,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,11 +8,11 @@\n   type: 'object',\n   properties: {\n     firstName: { \n         'type': 'string',\n-        \"allOf\": [\n-            {\"pattern\": \"^(?=\\\\s*\\\\S).*$\", \"errorMessage\": \"Le nom est obligatoire\"},\n-            {\"pattern\": \"^[^0-9]*$\", \"errorMessage\": \"Le nom ne doit pas contenir de chiffre\"}\n+        'allOf': [\n+            {'pattern': '^(?=\\\\s*\\\\S).*$', 'errorMessage': 'Le nom est obligatoire'},\n+            {'pattern': '^[^0-9]*$', 'errorMessage': 'Le nom ne doit pas contenir de chiffre'}\n         ]\n     },\n     lastName: { type: 'string' },\n     age: {\n"
+                },
+                {
+                    "date": 1678473142476,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,12 +7,12 @@\n   title: 'Contact',\n   type: 'object',\n   properties: {\n     firstName: { \n-        'type': 'string',\n-        'allOf': [\n-            {'pattern': '^(?=\\\\s*\\\\S).*$', 'errorMessage': 'Le nom est obligatoire'},\n-            {'pattern': '^[^0-9]*$', 'errorMessage': 'Le nom ne doit pas contenir de chiffre'}\n+        type: 'string',\n+        allOf: [\n+            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n+            {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n         ]\n     },\n     lastName: { type: 'string' },\n     age: {\n"
+                },
+                {
+                    "date": 1678473664162,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n import Ajv from 'ajv';\n+import ajvErrors from 'ajv-errors';\n import { JSONSchemaBridge } from 'uniforms-bridge-json-schema';\n \n const ajv = new Ajv({ allErrors: true, useDefaults: true });\n-\n+ajvErrors(ajv);\n const schema = {\n   title: 'Contact',\n   type: 'object',\n   properties: {\n"
+                },
+                {
+                    "date": 1678476169877,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,10 @@\n   properties: {\n     firstName: { \n         type: 'string',\n         allOf: [\n-            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n-            {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n+            {type: 'object', pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n+            {type: 'object', pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n         ]\n     },\n     lastName: { type: 'string' },\n     age: {\n"
+                },
+                {
+                    "date": 1678482177462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,10 @@\n   properties: {\n     firstName: { \n         type: 'string',\n         allOf: [\n-            {type: 'object', pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n-            {type: 'object', pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n+            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n+            {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n         ]\n     },\n     lastName: { type: 'string' },\n     age: {\n"
+                },
+                {
+                    "date": 1678486039447,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n       type: 'integer',\n       minimum: 10,\n     },\n   },\n-  required: ['firstName', 'lastName'],\n+  required: ['firstName', 'lastName', 'age'],\n };\n \n function createValidator(schema) {\n   const validator = ajv.compile(schema);\n"
+                }
+            ],
+            "date": 1678459991429,
+            "name": "Commit-0",
+            "content": "import { GraphQLBridge } from 'uniforms-bridge-graphql';\nimport { buildASTSchema, parse } from 'graphql';\nimport { schema } from '../../api/resolutions/Resolutions.graphql'\n\n\nconst schemaType = buildASTSchema(parse(schema)).getType('Contact');\n\nconst schemaValidator = (model) => {\n    const details = [];\n  \n    if (!model.firstname) {\n      details.push({ name: 'firstname', message: 'le prenom est obligatoire!' });\n    }\n  \n    if (!model.lastname) {\n      details.push({ name: 'lastname', message: 'le nom est obligatoire!' });\n    }\n  \n    if (details.length) {\n        return { details };\n    }\n  };\n\nconst options = null;\n\nexport const bridge = new GraphQLBridge(schemaType, schemaValidator, options);"
+        }
+    ]
+}

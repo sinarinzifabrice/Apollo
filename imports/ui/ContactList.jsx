@@ -9,6 +9,7 @@ import DeleteOutlineSharpIcon from "@mui/icons-material/DeleteOutlineSharp";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import gql from 'graphql-tag';
 import { graphql, useMutation } from 'react-apollo';
+import ButtonAddContact from "./ButtonAddContact";
 
 
 
@@ -59,6 +60,7 @@ const ListContact = ({loading, contacts, hi }) => {
     if(loading) return null;
     return (
         <div>
+            <ButtonAddContact/>
             {contacts.map(contact =>(
                 <Box margin={2} key={contact._id}>
                     <Card sx={{ minWidth: 275 }} elevation={2}>

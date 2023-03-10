@@ -1,0 +1,22 @@
+{
+    "sourceFile": "imports/ui/testForm.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1678368042837,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1678379901209,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n     placeholder: 'John',\n   },\n };\n \n-const schemaValidator = (model: object) => {\n+const schemaValidator = (model) => {\n   const details = [];\n \n   if (!model.id) {\n     details.push({ name: 'id', message: 'ID is required!' });\n"
+                }
+            ],
+            "date": 1678368042837,
+            "name": "Commit-0",
+            "content": "import { GraphQLBridge } from 'uniforms-bridge-graphql';\nimport { buildASTSchema, parse } from 'graphql';\n\nconst schema = `\n    type Author {\n        id:        String!\n        firstName: String\n        lastName:  String\n    }\n\n    type Post {\n        id:     Int!\n        author: Author!\n        title:  String\n        votes:  Int\n    }\n\n    # This is required by buildASTSchema\n    type Query { anything: ID }\n`;\n\nconst schemaType = buildASTSchema(parse(schema)).getType('Post');\nconst schemaExtras = {\n  id: {\n    allowedValues: [1, 2, 3],\n  },\n  title: {\n    options: [\n      { label: 1, value: 'a' },\n      { label: 2, value: 'b' },\n    ],\n  },\n  'author.firstName': {\n    placeholder: 'John',\n  },\n};\n\nconst schemaValidator = (model: object) => {\n  const details = [];\n\n  if (!model.id) {\n    details.push({ name: 'id', message: 'ID is required!' });\n  }\n\n  if (!model.author.id) {\n    details.push({ name: 'author.id', message: 'Author ID is required!' });\n  }\n\n  if (model.votes < 0) {\n    details.push({\n      name: 'votes',\n      message: 'Votes must be a non-negative number!',\n    });\n  }\n\n  // ...\n\n  return details.length ? { details } : null;\n};\n\nconst bridge = new GraphQLBridge(schemaType, schemaValidator, schemaExtras);"
+        }
+    ]
+}

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 20,
+            "activePatchIndex": 34,
             "patches": [
                 {
                     "date": 1677008410143,
@@ -88,6 +88,62 @@
                 {
                     "date": 1677274311565,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,13 +11,13 @@\n     return (\n         <div>\n             <h1>{hi}</h1>\n             <ContactForm />\n-            <ul>\n+            {/* <ul>\n                 {contacts.map(contact =>(\n                     <li key={contact._id}>{contact.firstname}</li>\n                 ))}\n-            </ul>\n+            </ul> */}\n         </div>  \n     ); \n };\n \n"
+                },
+                {
+                    "date": 1677601455582,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,13 +11,9 @@\n     return (\n         <div>\n             <h1>{hi}</h1>\n             <ContactForm />\n-            {/* <ul>\n-                {contacts.map(contact =>(\n-                    <li key={contact._id}>{contact.firstname}</li>\n-                ))}\n-            </ul> */}\n+            \n         </div>  \n     ); \n };\n \n"
+                },
+                {
+                    "date": 1678126606892,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,12 @@\n import React from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n import  ContactForm  from './ContactForm';\n+import { Route, Routes } from 'react-router-dom';\n \n \n+\n // here were introduce tags \n // to get data into our cache\n const App = ({loading, contacts, hi }) => {\n     if(loading) return null;\n"
+                },
+                {
+                    "date": 1678134266906,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n import  ContactForm  from './ContactForm';\n import { Route, Routes } from 'react-router-dom';\n+import ButtonAddContact from './ButtonAddContact';\n \n \n \n // here were introduce tags \n@@ -13,9 +14,9 @@\n     return (\n         <div>\n             <h1>{hi}</h1>\n             <ContactForm />\n-            \n+            <ButtonAddContact/>\n         </div>  \n     ); \n };\n \n"
+                },
+                {
+                    "date": 1678134669620,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \n \n // here were introduce tags \n // to get data into our cache\n-const App = ({loading, contacts, hi }) => {\n+const App = ({loading, hi }) => {\n     if(loading) return null;\n     return (\n         <div>\n             <h1>{hi}</h1>\n@@ -23,13 +23,10 @@\n \n const contactsQuery = gql`\n     query Contacts {\n         hi\n-        contacts {\n-            _id\n-            firstname\n-        }\n         \n+        \n     }\n `;\n \n \n"
+                },
+                {
+                    "date": 1678134735687,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,8 @@\n const contactsQuery = gql`\n     query Contacts {\n         hi\n         \n-        \n     }\n `;\n \n \n"
+                },
+                {
+                    "date": 1678135366790,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,33 +3,23 @@\n import { graphql } from 'react-apollo';\n import  ContactForm  from './ContactForm';\n import { Route, Routes } from 'react-router-dom';\n import ButtonAddContact from './ButtonAddContact';\n+import Navbar from '../ui/Navbar'\n \n \n-\n // here were introduce tags \n // to get data into our cache\n-const App = ({loading, hi }) => {\n-    if(loading) return null;\n+export const App = () => {\n+    \n     return (\n         <div>\n-            <h1>{hi}</h1>\n-            <ContactForm />\n-            <ButtonAddContact/>\n+            <Routes>\n+                <Route path=\"/\" element={<Navbar/>}/>\n+                <Route path=\"/ajouter\" element={<ContactForm/>}/>\n+            </Routes>\n+            \n         </div>  \n     ); \n };\n \n \n-const contactsQuery = gql`\n-    query Contacts {\n-        hi\n-        \n\\ No newline at end of file\n-    }\n-`;\n-\n-\n-\n-export default graphql(contactsQuery,{\n-    props: ({ data }) => ( { ...data })\n-})(App);\n"
+                },
+                {
+                    "date": 1678135926482,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n export const App = () => {\n     \n     return (\n         <div>\n+            <Navbar/>\n             <Routes>\n                 <Route path=\"/\" element={<Navbar/>}/>\n                 <Route path=\"/ajouter\" element={<ContactForm/>}/>\n             </Routes>\n"
+                },
+                {
+                    "date": 1678136393373,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n export const App = () => {\n     \n     return (\n         <div>\n-            <Navbar/>\n+            {/* <Navbar/> */}\n             <Routes>\n                 <Route path=\"/\" element={<Navbar/>}/>\n                 <Route path=\"/ajouter\" element={<ContactForm/>}/>\n             </Routes>\n"
+                },
+                {
+                    "date": 1678139492454,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n export const App = () => {\n     \n     return (\n         <div>\n-            {/* <Navbar/> */}\n+            <Navbar/>\n             <Routes>\n                 <Route path=\"/\" element={<Navbar/>}/>\n                 <Route path=\"/ajouter\" element={<ContactForm/>}/>\n             </Routes>\n"
+                },
+                {
+                    "date": 1678139611398,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n import  ContactForm  from './ContactForm';\n import { Route, Routes } from 'react-router-dom';\n import ButtonAddContact from './ButtonAddContact';\n import Navbar from '../ui/Navbar'\n+import ContactList from \"../ui/ContactList\";\n \n \n // here were introduce tags \n // to get data into our cache\n"
+                },
+                {
+                    "date": 1678139853061,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     return (\n         <div>\n             <Navbar/>\n             <Routes>\n-                <Route path=\"/\" element={<Navbar/>}/>\n+                <Route path=\"/\" element={<ContactList/>}/>\n                 <Route path=\"/ajouter\" element={<ContactForm/>}/>\n             </Routes>\n             \n         </div>  \n"
+                },
+                {
+                    "date": 1678140281971,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,14 +13,10 @@\n export const App = () => {\n     \n     return (\n         <div>\n-            <Navbar/>\n-            <Routes>\n-                <Route path=\"/\" element={<ContactList/>}/>\n-                <Route path=\"/ajouter\" element={<ContactForm/>}/>\n-            </Routes>\n             \n+            \n         </div>  \n     ); \n };\n \n"
+                },
+                {
+                    "date": 1678140430661,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,10 +13,11 @@\n export const App = () => {\n     \n     return (\n         <div>\n+            <ButtonAddContact/>\n+            <ContactList/>\n             \n-            \n         </div>  \n     ); \n };\n \n"
+                },
+                {
+                    "date": 1678461783449,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n import React from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n-import  ContactForm  from './ContactForm';\n import { Route, Routes } from 'react-router-dom';\n import ButtonAddContact from './ButtonAddContact';\n import Navbar from '../ui/Navbar'\n import ContactList from \"../ui/ContactList\";\n"
                 }
             ],
             "date": 1677008410143,

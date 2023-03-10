@@ -5,6 +5,7 @@ import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 import { ApolloProvider } from 'react-apollo';
 import App from '../../ui/App';
 import Navbar from '../../ui/Navbar';
+import {BrowserRouter} from 'react-router-dom';
 
 
 
@@ -24,10 +25,15 @@ const client = new ApolloClient({
 });
 
 const ApolloApp = () => (
-    <ApolloProvider client={client}>
-        <h1>Page d'accueil</h1>
-        <Navbar/>
-    </ApolloProvider>
+    
+        <ApolloProvider client={client}>
+            <BrowserRouter>
+                <h1>Page d'accueil</h1>
+                <Navbar/>
+            </BrowserRouter>
+           
+        </ApolloProvider>
+    
 )
 
 Meteor.startup(() => {

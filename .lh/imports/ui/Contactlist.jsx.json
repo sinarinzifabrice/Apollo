@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 81,
+            "activePatchIndex": 82,
             "patches": [
                 {
                     "date": 1677248624464,
@@ -332,6 +332,10 @@
                 {
                     "date": 1677600946422,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n \n \n const ListContact = ({loading, contacts, hi }) => {\n \n-    const [deleteContact] = useMutation(DELETEContact);\n+    const [deleteContact] = useMutation(DELETEContact,{refetchQueries: mutationResult => [{query: contactsQuery}]});\n \n \n \n     if(loading) return null;\n"
+                },
+                {
+                    "date": 1678140583500,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n import DeleteOutlineSharpIcon from \"@mui/icons-material/DeleteOutlineSharp\";\n import ModeEditIcon from \"@mui/icons-material/ModeEdit\";\n import gql from 'graphql-tag';\n import { graphql, useMutation } from 'react-apollo';\n+import ButtonAddContact from \"./ButtonAddContact\";\n \n \n \n \n@@ -58,8 +59,9 @@\n \n     if(loading) return null;\n     return (\n         <div>\n+            <ButtonAddContact/>\n             {contacts.map(contact =>(\n                 <Box margin={2} key={contact._id}>\n                     <Card sx={{ minWidth: 275 }} elevation={2}>\n                     <CardContent>\n"
                 }
             ],
             "date": 1677248624464,

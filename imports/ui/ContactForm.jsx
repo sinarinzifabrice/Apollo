@@ -3,6 +3,8 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { Component } from 'react';
 
+
+
 const createContact = gql`
     mutation createContact($firstname: String!) {
         createContact(firstname: $firstname ) {
@@ -13,10 +15,9 @@ const createContact = gql`
 
 class ContactForm extends React.Component {
 
-    // const firstnameRef = useRef(null);
-
+    
     submitForm = () => {
-        // const firstname = firstnameRef.current.value;
+        
         console.log(this.firstname.value);
         this.props.createContact({
             variables: {
@@ -32,6 +33,7 @@ class ContactForm extends React.Component {
             <div>
                 <input type="text" ref={input =>(this.firstname = input)} />
                 <button onClick={this.submitForm}>Ajouter</button>
+               
             </div>
         );
     }

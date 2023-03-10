@@ -1,0 +1,38 @@
+{
+    "sourceFile": "imports/ui/ButtonAddContact.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1678133637181,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1678133671517,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import Stack from \"@mui/material/Stack\";\n import PersonAddAltOutlinedIcon from \"@mui/icons-material/PersonAddAltOutlined\";\n \n \n-export default function CustomizedButtons() {\n+export default function ButtonAddContact() {\n   return (\n     <Stack spacing={2} direction=\"row\">\n       \n \n"
+                },
+                {
+                    "date": 1678133686164,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n export default function ButtonAddContact() {\n   return (\n     <Stack spacing={2} direction=\"row\">\n       \n-\n       <Button\n         startIcon={<PersonAddAltOutlinedIcon />}\n         color=\"success\"\n         disabled={false}\n"
+                },
+                {
+                    "date": 1678135979586,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,16 @@\n import * as React from \"react\";\n import Button from \"@mui/material/Button\";\n import Stack from \"@mui/material/Stack\";\n import PersonAddAltOutlinedIcon from \"@mui/icons-material/PersonAddAltOutlined\";\n+import { Link } from 'react-router-dom';\n \n-\n export default function ButtonAddContact() {\n   return (\n     <Stack spacing={2} direction=\"row\">\n       \n       <Button\n+        component={Link} to=\"/ajouter\"\n         startIcon={<PersonAddAltOutlinedIcon />}\n         color=\"success\"\n         disabled={false}\n         size=\"large\"\n"
+                },
+                {
+                    "date": 1678138552454,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n export default function ButtonAddContact() {\n   return (\n     <Stack spacing={2} direction=\"row\">\n-      \n+      <Link className=\"btn btn-outline-primary m-2\"  to=\"/ajouter\">Modifier</Link> \n       <Button\n         component={Link} to=\"/ajouter\"\n         startIcon={<PersonAddAltOutlinedIcon />}\n         color=\"success\"\n"
+                },
+                {
+                    "date": 1678138944137,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,11 @@\n \n export default function ButtonAddContact() {\n   return (\n     <Stack spacing={2} direction=\"row\">\n-      <Link className=\"btn btn-outline-primary m-2\"  to=\"/ajouter\">Modifier</Link> \n+      \n       <Button\n-        component={Link} to=\"/ajouter\"\n+        component={Link} to={'/ajouter'}\n         startIcon={<PersonAddAltOutlinedIcon />}\n         color=\"success\"\n         disabled={false}\n         size=\"large\"\n"
+                }
+            ],
+            "date": 1678133637181,
+            "name": "Commit-0",
+            "content": "import * as React from \"react\";\nimport Button from \"@mui/material/Button\";\nimport Stack from \"@mui/material/Stack\";\nimport PersonAddAltOutlinedIcon from \"@mui/icons-material/PersonAddAltOutlined\";\n\n\nexport default function CustomizedButtons() {\n  return (\n    <Stack spacing={2} direction=\"row\">\n      \n\n      <Button\n        startIcon={<PersonAddAltOutlinedIcon />}\n        color=\"success\"\n        disabled={false}\n        size=\"large\"\n        variant=\"outlined\"\n      >\n        ajouter\n      </Button>\n    </Stack>\n  );\n}\n"
+        }
+    ]
+}

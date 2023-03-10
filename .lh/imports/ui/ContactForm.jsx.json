@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 31,
+            "activePatchIndex": 34,
             "patches": [
                 {
                     "date": 1677008378805,
@@ -132,6 +132,18 @@
                 {
                     "date": 1677528068645,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,10 +36,10 @@\n         );\n     }\n }\n \n-// export default graphql(createContact, {\n-//     name: \"createContact\",\n-//     options: {\n-//         refetchQueries: [\"Contacts\"]\n-//     }\n-// })(ContactForm)\n\\ No newline at end of file\n+export default graphql(createContact, {\n+    name: \"createContact\",\n+    options: {\n+        refetchQueries: [\"Contacts\"]\n+    }\n+})(ContactForm)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678140952856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,12 +12,11 @@\n `;\n \n class ContactForm extends React.Component {\n \n-    // const firstnameRef = useRef(null);\n-\n+    \n     submitForm = () => {\n-        // const firstname = firstnameRef.current.value;\n+        \n         console.log(this.firstname.value);\n         this.props.createContact({\n             variables: {\n                 firstname: this.firstname.value\n"
+                },
+                {
+                    "date": 1678460659656,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,11 @@\n import React, { useRef} from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n import { Component } from 'react';\n+import { Form } from '../ui/Form.js';\n \n+\n const createContact = gql`\n     mutation createContact($firstname: String!) {\n         createContact(firstname: $firstname ) {\n             _id\n@@ -30,8 +32,9 @@\n         return (\n             <div>\n                 <input type=\"text\" ref={input =>(this.firstname = input)} />\n                 <button onClick={this.submitForm}>Ajouter</button>\n+                <Form/>\n             </div>\n         );\n     }\n }\n"
+                },
+                {
+                    "date": 1678461805686,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n import React, { useRef} from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n import { Component } from 'react';\n-import { Form } from '../ui/Form.js';\n \n \n+\n const createContact = gql`\n     mutation createContact($firstname: String!) {\n         createContact(firstname: $firstname ) {\n             _id\n@@ -32,9 +32,9 @@\n         return (\n             <div>\n                 <input type=\"text\" ref={input =>(this.firstname = input)} />\n                 <button onClick={this.submitForm}>Ajouter</button>\n-                <Form/>\n+               \n             </div>\n         );\n     }\n }\n"
                 }
             ],
             "date": 1677008378805,

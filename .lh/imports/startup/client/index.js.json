@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 41,
+            "activePatchIndex": 53,
             "patches": [
                 {
                     "date": 1676315402318,
@@ -172,6 +172,54 @@
                 {
                     "date": 1677254933425,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,12 @@\n import { createRoot } from 'react-dom/client';\n import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';\n import { ApolloProvider } from 'react-apollo';\n import App from '../../ui/App';\n+import Navbar from '../../ui/Navbar';\n \n \n \n-\n //create instance to connect \n // apollo to GraphQL Server\n const httpLink = new HttpLink({\n     uri: \"http://localhost:4000/\"\n@@ -25,9 +25,9 @@\n \n const ApolloApp = () => (\n     <ApolloProvider client={client}>\n         <h1>Page d'accueil</h1>\n-        <App/>\n+        <Navbar/>\n     </ApolloProvider>\n )\n \n Meteor.startup(() => {\n"
+                },
+                {
+                    "date": 1678126471583,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';\n import { ApolloProvider } from 'react-apollo';\n import App from '../../ui/App';\n import Navbar from '../../ui/Navbar';\n+import {BrowserRouter} from 'react-router-dom';\n \n \n \n //create instance to connect \n"
+                },
+                {
+                    "date": 1678126569540,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,10 +25,13 @@\n });\n \n const ApolloApp = () => (\n     <ApolloProvider client={client}>\n-        <h1>Page d'accueil</h1>\n-        <Navbar/>\n+        <BrowserRouter>\n+            <h1>Page d'accueil</h1>\n+            <Navbar/>\n+        </BrowserRouter>\n+        \n     </ApolloProvider>\n )\n \n Meteor.startup(() => {\n"
+                },
+                {
+                    "date": 1678135856465,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,9 @@\n     <ApolloProvider client={client}>\n         <BrowserRouter>\n             <h1>Page d'accueil</h1>\n             <Navbar/>\n+            <App/>\n         </BrowserRouter>\n         \n     </ApolloProvider>\n )\n"
+                },
+                {
+                    "date": 1678135896802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n const ApolloApp = () => (\n     <ApolloProvider client={client}>\n         <BrowserRouter>\n             <h1>Page d'accueil</h1>\n-            <Navbar/>\n+            \n             <App/>\n         </BrowserRouter>\n         \n     </ApolloProvider>\n"
+                },
+                {
+                    "date": 1678136758084,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,16 +24,18 @@\n     cache: cache,\n });\n \n const ApolloApp = () => (\n+    <BrowserRouter>\n     <ApolloProvider client={client}>\n-        <BrowserRouter>\n+        \n             <h1>Page d'accueil</h1>\n             \n             <App/>\n-        </BrowserRouter>\n+       \n         \n     </ApolloProvider>\n+    </BrowserRouter>\n )\n \n Meteor.startup(() => {\n     const container = document.getElementById('app');\n"
+                },
+                {
+                    "date": 1678136778969,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,16 +25,16 @@\n });\n \n const ApolloApp = () => (\n     <BrowserRouter>\n-    <ApolloProvider client={client}>\n+        <ApolloProvider client={client}>\n+            \n+                <h1>Page d'accueil</h1>\n+                \n+                <App/>\n         \n-            <h1>Page d'accueil</h1>\n             \n-            <App/>\n-       \n-        \n-    </ApolloProvider>\n+        </ApolloProvider>\n     </BrowserRouter>\n )\n \n Meteor.startup(() => {\n"
+                },
+                {
+                    "date": 1678136963817,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,18 +24,18 @@\n     cache: cache,\n });\n \n const ApolloApp = () => (\n-    <BrowserRouter>\n+    \n         <ApolloProvider client={client}>\n             \n                 <h1>Page d'accueil</h1>\n                 \n                 <App/>\n         \n             \n         </ApolloProvider>\n-    </BrowserRouter>\n+    \n )\n \n Meteor.startup(() => {\n     const container = document.getElementById('app');\n"
+                },
+                {
+                    "date": 1678137017612,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,15 +30,19 @@\n             \n                 <h1>Page d'accueil</h1>\n                 \n                 <App/>\n-        \n-            \n+          \n         </ApolloProvider>\n     \n )\n \n Meteor.startup(() => {\n     const container = document.getElementById('app');\n     const root = createRoot(container); \n-    root.render(<ApolloApp/>)\n+    root.render(\n+        <BrowserRouter>\n+            <ApolloApp/>\n+        </BrowserRouter>\n+    \n+    )\n });\n"
+                },
+                {
+                    "date": 1678137572260,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,23 +26,18 @@\n \n const ApolloApp = () => (\n     \n         <ApolloProvider client={client}>\n-            \n+            <BrowserRouter>\n                 <h1>Page d'accueil</h1>\n-                \n                 <App/>\n-          \n+            </BrowserRouter>\n+           \n         </ApolloProvider>\n     \n )\n \n Meteor.startup(() => {\n     const container = document.getElementById('app');\n     const root = createRoot(container); \n-    root.render(\n-        <BrowserRouter>\n-            <ApolloApp/>\n-        </BrowserRouter>\n-    \n-    )\n+    root.render(<ApolloApp/>)\n });\n"
+                },
+                {
+                    "date": 1678137605090,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n     \n         <ApolloProvider client={client}>\n             <BrowserRouter>\n                 <h1>Page d'accueil</h1>\n-                <App/>\n+                <Navbar/>\n             </BrowserRouter>\n            \n         </ApolloProvider>\n     \n"
+                },
+                {
+                    "date": 1678139518291,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n     \n         <ApolloProvider client={client}>\n             <BrowserRouter>\n                 <h1>Page d'accueil</h1>\n-                <Navbar/>\n+                <App/>\n             </BrowserRouter>\n            \n         </ApolloProvider>\n     \n"
+                },
+                {
+                    "date": 1678140239855,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n     \n         <ApolloProvider client={client}>\n             <BrowserRouter>\n                 <h1>Page d'accueil</h1>\n-                <App/>\n+                <Navbar/>\n             </BrowserRouter>\n            \n         </ApolloProvider>\n     \n"
                 }
             ],
             "date": 1676315402318,

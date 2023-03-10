@@ -1,0 +1,90 @@
+{
+    "sourceFile": "imports/ui/Form.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 18,
+            "patches": [
+                {
+                    "date": 1678461034915,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1678461248911,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { AutoForm } from \"uniforms-semantic\"; \n+import { AutoForm } from \"uniforms-mui\"; \n import { bridge as schema} from \"../api/resolutions/bridge\";\n import React from 'react';\n import { Api } from \"@mui/icons-material\";\n \n@@ -7,6 +7,11 @@\n //     await Api.b\n // }\n \n export function GuestFormBasic() {\n-  return <AutoForm schema={schema} onSubmit={console.log} />;\n+  return (\n+    <AutoForm\n+      schema={schema}\n+      onSubmit={(model: any) => alert(JSON.stringify(model, null, 2))}\n+    />\n+  );\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678461261029,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,8 @@\n export function GuestFormBasic() {\n   return (\n     <AutoForm\n       schema={schema}\n-      onSubmit={(model: any) => alert(JSON.stringify(model, null, 2))}\n+      onSubmit={(model) => alert(JSON.stringify(model, null, 2))}\n     />\n   );\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678461277691,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,8 @@\n export function GuestFormBasic() {\n   return (\n     <AutoForm\n       schema={schema}\n-      onSubmit={(model) => alert(JSON.stringify(model, null, 2))}\n+      onSubmit={(model) => alert(JSON.stringify(model))}\n     />\n   );\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678461584173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n // async function onSubmit(model){\n //     await Api.b\n // }\n \n-export function GuestFormBasic() {\n+export function Form() {\n   return (\n     <AutoForm\n       schema={schema}\n       onSubmit={(model) => alert(JSON.stringify(model))}\n"
+                },
+                {
+                    "date": 1678476609809,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,7 +11,9 @@\n   return (\n     <AutoForm\n       schema={schema}\n       onSubmit={(model) => alert(JSON.stringify(model))}\n-    />\n+    >\n+    <TextField name=\"firstName\" label=\"First Name\" />\n+    </AutoForm>\n   );\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678476641051,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { AutoForm } from \"uniforms-mui\"; \n+import { AutoForm, TextField } from \"uniforms-mui\"; \n import { bridge as schema} from \"../api/resolutions/bridge\";\n import React from 'react';\n import { Api } from \"@mui/icons-material\";\n \n"
+                },
+                {
+                    "date": 1678476695985,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,8 @@\n     <AutoForm\n       schema={schema}\n       onSubmit={(model) => alert(JSON.stringify(model))}\n     >\n-    <TextField name=\"firstName\" label=\"First Name\" />\n+    <TextField name=\"firstName\" label=\"First Name\" placeholder=\"First Name\" />\n     </AutoForm>\n   );\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678476744429,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n   return (\n     <AutoForm\n       schema={schema}\n       onSubmit={(model) => alert(JSON.stringify(model))}\n+      showInlineError={true} // affiche les erreurs inline\n     >\n     <TextField name=\"firstName\" label=\"First Name\" placeholder=\"First Name\" />\n     </AutoForm>\n   );\n"
+                },
+                {
+                    "date": 1678477531325,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { AutoForm, TextField } from \"uniforms-mui\"; \n import { bridge as schema} from \"../api/resolutions/bridge\";\n import React from 'react';\n-import { Api } from \"@mui/icons-material\";\n \n+\n // async function onSubmit(model){\n //     await Api.b\n // }\n \n"
+                },
+                {
+                    "date": 1678482192558,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,19 +2,17 @@\n import { bridge as schema} from \"../api/resolutions/bridge\";\n import React from 'react';\n \n \n-// async function onSubmit(model){\n-//     await Api.b\n-// }\n \n+\n export function Form() {\n   return (\n     <AutoForm\n       schema={schema}\n       onSubmit={(model) => alert(JSON.stringify(model))}\n       showInlineError={true} // affiche les erreurs inline\n     >\n-    <TextField name=\"firstName\" label=\"First Name\" placeholder=\"First Name\" />\n+    {/* <TextField name=\"firstName\" label=\"First Name\" placeholder=\"First Name\" /> */}\n     </AutoForm>\n   );\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678482277959,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,8 @@\n       schema={schema}\n       onSubmit={(model) => alert(JSON.stringify(model))}\n       showInlineError={true} // affiche les erreurs inline\n     >\n-    {/* <TextField name=\"firstName\" label=\"First Name\" placeholder=\"First Name\" /> */}\n+    <TextField name=\"firstName\" label=\"Nom\" placeholder=\"nom de famille\" />\n     </AutoForm>\n   );\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678482358164,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,7 +12,8 @@\n       onSubmit={(model) => alert(JSON.stringify(model))}\n       showInlineError={true} // affiche les erreurs inline\n     >\n     <TextField name=\"firstName\" label=\"Nom\" placeholder=\"nom de famille\" />\n+    <TextField name=\"lastName\" label=\"prenom\" placeholder=\"prenom\" />\n     </AutoForm>\n   );\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678482451509,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,7 +13,8 @@\n       showInlineError={true} // affiche les erreurs inline\n     >\n     <TextField name=\"firstName\" label=\"Nom\" placeholder=\"nom de famille\" />\n     <TextField name=\"lastName\" label=\"prenom\" placeholder=\"prenom\" />\n+    <SubmitField />\n     </AutoForm>\n   );\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678482486872,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { AutoForm, TextField } from \"uniforms-mui\"; \n+import { AutoForm, TextField, SubmitField } from \"uniforms-mui\"; \n import { bridge as schema} from \"../api/resolutions/bridge\";\n import React from 'react';\n \n \n"
+                },
+                {
+                    "date": 1678482887912,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,10 +11,10 @@\n       schema={schema}\n       onSubmit={(model) => alert(JSON.stringify(model))}\n       showInlineError={true} // affiche les erreurs inline\n     >\n-    <TextField name=\"firstName\" label=\"Nom\" placeholder=\"nom de famille\" />\n+    {/* <TextField name=\"firstName\" label=\"Nom\" placeholder=\"nom de famille\" />\n     <TextField name=\"lastName\" label=\"prenom\" placeholder=\"prenom\" />\n-    <SubmitField />\n+    <SubmitField /> */}\n     </AutoForm>\n   );\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678484454052,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,18 +1,29 @@\n import { AutoForm, TextField, SubmitField } from \"uniforms-mui\"; \n import { bridge as schema} from \"../api/resolutions/bridge\";\n import React from 'react';\n+import { connectField } from 'uniforms';\n \n+function Composite() {\n+  return (\n+    <section>\n+      <AutoField name=\"firstName\" />\n+      <AutoField name=\"lastName\" />\n+      <AutoField name=\"age\" />\n+    </section>\n+  );\n+}\n \n+const CompositeField = connectField(Composite);\n \n-\n export function Form() {\n   return (\n     <AutoForm\n       schema={schema}\n       onSubmit={(model) => alert(JSON.stringify(model))}\n       showInlineError={true} // affiche les erreurs inline\n     >\n+      <CompositeField />\n     {/* <TextField name=\"firstName\" label=\"Nom\" placeholder=\"nom de famille\" />\n     <TextField name=\"lastName\" label=\"prenom\" placeholder=\"prenom\" />\n     <SubmitField /> */}\n     </AutoForm>\n"
+                },
+                {
+                    "date": 1678485560025,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,31 +1,18 @@\n-import { AutoForm, TextField, SubmitField } from \"uniforms-mui\"; \n+import { AutoForm } from \"uniforms-mui\"; \n import { bridge as schema} from \"../api/resolutions/bridge\";\n import React from 'react';\n-import { connectField } from 'uniforms';\n \n-function Composite() {\n-  return (\n-    <section>\n-      <AutoField name=\"firstName\" />\n-      <AutoField name=\"lastName\" />\n-      <AutoField name=\"age\" />\n-    </section>\n-  );\n-}\n \n-const CompositeField = connectField(Composite);\n \n+\n export function Form() {\n   return (\n     <AutoForm\n       schema={schema}\n       onSubmit={(model) => alert(JSON.stringify(model))}\n       showInlineError={true} // affiche les erreurs inline\n     >\n-      <CompositeField />\n-    {/* <TextField name=\"firstName\" label=\"Nom\" placeholder=\"nom de famille\" />\n-    <TextField name=\"lastName\" label=\"prenom\" placeholder=\"prenom\" />\n-    <SubmitField /> */}\n+     \n     </AutoForm>\n   );\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678485583651,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,8 @@\n     <AutoForm\n       schema={schema}\n       onSubmit={(model) => alert(JSON.stringify(model))}\n       showInlineError={true} // affiche les erreurs inline\n-    >\n+    />\n      \n-    </AutoForm>\n   );\n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1678461034915,
+            "name": "Commit-0",
+            "content": "import { AutoForm } from \"uniforms-semantic\"; \nimport { bridge as schema} from \"../api/resolutions/bridge\";\nimport React from 'react';\nimport { Api } from \"@mui/icons-material\";\n\n// async function onSubmit(model){\n//     await Api.b\n// }\n\nexport function GuestFormBasic() {\n  return <AutoForm schema={schema} onSubmit={console.log} />;\n}"
+        }
+    ]
+}
