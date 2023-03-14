@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 52,
+            "activePatchIndex": 54,
             "patches": [
                 {
                     "date": 1676579990962,
@@ -216,6 +216,14 @@
                 {
                     "date": 1677517892384,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n-\n+// sdf\n // test\n \n const testSchema =  `\n type Query {\n"
+                },
+                {
+                    "date": 1678737082977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,9 @@\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n-// sdf\n-// test\n+// mis a jour\n \n const testSchema =  `\n type Query {\n     hi: String\n"
+                },
+                {
+                    "date": 1678802700515,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,11 @@\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n-// mis a jour\n \n+// resolver\n+\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
                 }
             ],
             "date": 1676579990962,

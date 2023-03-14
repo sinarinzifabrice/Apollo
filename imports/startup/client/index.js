@@ -6,6 +6,7 @@ import { ApolloProvider } from 'react-apollo';
 import App from '../../ui/App';
 import Navbar from '../../ui/Navbar';
 import {BrowserRouter} from 'react-router-dom';
+import Form from '../../ui/Form';
 
 
 

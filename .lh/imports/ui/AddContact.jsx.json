@@ -1,0 +1,250 @@
+{
+    "sourceFile": "imports/ui/AddContact.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 58,
+            "patches": [
+                {
+                    "date": 1678720405105,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1678720439663,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import React from 'react';\n \n \n \n-export function Form() {\n+export function addContact() {\n   return (\n     <AutoForm\n       schema={schema}\n       onSubmit={(model) => alert(JSON.stringify(model))}\n"
+                },
+                {
+                    "date": 1678721192700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import React from 'react';\n \n \n \n-export function addContact() {\n+export function AddContact() {\n   return (\n     <AutoForm\n       schema={schema}\n       onSubmit={(model) => alert(JSON.stringify(model))}\n"
+                },
+                {
+                    "date": 1678722021912,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,14 +3,14 @@\n import React from 'react';\n \n \n \n-export function AddContact() {\n+export function Form() {\n   return (\n     <AutoForm\n       schema={schema}\n       onSubmit={(model) => alert(JSON.stringify(model))}\n       showInlineError={true} // affiche les erreurs inline\n     />\n      \n   );\n\\ No newline at end of file\n-}\n+}\n"
+                },
+                {
+                    "date": 1678722123064,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,14 +3,14 @@\n import React from 'react';\n \n \n \n-export function Form() {\n+export function addForm() {\n   return (\n     <AutoForm\n       schema={schema}\n       onSubmit={(model) => alert(JSON.stringify(model))}\n       showInlineError={true} // affiche les erreurs inline\n     />\n      \n   );\n\\ No newline at end of file\n-}\n+}\n"
+                },
+                {
+                    "date": 1678722305915,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,71 @@\n import { AutoForm } from \"uniforms-mui\"; \n import { bridge as schema} from \"../api/resolutions/bridge\";\n import React from 'react';\n+import gql from 'graphql-tag';\n+import { graphql } from 'react-apollo';\n \n \n+const createContact = gql`\n+    mutation createContact($firstname: String!) {\n+        createContact(firstname: $firstname, lastName: $lastName ) {\n+            _id\n+            firstname\n+            lastName\n+        }\n+    }\n+`;\n\\ No newline at end of file\n \n-export function addForm() {\n-  return (\n-    <AutoForm\n-      schema={schema}\n-      onSubmit={(model) => alert(JSON.stringify(model))}\n-      showInlineError={true} // affiche les erreurs inline\n-    />\n+\n+\n+class ContactForm extends React.Component {\n+\n+    \n+  submitForm = (model) => {\n+      \n+      console.log(model.firstName.value);\n+      this.props.createContact({\n+          variables: {\n+              firstname: model.firstName.value,\n+              lastName: model.lastName.value,\n+          }\n+      }).catch(error =>{\n+          console.log(error);\n+      });\n+  };\n+\n+  render(){\n+      return (\n+          <div>\n+              <AutoForm\n+                schema={schema}\n+                onSubmit={submitForm}\n+                showInlineError={true} // affiche les erreurs inline\n+              />\n+          </div>\n+      );\n+  }\n+}\n+\n+\n+// export function Form() {\n+//   return (\n+//     <AutoForm\n+//       schema={schema}\n+//       onSubmit={(model) => alert(JSON.stringify(model))}\n+//       showInlineError={true} // affiche les erreurs inline\n+//     />\n      \n-  );\n-}\n+//   );\n+// }\n+\n+\n+\n+export default graphql(createContact, {\n+  name: \"createContact\",\n+  options: {\n+      refetchQueries: [\"Contacts\"]\n+  }\n+})(ContactForm)\n+\n+\n+\n"
+                },
+                {
+                    "date": 1678727646996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,15 +19,15 @@\n \n class ContactForm extends React.Component {\n \n     \n-  submitForm = (model) => {\n+  submitForm = () => {\n       \n-      console.log(model.firstName.value);\n+      console.log(this.firstname.value);\n       this.props.createContact({\n           variables: {\n-              firstname: model.firstName.value,\n-              lastName: model.lastName.value,\n+              firstname: this.firstname.value,\n+              lastName: this.lastName.value,\n           }\n       }).catch(error =>{\n           console.log(error);\n       });\n@@ -64,5 +64,8 @@\n   name: \"createContact\",\n   options: {\n       refetchQueries: [\"Contacts\"]\n   }\n-})(ContactForm)\n\\ No newline at end of file\n+})(ContactForm)\n+\n+\n+\n"
+                },
+                {
+                    "date": 1678728106297,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n       return (\n           <div>\n               <AutoForm\n                 schema={schema}\n-                onSubmit={submitForm}\n+                onSubmit={submitForm()}\n                 showInlineError={true} // affiche les erreurs inline\n               />\n           </div>\n       );\n"
+                },
+                {
+                    "date": 1678728174317,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \n class ContactForm extends React.Component {\n \n     \n-  submitForm = () => {\n+  submitForm()  {\n       \n       console.log(this.firstname.value);\n       this.props.createContact({\n           variables: {\n"
+                },
+                {
+                    "date": 1678729036087,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \n class ContactForm extends React.Component {\n \n     \n-  submitForm()  {\n+  submitForm = () => {\n       \n       console.log(this.firstname.value);\n       this.props.createContact({\n           variables: {\n@@ -37,9 +37,9 @@\n       return (\n           <div>\n               <AutoForm\n                 schema={schema}\n-                onSubmit={submitForm()}\n+                onSubmit={this.submitForm}\n                 showInlineError={true} // affiche les erreurs inline\n               />\n           </div>\n       );\n"
+                },
+                {
+                    "date": 1678729551181,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n       return (\n           <div>\n               <AutoForm\n                 schema={schema}\n-                onSubmit={this.submitForm}\n+                onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n               />\n           </div>\n       );\n"
+                },
+                {
+                    "date": 1678729587781,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \n class ContactForm extends React.Component {\n \n     \n-  submitForm = () => {\n+  submitForm = (model) => {\n       \n       console.log(this.firstname.value);\n       this.props.createContact({\n           variables: {\n"
+                },
+                {
+                    "date": 1678729670946,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n       return (\n           <div>\n               <AutoForm\n                 schema={schema}\n-                onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n+                onSubmit={(model) => alert(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n               />\n           </div>\n       );\n"
+                },
+                {
+                    "date": 1678729760809,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n       return (\n           <div>\n               <AutoForm\n                 schema={schema}\n-                onSubmit={(model) => alert(JSON.stringify(model))}\n+                onSubmit={(model) => console.log(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n               />\n           </div>\n       );\n"
+                },
+                {
+                    "date": 1678729966122,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n \n     \n   submitForm = (model) => {\n       \n-      console.log(this.firstname.value);\n+      console.log(model.firstname.value);\n       this.props.createContact({\n           variables: {\n               firstname: this.firstname.value,\n               lastName: this.lastName.value,\n"
+                },
+                {
+                    "date": 1678730037330,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n       return (\n           <div>\n               <AutoForm\n                 schema={schema}\n-                onSubmit={(model) => console.log(JSON.stringify(model))}\n+                onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n               />\n           </div>\n       );\n"
+                },
+                {
+                    "date": 1678730107554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n \n     \n   submitForm = (model) => {\n       \n-      console.log(model.firstname.value);\n+      console.log(this.model.firstname.value);\n       this.props.createContact({\n           variables: {\n               firstname: this.firstname.value,\n               lastName: this.lastName.value,\n"
+                },
+                {
+                    "date": 1678730740691,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n \n     \n   submitForm = (model) => {\n       \n-      console.log(this.model.firstname.value);\n+      console.log(model);\n       this.props.createContact({\n           variables: {\n               firstname: this.firstname.value,\n               lastName: this.lastName.value,\n"
+                },
+                {
+                    "date": 1678731340819,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,12 +21,12 @@\n \n     \n   submitForm = (model) => {\n       \n-      console.log(model);\n+      console.log(model.firstname);\n       this.props.createContact({\n           variables: {\n-              firstname: this.firstname.value,\n+              firstname: this.model.firstname.value,\n               lastName: this.lastName.value,\n           }\n       }).catch(error =>{\n           console.log(error);\n"
+                },
+                {
+                    "date": 1678731347302,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n       \n       console.log(model.firstname);\n       this.props.createContact({\n           variables: {\n-              firstname: this.model.firstname.value,\n+              firstname: this.firstname.value,\n               lastName: this.lastName.value,\n           }\n       }).catch(error =>{\n           console.log(error);\n"
+                },
+                {
+                    "date": 1678731374595,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n \n     \n   submitForm = (model) => {\n       \n-      console.log(model.firstname);\n+      console.log(this.model.firstname);\n       this.props.createContact({\n           variables: {\n               firstname: this.firstname.value,\n               lastName: this.lastName.value,\n"
+                },
+                {
+                    "date": 1678731474665,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n \n     \n   submitForm = (model) => {\n       \n-      console.log(this.model.firstname);\n+      console.log(obj.firstname);\n       this.props.createContact({\n           variables: {\n               firstname: this.firstname.value,\n               lastName: this.lastName.value,\n"
+                },
+                {
+                    "date": 1678731562227,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import { bridge as schema} from \"../api/resolutions/bridge\";\n import React from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n+import { json } from \"body-parser\";\n \n \n const createContact = gql`\n     mutation createContact($firstname: String!) {\n@@ -21,8 +22,9 @@\n \n     \n   submitForm = (model) => {\n       \n+      const obj = JSON.parse(model);  \n       console.log(obj.firstname);\n       this.props.createContact({\n           variables: {\n               firstname: this.firstname.value,\n"
+                },
+                {
+                    "date": 1678731973926,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n \n     \n   submitForm = (model) => {\n       \n-      const obj = JSON.parse(model);  \n+    //   const obj = JSON.parse(model);  \n       console.log(obj.firstname);\n       this.props.createContact({\n           variables: {\n               firstname: this.firstname.value,\n"
+                },
+                {
+                    "date": 1678732075884,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     \n   submitForm = (model) => {\n       \n     //   const obj = JSON.parse(model);  \n-      console.log(obj.firstname);\n+      console.log(model);\n       this.props.createContact({\n           variables: {\n               firstname: this.firstname.value,\n               lastName: this.lastName.value,\n"
+                },
+                {
+                    "date": 1678732234066,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,11 @@\n import { bridge as schema} from \"../api/resolutions/bridge\";\n import React from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n-import { json } from \"body-parser\";\n \n \n+\n const createContact = gql`\n     mutation createContact($firstname: String!) {\n         createContact(firstname: $firstname, lastName: $lastName ) {\n             _id\n@@ -48,21 +48,12 @@\n   }\n }\n \n \n-// export function Form() {\n-//   return (\n-//     <AutoForm\n-//       schema={schema}\n-//       onSubmit={(model) => alert(JSON.stringify(model))}\n-//       showInlineError={true} // affiche les erreurs inline\n-//     />\n-     \n-//   );\n-// }\n \n \n \n+\n export default graphql(createContact, {\n   name: \"createContact\",\n   options: {\n       refetchQueries: [\"Contacts\"]\n"
+                },
+                {
+                    "date": 1678732401038,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,10 +22,11 @@\n \n     \n   submitForm = (model) => {\n       \n-    //   const obj = JSON.parse(model);  \n+      const obj = JSON.parse(model);  \n       console.log(model);\n+      console.log(obj.firstname);\n       this.props.createContact({\n           variables: {\n               firstname: this.firstname.value,\n               lastName: this.lastName.value,\n"
+                },
+                {
+                    "date": 1678732904644,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n   submitForm = (model) => {\n       \n       const obj = JSON.parse(model);  \n       console.log(model);\n-      console.log(obj.firstname);\n+      console.log(obj[\"firstname\"]);\n       this.props.createContact({\n           variables: {\n               firstname: this.firstname.value,\n               lastName: this.lastName.value,\n"
+                },
+                {
+                    "date": 1678733051007,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     \n   submitForm = (model) => {\n       \n       const obj = JSON.parse(model);  \n-      console.log(model);\n+      console.log(obj);\n       console.log(obj[\"firstname\"]);\n       this.props.createContact({\n           variables: {\n               firstname: this.firstname.value,\n"
+                },
+                {
+                    "date": 1678733122216,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n   submitForm = (model) => {\n       \n       const obj = JSON.parse(model);  \n       console.log(obj);\n-      console.log(obj[\"firstname\"]);\n+      console.log(obj.firstname);\n       this.props.createContact({\n           variables: {\n               firstname: this.firstname.value,\n               lastName: this.lastName.value,\n"
+                },
+                {
+                    "date": 1678733590674,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \n \n const createContact = gql`\n     mutation createContact($firstname: String!) {\n-        createContact(firstname: $firstname, lastName: $lastName ) {\n+        createContact(firstname: $firstname, lastname: $lastname ) {\n             _id\n             firstname\n             lastName\n         }\n"
+                },
+                {
+                    "date": 1678733611475,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n       console.log(obj.firstname);\n       this.props.createContact({\n           variables: {\n               firstname: this.firstname.value,\n-              lastName: this.lastName.value,\n+              lastname: this.lastname.value,\n           }\n       }).catch(error =>{\n           console.log(error);\n       });\n"
+                },
+                {
+                    "date": 1678733732241,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,10 +27,10 @@\n       console.log(obj);\n       console.log(obj.firstname);\n       this.props.createContact({\n           variables: {\n-              firstname: this.firstname.value,\n-              lastname: this.lastname.value,\n+              firstname: obj.firstname,\n+              lastname: obj.lastname,\n           }\n       }).catch(error =>{\n           console.log(error);\n       });\n"
+                },
+                {
+                    "date": 1678735053241,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n \n \n const createContact = gql`\n-    mutation createContact($firstname: String!) {\n+    mutation createContact($firstname: String!, $lastname: String!) {\n         createContact(firstname: $firstname, lastname: $lastname ) {\n             _id\n             firstname\n             lastName\n"
+                },
+                {
+                    "date": 1678735934565,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     mutation createContact($firstname: String!, $lastname: String!) {\n         createContact(firstname: $firstname, lastname: $lastname ) {\n             _id\n             firstname\n-            lastName\n+            lastname\n         }\n     }\n `;\n \n@@ -22,19 +22,19 @@\n \n     \n   submitForm = (model) => {\n       \n-      const obj = JSON.parse(model);  \n-      console.log(obj);\n-      console.log(obj.firstname);\n-      this.props.createContact({\n-          variables: {\n-              firstname: obj.firstname,\n-              lastname: obj.lastname,\n-          }\n-      }).catch(error =>{\n-          console.log(error);\n-      });\n+    const obj = JSON.parse(model);  \n+    console.log(obj);\n+    console.log(obj.firstname);\n+    this.props.createContact({\n+        variables: {\n+            firstname: obj.firstname,\n+            lastname: obj.lastname,\n+        }\n+    }).catch(error =>{\n+        console.log(error);\n+    });\n   };\n \n   render(){\n       return (\n"
+                },
+                {
+                    "date": 1678736002558,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,13 +6,13 @@\n \n \n \n const createContact = gql`\n-    mutation createContact($firstname: String!, $lastname: String!) {\n-        createContact(firstname: $firstname, lastname: $lastname ) {\n+    mutation createContact($firstname: String!) {\n+        createContact(firstname: $firstname) {\n             _id\n             firstname\n-            lastname\n+            \n         }\n     }\n `;\n \n@@ -27,10 +27,10 @@\n     console.log(obj);\n     console.log(obj.firstname);\n     this.props.createContact({\n         variables: {\n-            firstname: obj.firstname,\n-            lastname: obj.lastname,\n+            firstname: obj.firstname\n+            \n         }\n     }).catch(error =>{\n         console.log(error);\n     });\n"
+                },
+                {
+                    "date": 1678736472864,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,13 +6,13 @@\n \n \n \n const createContact = gql`\n-    mutation createContact($firstname: String!) {\n-        createContact(firstname: $firstname) {\n+    mutation createContact($firstname: String!, $lastname: String!) {\n+        createContact(firstname: $firstname, lastname: $lastname) {\n             _id\n             firstname\n-            \n+            lastname\n         }\n     }\n `;\n \n@@ -22,15 +22,15 @@\n \n     \n   submitForm = (model) => {\n       \n-    const obj = JSON.parse(model);  \n+    const { firstname, lastname } = JSON.parse(model);  \n     console.log(obj);\n-    console.log(obj.firstname);\n+    console.log(firstname);\n     this.props.createContact({\n         variables: {\n-            firstname: obj.firstname\n-            \n+            firstname,\n+            lastname,\n         }\n     }).catch(error =>{\n         console.log(error);\n     });\n"
+                },
+                {
+                    "date": 1678736622397,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     \n   submitForm = (model) => {\n       \n     const { firstname, lastname } = JSON.parse(model);  \n-    console.log(obj);\n+    console.log(JSON.parse(model));\n     console.log(firstname);\n     this.props.createContact({\n         variables: {\n             firstname,\n"
+                },
+                {
+                    "date": 1678736892360,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n       \n     const { firstname, lastname } = JSON.parse(model);  \n     console.log(JSON.parse(model));\n     console.log(firstname);\n+    console.log(lastname);\n     this.props.createContact({\n         variables: {\n             firstname,\n             lastname,\n"
+                },
+                {
+                    "date": 1678736955717,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,10 +28,10 @@\n     console.log(firstname);\n     console.log(lastname);\n     this.props.createContact({\n         variables: {\n-            firstname,\n-            lastname,\n+            firstname:firstname,\n+            lastname: lastname,\n         }\n     }).catch(error =>{\n         console.log(error);\n     });\n"
+                },
+                {
+                    "date": 1678738172946,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { AutoForm } from \"uniforms-mui\"; \n+import { AutoForm, TextField } from \"uniforms-mui\"; \n import { bridge as schema} from \"../api/resolutions/bridge\";\n import React from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n@@ -38,15 +38,17 @@\n   };\n \n   render(){\n       return (\n-          <div>\n+          \n               <AutoForm\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n-              />\n-          </div>\n+              >\n+                <TextField name=\"firstname\"/>\n+            </div>\n+          \n       );\n   }\n }\n \n"
+                },
+                {
+                    "date": 1678738223141,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n               >\n                 <TextField name=\"firstname\"/>\n-            </div>\n+            </AutoForm>\n           \n       );\n   }\n }\n"
+                },
+                {
+                    "date": 1678738395605,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n               >\n-                <TextField name=\"firstname\"/>\n+                <TextField name=\"firstname\" label=\"Prénom\" placeholder=\"Entrez votre prénom\"/>\n             </AutoForm>\n           \n       );\n   }\n"
+                },
+                {
+                    "date": 1678738421845,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n               >\n-                <TextField name=\"firstname\" label=\"Prénom\" placeholder=\"Entrez votre prénom\"/>\n+                <TextField name=\"firstname\" labelClassName=\"Prénom\" placeholder=\"Entrez votre prénom\"/>\n             </AutoForm>\n           \n       );\n   }\n"
+                },
+                {
+                    "date": 1678738432285,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n               >\n-                <TextField name=\"firstname\" labelClassName=\"Prénom\" placeholder=\"Entrez votre prénom\"/>\n+                <TextField name=\"firstname\" label=\"Prénom\" placeholder=\"Entrez votre prénom\"/>\n             </AutoForm>\n           \n       );\n   }\n"
+                },
+                {
+                    "date": 1678738505046,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,8 +45,9 @@\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n               >\n                 <TextField name=\"firstname\" label=\"Prénom\" placeholder=\"Entrez votre prénom\"/>\n+                <TextField name=\"lastname\" label=\"Prénom\" placeholder=\"Entrez votre prénom\"/>\n             </AutoForm>\n           \n       );\n   }\n"
+                },
+                {
+                    "date": 1678738528875,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n               >\n                 <TextField name=\"firstname\" label=\"Prénom\" placeholder=\"Entrez votre prénom\"/>\n-                <TextField name=\"lastname\" label=\"Prénom\" placeholder=\"Entrez votre prénom\"/>\n+                <TextField name=\"lastname\" label=\"Nom\" placeholder=\"Entrez votre Nom\"/>\n             </AutoForm>\n           \n       );\n   }\n"
+                },
+                {
+                    "date": 1678738807931,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { AutoForm, TextField } from \"uniforms-mui\"; \n+import { AutoForm, TextField, SubmitField } from \"uniforms-mui\"; \n import { bridge as schema} from \"../api/resolutions/bridge\";\n import React from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n@@ -46,8 +46,9 @@\n                 showInlineError={true} // affiche les erreurs inline\n               >\n                 <TextField name=\"firstname\" label=\"Prénom\" placeholder=\"Entrez votre prénom\"/>\n                 <TextField name=\"lastname\" label=\"Nom\" placeholder=\"Entrez votre Nom\"/>\n+                <SubmitField value=\"Enregistrer\"  color=\"primary\" />\n             </AutoForm>\n           \n       );\n   }\n"
+                },
+                {
+                    "date": 1678738844650,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n                 showInlineError={true} // affiche les erreurs inline\n               >\n                 <TextField name=\"firstname\" label=\"Prénom\" placeholder=\"Entrez votre prénom\"/>\n                 <TextField name=\"lastname\" label=\"Nom\" placeholder=\"Entrez votre Nom\"/>\n-                <SubmitField value=\"Enregistrer\"  color=\"primary\" />\n+                <SubmitField color=\"primary\">Enregister</SubmitField>\n             </AutoForm>\n           \n       );\n   }\n"
+                },
+                {
+                    "date": 1678739616010,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import { bridge as schema} from \"../api/resolutions/bridge\";\n import React from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n+import { AutoField } from \"uniforms-semantic\";\n \n \n \n const createContact = gql`\n@@ -44,9 +45,9 @@\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n               >\n-                <TextField name=\"firstname\" label=\"Prénom\" placeholder=\"Entrez votre prénom\"/>\n+                <AutoField name=\"firstname\" label=\"Prénom\" placeholder=\"Entrez votre prénom\"/>\n                 <TextField name=\"lastname\" label=\"Nom\" placeholder=\"Entrez votre Nom\"/>\n                 <SubmitField color=\"primary\">Enregister</SubmitField>\n             </AutoForm>\n           \n"
+                },
+                {
+                    "date": 1678739986132,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,13 +44,10 @@\n               <AutoForm\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n-              >\n-                <AutoField name=\"firstname\" label=\"Prénom\" placeholder=\"Entrez votre prénom\"/>\n-                <TextField name=\"lastname\" label=\"Nom\" placeholder=\"Entrez votre Nom\"/>\n-                <SubmitField color=\"primary\">Enregister</SubmitField>\n-            </AutoForm>\n+              />\n+                \n           \n       );\n   }\n }\n"
+                },
+                {
+                    "date": 1678741223089,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,8 +45,10 @@\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n               />\n+\n+              \n                 \n           \n       );\n   }\n"
+                },
+                {
+                    "date": 1678797440716,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,11 +43,13 @@\n           \n               <AutoForm\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n-                showInlineError={true} // affiche les erreurs inline\n-              />\n+                \n+              >\n \n+              <AutoForm/>\n+\n               \n                 \n           \n       );\n"
+                },
+                {
+                    "date": 1678797909654,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,11 +3,11 @@\n import React from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n import { AutoField } from \"uniforms-semantic\";\n+import { ErrorField } from 'uniforms-unstyled';\n \n \n-\n const createContact = gql`\n     mutation createContact($firstname: String!, $lastname: String!) {\n         createContact(firstname: $firstname, lastname: $lastname) {\n             _id\n@@ -27,8 +27,9 @@\n     const { firstname, lastname } = JSON.parse(model);  \n     console.log(JSON.parse(model));\n     console.log(firstname);\n     console.log(lastname);\n+\n     this.props.createContact({\n         variables: {\n             firstname:firstname,\n             lastname: lastname,\n@@ -38,21 +39,22 @@\n     });\n   };\n \n   render(){\n+\n       return (\n           \n               <AutoForm\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 \n               >\n-\n+                <TextField name=\"firstName\" />\n+                <ErrorField children={children} name=\"firstName\" />;\n+                <TextField name=\"lastName\" />\n+                <ErrorField children={children} name=\"firstName\" />;\n               <AutoForm/>\n-\n-              \n-                \n-          \n+   \n       );\n   }\n }\n \n"
+                },
+                {
+                    "date": 1678798072980,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,19 +41,19 @@\n \n   render(){\n \n       return (\n-          \n+\n               <AutoForm\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 \n-              >\n-                <TextField name=\"firstName\" />\n+              />\n+                {/* <TextField name=\"firstName\" />\n                 <ErrorField children={children} name=\"firstName\" />;\n                 <TextField name=\"lastName\" />\n                 <ErrorField children={children} name=\"firstName\" />;\n-              <AutoForm/>\n+              <AutoForm/> */}\n    \n       );\n   }\n }\n@@ -62,13 +62,8 @@\n \n \n \n \n-export default graphql(createContact, {\n-  name: \"createContact\",\n-  options: {\n-      refetchQueries: [\"Contacts\"]\n-  }\n-})(ContactForm)\n+export default graphql(createContact, {name: \"createContact\")(ContactForm);\n \n \n \n"
+                },
+                {
+                    "date": 1678798083638,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,13 +47,13 @@\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 \n               />\n-                {/* <TextField name=\"firstName\" />\n+                /* <TextField name=\"firstName\" />\n                 <ErrorField children={children} name=\"firstName\" />;\n                 <TextField name=\"lastName\" />\n                 <ErrorField children={children} name=\"firstName\" />;\n-              <AutoForm/> */}\n+              <AutoForm/> */\n    \n       );\n   }\n }\n"
+                },
+                {
+                    "date": 1678798116558,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,12 +58,10 @@\n   }\n }\n \n \n-\n-\n-\n-\n-export default graphql(createContact, {name: \"createContact\")(ContactForm);\n-\n-\n-\n+export default graphql(createContact, {\n+    name: \"createContact\",\n+    options: {\n+        refetchQueries: [\"Contacts\"]\n+    }\n+})(ContactForm)\n"
+                },
+                {
+                    "date": 1678798198396,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,12 +2,11 @@\n import { bridge as schema} from \"../api/resolutions/bridge\";\n import React from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n-import { AutoField } from \"uniforms-semantic\";\n-import { ErrorField } from 'uniforms-unstyled';\n \n \n+\n const createContact = gql`\n     mutation createContact($firstname: String!, $lastname: String!) {\n         createContact(firstname: $firstname, lastname: $lastname) {\n             _id\n"
+                },
+                {
+                    "date": 1678798342319,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,10 +40,10 @@\n \n   render(){\n \n       return (\n-\n-              <AutoForm\n+            <div>\n+                <AutoForm\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 \n               />\n@@ -52,8 +52,10 @@\n                 <TextField name=\"lastName\" />\n                 <ErrorField children={children} name=\"firstName\" />;\n               <AutoForm/> */\n    \n+            </div>\n+              \n       );\n   }\n }\n \n"
+                }
+            ],
+            "date": 1678720405105,
+            "name": "Commit-0",
+            "content": "import { AutoForm } from \"uniforms-mui\"; \nimport { bridge as schema} from \"../api/resolutions/bridge\";\nimport React from 'react';\n\n\n\nexport function Form() {\n  return (\n    <AutoForm\n      schema={schema}\n      onSubmit={(model) => alert(JSON.stringify(model))}\n      showInlineError={true} // affiche les erreurs inline\n    />\n     \n  );\n}"
+        }
+    ]
+}

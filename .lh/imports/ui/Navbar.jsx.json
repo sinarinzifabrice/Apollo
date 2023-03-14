@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 15,
+            "activePatchIndex": 35,
             "patches": [
                 {
                     "date": 1677251167810,
@@ -68,6 +68,86 @@
                 {
                     "date": 1678460909063,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,10 +22,10 @@\n import ContactList from \"../ui/ContactList\";\n import ContactForm from \"./ContactForm\";\n import ButtonAddContact from \"./ButtonAddContact\";\n import { Route, Routes } from 'react-router-dom';\n+import { Form } from \"../ui/Form\";\n \n-\n const drawerWidth = 240;\n \n const openedMixin = (theme) => ({\n   width: drawerWidth,\n"
+                },
+                {
+                    "date": 1678719857535,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -190,9 +190,9 @@\n       <Box component=\"main\" sx={{ flexGrow: 1, p: 3 }}>\n         \n         <Routes>\n             <Route path=\"/\" element={<ContactList/>}/>\n-            <Route path=\"/ajouter\" element={<Form/>}/>\n+            <Route path=\"/ajouter\" element={<ContactForm/>}/>\n         </Routes>      \n       </Box>\n     </Box>\n   );\n"
+                },
+                {
+                    "date": 1678719915673,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -190,9 +190,9 @@\n       <Box component=\"main\" sx={{ flexGrow: 1, p: 3 }}>\n         \n         <Routes>\n             <Route path=\"/\" element={<ContactList/>}/>\n-            <Route path=\"/ajouter\" element={<ContactForm/>}/>\n+            <Route path=\"/ajouter\" element={<Form/>}/>\n         </Routes>      \n       </Box>\n     </Box>\n   );\n"
+                },
+                {
+                    "date": 1678720523401,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,9 @@\n import ContactForm from \"./ContactForm\";\n import ButtonAddContact from \"./ButtonAddContact\";\n import { Route, Routes } from 'react-router-dom';\n import { Form } from \"../ui/Form\";\n+import AddContact from \"../ui/AddContact\";\n \n const drawerWidth = 240;\n \n const openedMixin = (theme) => ({\n@@ -190,9 +191,9 @@\n       <Box component=\"main\" sx={{ flexGrow: 1, p: 3 }}>\n         \n         <Routes>\n             <Route path=\"/\" element={<ContactList/>}/>\n-            <Route path=\"/ajouter\" element={<Form/>}/>\n+            <Route path=\"/ajouter\" element={<AddContact/>}/>\n         </Routes>      \n       </Box>\n     </Box>\n   );\n"
+                },
+                {
+                    "date": 1678720976222,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -191,9 +191,9 @@\n       <Box component=\"main\" sx={{ flexGrow: 1, p: 3 }}>\n         \n         <Routes>\n             <Route path=\"/\" element={<ContactList/>}/>\n-            <Route path=\"/ajouter\" element={<AddContact/>}/>\n+            <Route path=\"/ajouter\" element={<ContactForm/>}/>\n         </Routes>      \n       </Box>\n     </Box>\n   );\n"
+                },
+                {
+                    "date": 1678721004345,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n import ContactForm from \"./ContactForm\";\n import ButtonAddContact from \"./ButtonAddContact\";\n import { Route, Routes } from 'react-router-dom';\n import { Form } from \"../ui/Form\";\n-import AddContact from \"../ui/AddContact\";\n+import AddContact from \"./AddContact\";\n \n const drawerWidth = 240;\n \n const openedMixin = (theme) => ({\n"
+                },
+                {
+                    "date": 1678721016505,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -191,9 +191,9 @@\n       <Box component=\"main\" sx={{ flexGrow: 1, p: 3 }}>\n         \n         <Routes>\n             <Route path=\"/\" element={<ContactList/>}/>\n-            <Route path=\"/ajouter\" element={<ContactForm/>}/>\n+            <Route path=\"/ajouter\" element={<AddContact/>}/>\n         </Routes>      \n       </Box>\n     </Box>\n   );\n"
+                },
+                {
+                    "date": 1678722073640,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n import ContactForm from \"./ContactForm\";\n import ButtonAddContact from \"./ButtonAddContact\";\n import { Route, Routes } from 'react-router-dom';\n import { Form } from \"../ui/Form\";\n-import AddContact from \"./AddContact\";\n+import { Form } from \"./AddContact\";\n \n const drawerWidth = 240;\n \n const openedMixin = (theme) => ({\n@@ -191,9 +191,9 @@\n       <Box component=\"main\" sx={{ flexGrow: 1, p: 3 }}>\n         \n         <Routes>\n             <Route path=\"/\" element={<ContactList/>}/>\n-            <Route path=\"/ajouter\" element={<AddContact/>}/>\n+            <Route path=\"/ajouter\" element={<Form/>}/>\n         </Routes>      \n       </Box>\n     </Box>\n   );\n"
+                },
+                {
+                    "date": 1678722132579,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n import ContactForm from \"./ContactForm\";\n import ButtonAddContact from \"./ButtonAddContact\";\n import { Route, Routes } from 'react-router-dom';\n import { Form } from \"../ui/Form\";\n-import { Form } from \"./AddContact\";\n+import { addForm } from \"./AddContact\";\n \n const drawerWidth = 240;\n \n const openedMixin = (theme) => ({\n"
+                },
+                {
+                    "date": 1678722426387,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n import ContactList from \"../ui/ContactList\";\n import ContactForm from \"./ContactForm\";\n import ButtonAddContact from \"./ButtonAddContact\";\n import { Route, Routes } from 'react-router-dom';\n-import { Form } from \"../ui/Form\";\n+import { Form } from \"./Form\";\n import { addForm } from \"./AddContact\";\n \n const drawerWidth = 240;\n \n"
+                },
+                {
+                    "date": 1678723062074,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -191,9 +191,9 @@\n       <Box component=\"main\" sx={{ flexGrow: 1, p: 3 }}>\n         \n         <Routes>\n             <Route path=\"/\" element={<ContactList/>}/>\n-            <Route path=\"/ajouter\" element={<Form/>}/>\n+            <Route path=\"/contact/ajouter\" element={<Form/>}/>\n         </Routes>      \n       </Box>\n     </Box>\n   );\n"
+                },
+                {
+                    "date": 1678723475738,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -191,9 +191,9 @@\n       <Box component=\"main\" sx={{ flexGrow: 1, p: 3 }}>\n         \n         <Routes>\n             <Route path=\"/\" element={<ContactList/>}/>\n-            <Route path=\"/contact/ajouter\" element={<Form/>}/>\n+            <Route path=\"/contact/ajouter\" element={<ContactList/>}/>\n         </Routes>      \n       </Box>\n     </Box>\n   );\n"
+                },
+                {
+                    "date": 1678723529380,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -191,9 +191,9 @@\n       <Box component=\"main\" sx={{ flexGrow: 1, p: 3 }}>\n         \n         <Routes>\n             <Route path=\"/\" element={<ContactList/>}/>\n-            <Route path=\"/contact/ajouter\" element={<ContactList/>}/>\n+            <Route path=\"/contact/ajouter\" element={<ContactForm/>}/>\n         </Routes>      \n       </Box>\n     </Box>\n   );\n"
+                },
+                {
+                    "date": 1678727394517,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -191,9 +191,9 @@\n       <Box component=\"main\" sx={{ flexGrow: 1, p: 3 }}>\n         \n         <Routes>\n             <Route path=\"/\" element={<ContactList/>}/>\n-            <Route path=\"/contact/ajouter\" element={<ContactForm/>}/>\n+            <Route path=\"/contact/ajouter\" element={<Form/>}/>\n         </Routes>      \n       </Box>\n     </Box>\n   );\n"
+                },
+                {
+                    "date": 1678727812587,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n import ContactForm from \"./ContactForm\";\n import ButtonAddContact from \"./ButtonAddContact\";\n import { Route, Routes } from 'react-router-dom';\n import { Form } from \"./Form\";\n-import { addForm } from \"./AddContact\";\n+import AddForm from \"./AddContact\";\n \n const drawerWidth = 240;\n \n const openedMixin = (theme) => ({\n@@ -191,9 +191,9 @@\n       <Box component=\"main\" sx={{ flexGrow: 1, p: 3 }}>\n         \n         <Routes>\n             <Route path=\"/\" element={<ContactList/>}/>\n-            <Route path=\"/contact/ajouter\" element={<Form/>}/>\n+            <Route path=\"/contact/ajouter\" element={<AddForm/>}/>\n         </Routes>      \n       </Box>\n     </Box>\n   );\n"
+                },
+                {
+                    "date": 1678814052621,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,8 @@\n import ListItemIcon from \"@mui/material/ListItemIcon\";\n import ListItemText from \"@mui/material/ListItemText\";\n import InboxIcon from \"@mui/icons-material/MoveToInbox\";\n import MailIcon from \"@mui/icons-material/Mail\";\n-import App from \"./App\";\n import ContactList from \"../ui/ContactList\";\n import ContactForm from \"./ContactForm\";\n import ButtonAddContact from \"./ButtonAddContact\";\n import { Route, Routes } from 'react-router-dom';\n"
+                },
+                {
+                    "date": 1678823459081,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,9 @@\n import ButtonAddContact from \"./ButtonAddContact\";\n import { Route, Routes } from 'react-router-dom';\n import { Form } from \"./Form\";\n import AddForm from \"./AddContact\";\n+import { Link } from 'react-router-dom';\n \n const drawerWidth = 240;\n \n const openedMixin = (theme) => ({\n@@ -120,9 +121,9 @@\n             }}\n           >\n             <MenuIcon />\n           </IconButton>\n-          <Typography variant=\"h6\" noWrap component=\"div\">\n+          <Typography variant=\"h6\" noWrap component={Link} to=\"/\">\n             Application de Contact\n           </Typography>\n         </Toolbar>\n       </AppBar>\n"
+                },
+                {
+                    "date": 1678823511640,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -121,9 +121,9 @@\n             }}\n           >\n             <MenuIcon />\n           </IconButton>\n-          <Typography variant=\"h6\" noWrap component={Link} to=\"/\">\n+          <Typography variant=\"h6\" noWrap component={Link} to=\"/\" underline=\"none\">\n             Application de Contact\n           </Typography>\n         </Toolbar>\n       </AppBar>\n"
+                },
+                {
+                    "date": 1678823678755,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -121,9 +121,9 @@\n             }}\n           >\n             <MenuIcon />\n           </IconButton>\n-          <Typography variant=\"h6\" noWrap component={Link} to=\"/\" underline=\"none\">\n+          <Typography variant=\"h6\" noWrap component={Link} to=\"/\" underline=\"none\" color=\"inherit\">\n             Application de Contact\n           </Typography>\n         </Toolbar>\n       </AppBar>\n"
+                },
+                {
+                    "date": 1678823805301,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -121,9 +121,9 @@\n             }}\n           >\n             <MenuIcon />\n           </IconButton>\n-          <Typography variant=\"h6\" noWrap component={Link} to=\"/\" underline=\"none\" color=\"inherit\">\n+          <Typography variant=\"h6\" noWrap component={Link} to=\"/\" textdecoration=\"none\" color=\"inherit\">\n             Application de Contact\n           </Typography>\n         </Toolbar>\n       </AppBar>\n"
+                },
+                {
+                    "date": 1678824008999,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -121,9 +121,9 @@\n             }}\n           >\n             <MenuIcon />\n           </IconButton>\n-          <Typography variant=\"h6\" noWrap component={Link} to=\"/\" textdecoration=\"none\" color=\"inherit\">\n+          <Typography variant=\"h6\" noWrap component={Link} to=\"/\" textDecoration=\"none\" color=\"inherit\">\n             Application de Contact\n           </Typography>\n         </Toolbar>\n       </AppBar>\n"
                 }
             ],
             "date": 1677251167810,

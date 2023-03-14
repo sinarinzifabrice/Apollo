@@ -1,0 +1,122 @@
+{
+    "sourceFile": "imports/ui/AddContact.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 26,
+            "patches": [
+                {
+                    "date": 1678798371843,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1678798394825,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,11 @@\n import { bridge as schema} from \"../api/resolutions/bridge\";\n import React from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n+import { ErrorField } from 'uniforms-unstyled';\n \n \n-\n const createContact = gql`\n     mutation createContact($firstname: String!, $lastname: String!) {\n         createContact(firstname: $firstname, lastname: $lastname) {\n             _id\n"
+                },
+                {
+                    "date": 1678798521415,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,14 +45,14 @@\n                 <AutoForm\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 \n-              />\n-                /* <TextField name=\"firstName\" />\n+              >\n+                <TextField name=\"firstName\" />\n                 <ErrorField children={children} name=\"firstName\" />;\n                 <TextField name=\"lastName\" />\n                 <ErrorField children={children} name=\"lastName\" />;\n-              <AutoForm/> */\n+              <AutoForm/> \n    \n             </div>\n               \n       );\n"
+                },
+                {
+                    "date": 1678798539270,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n \n   render(){\n \n       return (\n-            <div>\n+            \n                 <AutoForm\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 \n@@ -50,10 +50,9 @@\n                 <TextField name=\"firstName\" />\n                 <ErrorField children={children} name=\"firstName\" />;\n                 <TextField name=\"lastName\" />\n                 <ErrorField children={children} name=\"lastName\" />;\n-              <AutoForm/> \n-   \n+              \n             </div>\n               \n       );\n   }\n"
+                },
+                {
+                    "date": 1678798573616,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,15 +45,15 @@\n                 <AutoForm\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 \n-              >\n-                <TextField name=\"firstName\" />\n+              />\n+                /* <TextField name=\"firstName\" />\n                 <ErrorField children={children} name=\"firstName\" />;\n                 <TextField name=\"lastName\" />\n-                <ErrorField children={children} name=\"lastName\" />;\n+                <ErrorField children={children} name=\"lastName\" />; */\n               \n-            </div>\n+           \n               \n       );\n   }\n }\n"
+                },
+                {
+                    "date": 1678798637273,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,18 +41,18 @@\n   render(){\n \n       return (\n             \n-                <AutoForm\n+            <AutoForm\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 \n-              />\n-                /* <TextField name=\"firstName\" />\n+            >\n+                <TextField name=\"firstName\" />\n                 <ErrorField children={children} name=\"firstName\" />;\n                 <TextField name=\"lastName\" />\n-                <ErrorField children={children} name=\"lastName\" />; */\n-              \n+                <ErrorField children={children} name=\"lastName\" />; \n+            </AutoForm>\n            \n               \n       );\n   }\n"
+                },
+                {
+                    "date": 1678798763201,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,14 +44,14 @@\n             \n             <AutoForm\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n-                \n+                showInlineError={true} // affiche les erreurs inline\n             >\n                 <TextField name=\"firstName\" />\n-                <ErrorField children={children} name=\"firstName\" />;\n+                \n                 <TextField name=\"lastName\" />\n-                <ErrorField children={children} name=\"lastName\" />; \n+                \n             </AutoForm>\n            \n               \n       );\n"
+                },
+                {
+                    "date": 1678798789497,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,11 +46,11 @@\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n             >\n-                <TextField name=\"firstName\" />\n+                <TextField name=\"firstname\" />\n                 \n-                <TextField name=\"lastName\" />\n+                <TextField name=\"lastname\" />\n                 \n             </AutoForm>\n            \n               \n"
+                },
+                {
+                    "date": 1678798821326,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,9 +49,9 @@\n             >\n                 <TextField name=\"firstname\" />\n                 \n                 <TextField name=\"lastname\" />\n-                \n+                <SubmitField/>\n             </AutoForm>\n            \n               \n       );\n"
+                },
+                {
+                    "date": 1678798925260,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,9 +49,9 @@\n             >\n                 <TextField name=\"firstname\" />\n                 \n                 <TextField name=\"lastname\" />\n-                <SubmitField/>\n+                <SubmitField value=\"Enregister\">\n             </AutoForm>\n            \n               \n       );\n"
+                },
+                {
+                    "date": 1678798931563,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,9 +49,9 @@\n             >\n                 <TextField name=\"firstname\" />\n                 \n                 <TextField name=\"lastname\" />\n-                <SubmitField value=\"Enregister\">\n+                <SubmitField value=\"Enregister\"/>\n             </AutoForm>\n            \n               \n       );\n"
+                },
+                {
+                    "date": 1678799070105,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,11 +46,11 @@\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n             >\n-                <TextField name=\"firstname\" />\n+                <TextField name=\"firstname\"/>\n                 \n-                <TextField name=\"lastname\" />\n+                <TextField name=\"lastname\" label=\"test\"/>\n                 <SubmitField value=\"Enregister\"/>\n             </AutoForm>\n            \n               \n"
+                },
+                {
+                    "date": 1678799102989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n                 showInlineError={true} // affiche les erreurs inline\n             >\n                 <TextField name=\"firstname\"/>\n                 \n-                <TextField name=\"lastname\" label=\"test\"/>\n+                <TextField name=\"lastname\" value=\"test\"/>\n                 <SubmitField value=\"Enregister\"/>\n             </AutoForm>\n            \n               \n"
+                },
+                {
+                    "date": 1678799164907,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n                 showInlineError={true} // affiche les erreurs inline\n             >\n                 <TextField name=\"firstname\"/>\n                 \n-                <TextField name=\"lastname\" value=\"test\"/>\n+                <TextField name=\"lastname\" value=\"test\" readOnly=\"false\"/>\n                 <SubmitField value=\"Enregister\"/>\n             </AutoForm>\n            \n               \n"
+                },
+                {
+                    "date": 1678799262718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,9 +49,9 @@\n             >\n                 <TextField name=\"firstname\"/>\n                 \n                 <TextField name=\"lastname\" value=\"test\" readOnly=\"false\"/>\n-                <SubmitField value=\"Enregister\"/>\n+                <SubmitField label=\"Enregister\"/>\n             </AutoForm>\n            \n               \n       );\n"
+                },
+                {
+                    "date": 1678799497438,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n                 showInlineError={true} // affiche les erreurs inline\n             >\n                 <TextField name=\"firstname\"/>\n                 \n-                <TextField name=\"lastname\" value=\"test\" readOnly=\"false\"/>\n+                <TextField name=\"lastname\" defaultValue=\"test\" />\n                 <SubmitField label=\"Enregister\"/>\n             </AutoForm>\n            \n               \n"
+                },
+                {
+                    "date": 1678799721714,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n                 showInlineError={true} // affiche les erreurs inline\n             >\n                 <TextField name=\"firstname\"/>\n                 \n-                <TextField name=\"lastname\" defaultValue=\"test\" />\n+                <TextField name=\"lastname\" defaultValue=\"test\" placeholder=\"Entrez votre prénom\" />\n                 <SubmitField label=\"Enregister\"/>\n             </AutoForm>\n            \n               \n"
+                },
+                {
+                    "date": 1678799735543,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n                 showInlineError={true} // affiche les erreurs inline\n             >\n                 <TextField name=\"firstname\"/>\n                 \n-                <TextField name=\"lastname\" defaultValue=\"test\" placeholder=\"Entrez votre prénom\" />\n+                <TextField name=\"lastname\" placeholder=\"Entrez votre prénom\" />\n                 <SubmitField label=\"Enregister\"/>\n             </AutoForm>\n            \n               \n"
+                },
+                {
+                    "date": 1678801228407,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n \n       return (\n             \n             <AutoForm\n-                schema={schema}\n+                schema={{ firstname: 'John', lastname: 'Doe' }}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n             >\n                 <TextField name=\"firstname\"/>\n"
+                },
+                {
+                    "date": 1678801245047,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n \n       return (\n             \n             <AutoForm\n-                schema={{ firstname: 'John', lastname: 'Doe' }}\n+                schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n             >\n                 <TextField name=\"firstname\"/>\n"
+                },
+                {
+                    "date": 1678801380365,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,8 +42,9 @@\n \n       return (\n             \n             <AutoForm\n+                model={{ firstname: 'John', lastname: 'Doe' }}\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n             >\n"
+                },
+                {
+                    "date": 1678806977706,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,10 +48,10 @@\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n             >\n                 <TextField name=\"firstname\"/>\n-                \n                 <TextField name=\"lastname\" placeholder=\"Entrez votre prénom\" />\n+                <TextField name=\"phone\"/>\n                 <SubmitField label=\"Enregister\"/>\n             </AutoForm>\n            \n               \n"
+                },
+                {
+                    "date": 1678807121902,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,8 +50,14 @@\n             >\n                 <TextField name=\"firstname\"/>\n                 <TextField name=\"lastname\" placeholder=\"Entrez votre prénom\" />\n                 <TextField name=\"phone\"/>\n+                <TextField name=\"city\"/>\n+                <TextField name=\"province\"/>\n+                <TextField name=\"zipcode\"/>\n+                <TextField name=\"country\"/>\n+                <TextField name=\"comment1\"/>\n+                <TextField name=\"comment2\"/>\n                 <SubmitField label=\"Enregister\"/>\n             </AutoForm>\n            \n               \n"
+                },
+                {
+                    "date": 1678807138369,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,8 @@\n \n       return (\n             \n             <AutoForm\n-                model={{ firstname: 'John', lastname: 'Doe' }}\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n             >\n"
+                },
+                {
+                    "date": 1678807494802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,8 +48,9 @@\n                 showInlineError={true} // affiche les erreurs inline\n             >\n                 <TextField name=\"firstname\"/>\n                 <TextField name=\"lastname\" placeholder=\"Entrez votre prénom\" />\n+                <TextField name=\"email\"/>\n                 <TextField name=\"phone\"/>\n                 <TextField name=\"city\"/>\n                 <TextField name=\"province\"/>\n                 <TextField name=\"zipcode\"/>\n"
+                },
+                {
+                    "date": 1678819285262,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,17 +2,46 @@\n import { bridge as schema} from \"../api/resolutions/bridge\";\n import React from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n-import { ErrorField } from 'uniforms-unstyled';\n \n \n+\n const createContact = gql`\n-    mutation createContact($firstname: String!, $lastname: String!) {\n-        createContact(firstname: $firstname, lastname: $lastname) {\n+    mutation createContact(\n+        $firstname: String, \n+        $lastname: String,\n+        $email: String!,\n+        $phone: String!,\n+        $city: String,\n+        $province: String,\n+        $country: String,\n+        $zipcode: String!,\n+        $comment1: String,\n+        $comment2: String\n+    ) {\n+        createContact(\n+            firstname: $firstname, \n+            lastname: $lastname, \n+            email: $email,\n+            phone: $phone,\n+            city: $city,\n+            province: $province,\n+            country: $country,\n+            zipcode: $zipcode,\n+            comment1: $comment1,\n+            comment2: $comment2\n+        ) {\n             _id\n             firstname\n             lastname\n+            email\n+            phone\n+            city\n+            country\n+            zipcode\n+            comment1\n+            comment2\n         }\n     }\n `;\n \n@@ -22,17 +51,33 @@\n \n     \n   submitForm = (model) => {\n       \n-    const { firstname, lastname } = JSON.parse(model);  \n+    const { firstname, lastname, email, phone, city, province, zipcode, country, comment1, comment2 } = JSON.parse(model);  \n     console.log(JSON.parse(model));\n     console.log(firstname);\n     console.log(lastname);\n+    console.log(email);\n+    console.log(phone);\n+    console.log(city);\n+    console.log(province);\n+    console.log(zipcode);\n+    console.log(country);\n+    console.log(comment1);\n+    console.log(comment2);\n \n     this.props.createContact({\n         variables: {\n             firstname:firstname,\n             lastname: lastname,\n+            email: email,\n+            phone: phone,\n+            city: city,\n+            province: province,\n+            zipcode: zipcode,\n+            country: country,\n+            comment1: comment1,\n+            comment2: comment2\n         }\n     }).catch(error =>{\n         console.log(error);\n     });\n"
+                },
+                {
+                    "date": 1678822058579,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import { bridge as schema} from \"../api/resolutions/bridge\";\n import React from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n+import ButtonContactList from \"./ButtonContactListe\";\n \n \n \n const createContact = gql`\n@@ -85,9 +86,10 @@\n \n   render(){\n \n       return (\n-            \n+        <div>\n+            <ButtonContactList/>\n             <AutoForm\n                 schema={schema}\n                 onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                 showInlineError={true} // affiche les erreurs inline\n@@ -103,9 +105,9 @@\n                 <TextField name=\"comment1\"/>\n                 <TextField name=\"comment2\"/>\n                 <SubmitField label=\"Enregister\"/>\n             </AutoForm>\n-           \n+        </div>\n               \n       );\n   }\n }\n"
+                }
+            ],
+            "date": 1678798371843,
+            "name": "Commit-0",
+            "content": "import { AutoForm, TextField, SubmitField } from \"uniforms-mui\"; \nimport { bridge as schema} from \"../api/resolutions/bridge\";\nimport React from 'react';\nimport gql from 'graphql-tag';\nimport { graphql } from 'react-apollo';\n\n\n\nconst createContact = gql`\n    mutation createContact($firstname: String!, $lastname: String!) {\n        createContact(firstname: $firstname, lastname: $lastname) {\n            _id\n            firstname\n            lastname\n        }\n    }\n`;\n\n\n\nclass ContactForm extends React.Component {\n\n    \n  submitForm = (model) => {\n      \n    const { firstname, lastname } = JSON.parse(model);  \n    console.log(JSON.parse(model));\n    console.log(firstname);\n    console.log(lastname);\n\n    this.props.createContact({\n        variables: {\n            firstname:firstname,\n            lastname: lastname,\n        }\n    }).catch(error =>{\n        console.log(error);\n    });\n  };\n\n  render(){\n\n      return (\n            <div>\n                <AutoForm\n                schema={schema}\n                onSubmit={(model) => this.submitForm(JSON.stringify(model))}\n                \n              />\n                /* <TextField name=\"firstName\" />\n                <ErrorField children={children} name=\"firstName\" />;\n                <TextField name=\"lastName\" />\n                <ErrorField children={children} name=\"lastName\" />;\n              <AutoForm/> */\n   \n            </div>\n              \n      );\n  }\n}\n\n\nexport default graphql(createContact, {\n    name: \"createContact\",\n    options: {\n        refetchQueries: [\"Contacts\"]\n    }\n})(ContactForm)\n"
+        }
+    ]
+}

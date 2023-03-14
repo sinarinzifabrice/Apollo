@@ -44,13 +44,60 @@ export default {
     },
 
     Mutation: {
-        async createContact(obj, { firstname} , context) {
+        async createContact(obj, { 
+          firstname, 
+          lastname, 
+          email,
+          phone,
+          city,
+          province,
+          zipcode,
+          country,
+          comment1, 
+          comment2 } , context) {
             try {
                 
                     console.log("insert contact "+ firstname);
 
+                    // Checks if firstname is undefined and replaces it with an empty string
+                    if (typeof firstname === 'undefined') {
+                      firstname = '';
+                    }
+
+                    if (typeof lastname === 'undefined') {
+                      lastname = '';
+                    }
+                    if (typeof city === 'undefined') {
+                      city = '';
+                    }
+                    if (typeof province === 'undefined') {
+                      province = '';
+                    }
+                    if (typeof zipcode === 'undefined') {
+                      zipcode = '';
+                    }
+
+                    if (typeof country === 'undefined') {
+                      country = '';
+                    }
+                    if (typeof comment1 === 'undefined') {
+                      comment1 = '';
+                    }
+                    if (typeof comment2 === 'undefined') {
+                      comment2 = '';
+                    }
+
                     const contactId = ContactsCollection.insert({
-                        firstname: firstname
+                        firstname: firstname,
+                        lastname: lastname,
+                        email: email,
+                        phone: phone,
+                        city: city,
+                        province: province,
+                        zipcode: zipcode,
+                        country: country,
+                        comment1: comment1,
+                        comment2: comment2
                     });
                     return ContactsCollection.findOne(contactId);
             }

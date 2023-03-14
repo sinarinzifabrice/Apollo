@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 34,
+            "activePatchIndex": 36,
             "patches": [
                 {
                     "date": 1677008378805,
@@ -144,6 +144,14 @@
                 {
                     "date": 1678461805686,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n import React, { useRef} from 'react';\n import gql from 'graphql-tag';\n import { graphql } from 'react-apollo';\n import { Component } from 'react';\n-import { Form } from '../ui/Form.js';\n \n \n+\n const createContact = gql`\n     mutation createContact($firstname: String!) {\n         createContact(firstname: $firstname ) {\n             _id\n@@ -32,9 +32,9 @@\n         return (\n             <div>\n                 <input type=\"text\" ref={input =>(this.firstname = input)} />\n                 <button onClick={this.submitForm}>Ajouter</button>\n-                <Form/>\n+               \n             </div>\n         );\n     }\n }\n"
+                },
+                {
+                    "date": 1678729548986,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \n class ContactForm extends React.Component {\n \n     \n-    submitForm = () => {\n+    submitForm = (model) => {\n         \n         console.log(this.firstname.value);\n         this.props.createContact({\n             variables: {\n"
+                },
+                {
+                    "date": 1678729592639,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \n class ContactForm extends React.Component {\n \n     \n-    submitForm = (model) => {\n+    submitForm = () => {\n         \n         console.log(this.firstname.value);\n         this.props.createContact({\n             variables: {\n"
                 }
             ],
             "date": 1677008378805,

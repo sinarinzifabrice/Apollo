@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 83,
+            "activePatchIndex": 89,
             "patches": [
                 {
                     "date": 1676663954434,
@@ -340,6 +340,30 @@
                 {
                     "date": 1677519244667,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,10 +65,10 @@\n           try {\n               \n                   console.log(\"id contact \"+ _id);\n \n-                  const contactId = ContactsCollection.Remove(_id);\n-                  return await ContactsCollection.Remove(_id);\n+                  const contactId = ContactsCollection.remove(_id);\n+                  return await ContactsCollection.remove(_id);\n           }\n           catch (error) {\n               \n                   console.error(\"Erreur suppression du contact:\", error);\n"
+                },
+                {
+                    "date": 1678734197541,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,15 +43,16 @@\n \n     },\n \n     Mutation: {\n-        async createContact(obj, { firstname} , context) {\n+        async createContact(obj, { firstname, lastname} , context) {\n             try {\n                 \n                     console.log(\"insert contact \"+ firstname);\n \n                     const contactId = ContactsCollection.insert({\n-                        firstname: firstname\n+                        firstname: firstname,\n+                        lastname: lastname\n                     });\n                     return ContactsCollection.findOne(contactId);\n             }\n             catch (error) {\n"
+                },
+                {
+                    "date": 1678736024400,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,16 +43,16 @@\n \n     },\n \n     Mutation: {\n-        async createContact(obj, { firstname, lastname} , context) {\n+        async createContact(obj, { firstname} , context) {\n             try {\n                 \n                     console.log(\"insert contact \"+ firstname);\n \n                     const contactId = ContactsCollection.insert({\n-                        firstname: firstname,\n-                        lastname: lastname\n+                        firstname: firstname\n+                        \n                     });\n                     return ContactsCollection.findOne(contactId);\n             }\n             catch (error) {\n"
+                },
+                {
+                    "date": 1678736772745,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,16 +43,16 @@\n \n     },\n \n     Mutation: {\n-        async createContact(obj, { firstname} , context) {\n+        async createContact(obj, { firstname, lastname} , context) {\n             try {\n                 \n                     console.log(\"insert contact \"+ firstname);\n \n                     const contactId = ContactsCollection.insert({\n-                        firstname: firstname\n-                        \n+                        firstname: firstname,\n+                        lastname: lastname\n                     });\n                     return ContactsCollection.findOne(contactId);\n             }\n             catch (error) {\n"
+                },
+                {
+                    "date": 1678802640039,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,16 +43,34 @@\n \n     },\n \n     Mutation: {\n-        async createContact(obj, { firstname, lastname} , context) {\n+        async createContact(obj, { \n+          firstname, \n+          lastname, \n+          email,\n+          phone,\n+          city,\n+          province,\n+          zipcode,\n+          country,\n+          comment1, \n+          comment2 } , context) {\n             try {\n                 \n                     console.log(\"insert contact \"+ firstname);\n \n                     const contactId = ContactsCollection.insert({\n                         firstname: firstname,\n-                        lastname: lastname\n+                        lastname: lastname,\n+                        email: email,\n+                        phone: phone,\n+                        city: city,\n+                        province: province,\n+                        zipcode: zipcode,\n+                        country: country,\n+                        comment1: comment1,\n+                        comment2: comment2\n                     });\n                     return ContactsCollection.findOne(contactId);\n             }\n             catch (error) {\n"
+                },
+                {
+                    "date": 1678819828760,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,8 +58,14 @@\n             try {\n                 \n                     console.log(\"insert contact \"+ firstname);\n \n+                    // Vérifie si comment2 est undefined et le remplace par une chaîne vide\n+                    if (typeof comment2 === 'undefined') {\n+                      comment2 = '';\n+                    }\n+\n+\n                     const contactId = ContactsCollection.insert({\n                         firstname: firstname,\n                         lastname: lastname,\n                         email: email,\n"
+                },
+                {
+                    "date": 1678821372437,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,14 +58,36 @@\n             try {\n                 \n                     console.log(\"insert contact \"+ firstname);\n \n-                    // Vérifie si comment2 est undefined et le remplace par une chaîne vide\n+                    // Checks if firstname is undefined and replaces it with an empty string\n+                    if (typeof firstname === 'undefined') {\n+                      firstname = '';\n+                    }\n+\n+                    if (typeof lastname === 'undefined') {\n+                      lastname = '';\n+                    }\n+                    if (typeof city === 'undefined') {\n+                      city = '';\n+                    }\n+                    if (typeof province === 'undefined') {\n+                      province = '';\n+                    }\n+                    if (typeof zipcode === 'undefined') {\n+                      zipcode = '';\n+                    }\n+\n+                    if (typeof country === 'undefined') {\n+                      country = '';\n+                    }\n+                    if (typeof comment1 === 'undefined') {\n+                      comment1 = '';\n+                    }\n                     if (typeof comment2 === 'undefined') {\n                       comment2 = '';\n                     }\n \n-\n                     const contactId = ContactsCollection.insert({\n                         firstname: firstname,\n                         lastname: lastname,\n                         email: email,\n"
                 }
             ],
             "date": 1676663954434,

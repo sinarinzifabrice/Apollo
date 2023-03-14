@@ -10,20 +10,31 @@ type Resolution {
 
 type Contact {
     _id: String!
-    firstname: String!
+    firstname: String
     lastname: String
-    email: String
-    phone: String
+    email: String!
+    phone: String!
     city: String
     province: String
-    zipcode: String
+    zipcode: String!
     country: String
     comment1: String 
     comment2: String
 }
 
 type Mutation {
-    createContact(firstname: String!): Contact
+    createContact(
+        firstname: String, 
+        lastname: String,
+        email: String!,
+        phone: String!,
+        city: String,
+        province: String,
+        zipcode: String!,
+        country: String,
+        comment1: String, 
+        comment2: String 
+    ): Contact
     deleteContact(_id: ID!): Contact
 }
 

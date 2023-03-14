@@ -1,0 +1,18 @@
+{
+    "sourceFile": "imports/ui/ButtonContactListe.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1678822027721,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1678822027721,
+            "name": "Commit-0",
+            "content": "import * as React from \"react\";\nimport Button from \"@mui/material/Button\";\nimport Stack from \"@mui/material/Stack\";\nimport { Link } from 'react-router-dom';\n\nexport default function ButtonContactList() {\n  return (\n    <Stack spacing={2} direction=\"row\">\n      \n      <Button\n        component={Link} to={'/'}\n        color=\"success\"\n        disabled={false}\n        size=\"large\"\n        variant=\"outlined\"\n      >\n        Liste de contact\n      </Button>\n    </Stack>\n  );\n}\n"
+        }
+    ]
+}

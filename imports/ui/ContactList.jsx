@@ -22,8 +22,7 @@ const contactsQuery = gql`
             _id
             firstname
             lastname
-            email
-            phone
+            
         }
         
     }
@@ -61,7 +60,7 @@ const ListContact = ({loading, contacts, hi }) => {
     return (
         <div>
             <ButtonAddContact/>
-            {contacts.map(contact =>(
+            {contacts?.map(contact =>(
                 <Box margin={2} key={contact._id}>
                     <Card sx={{ minWidth: 275 }} elevation={2}>
                     <CardContent>
@@ -70,7 +69,7 @@ const ListContact = ({loading, contacts, hi }) => {
                             {contact.firstname} {contact.lastname}
                         </Typography>
                         <Typography sx={{ mb: 1.5 }} color="primary">
-                            {contact.email}
+                        {contact.email}
                         </Typography>
                         <Typography sx={{ mb: 1.5 }} color="text.secondary">
                             {contact.phone}

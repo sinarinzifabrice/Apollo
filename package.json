@@ -26,7 +26,7 @@
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",
     "lodash": "^4.17.21",
-    "meteor-node-stubs": "^1.2.1",
+    "meteor-node-stubs": "^1.2.5",
     "react": "^18.2.0",
     "react-apollo": "^3.1.5",
     "react-dom": "^18.2.0",
@@ -36,6 +36,7 @@
     "uniforms-bridge-graphql": "^4.0.0-alpha.1",
     "uniforms-bridge-json-schema": "^4.0.0-alpha.1",
     "uniforms-mui": "^4.0.0-alpha.1",
-    "uniforms-semantic": "^4.0.0-alpha.1"
+    "uniforms-semantic": "^4.0.0-alpha.1",
+    "uniforms-unstyled": "^4.0.0-alpha.2"
   }
 }

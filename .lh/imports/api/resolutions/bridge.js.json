@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 14,
+            "activePatchIndex": 60,
             "patches": [
                 {
                     "date": 1678459991429,
@@ -64,6 +64,190 @@
                 {
                     "date": 1678486039447,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n       type: 'integer',\n       minimum: 10,\n     },\n   },\n-  required: ['firstName', 'lastName'],\n+  required: ['firstName', 'lastName', 'age'],\n };\n \n function createValidator(schema) {\n   const validator = ajv.compile(schema);\n"
+                },
+                {
+                    "date": 1678713298265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,13 @@\n       minimum: 10,\n     },\n   },\n   required: ['firstName', 'lastName', 'age'],\n+  messages: {\n+    firstName: \"Le prenom est obligatoire\",\n+    lastName: \"Le nom est obligatoire\",\n+    age: \"l'age est obligatoire\"\n+  }\n };\n \n function createValidator(schema) {\n   const validator = ajv.compile(schema);\n"
+                },
+                {
+                    "date": 1678713448122,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,11 +23,14 @@\n     },\n   },\n   required: ['firstName', 'lastName', 'age'],\n   messages: {\n-    firstName: \"Le prenom est obligatoire\",\n-    lastName: \"Le nom est obligatoire\",\n-    age: \"l'age est obligatoire\"\n+    required:{\n+        firstName: \"Le prenom est obligatoire\",\n+        lastName: \"Le nom est obligatoire\",\n+        age: \"l'age est obligatoire\"\n+    }\n+    \n   }\n };\n \n function createValidator(schema) {\n"
+                },
+                {
+                    "date": 1678713738817,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n       minimum: 10,\n     },\n   },\n   required: ['firstName', 'lastName', 'age'],\n-  messages: {\n+  errorMessage: {\n     required:{\n         firstName: \"Le prenom est obligatoire\",\n         lastName: \"Le nom est obligatoire\",\n         age: \"l'age est obligatoire\"\n"
+                },
+                {
+                    "date": 1678714731864,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,12 +9,13 @@\n   type: 'object',\n   properties: {\n     firstName: { \n         type: 'string',\n-        allOf: [\n-            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n-            {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n-        ]\n+        pattern: '^(?=\\\\s*\\\\S).*$', \n+        patternErrorMessage: 'Le nom est obligatoire',\n+        noDigitspattern: '^[^0-9]*$', \n+        noDigitsErrorMessage: 'Le nom ne doit pas contenir de chiffre'\n+        \n     },\n     lastName: { type: 'string' },\n     age: {\n       description: 'Age in years',\n"
+                },
+                {
+                    "date": 1678714866400,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,13 +9,12 @@\n   type: 'object',\n   properties: {\n     firstName: { \n         type: 'string',\n-        pattern: '^(?=\\\\s*\\\\S).*$', \n-        patternErrorMessage: 'Le nom est obligatoire',\n-        noDigitspattern: '^[^0-9]*$', \n-        noDigitsErrorMessage: 'Le nom ne doit pas contenir de chiffre'\n-        \n+        allOf: [\n+            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n+            {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n+        ]\n     },\n     lastName: { type: 'string' },\n     age: {\n       description: 'Age in years',\n@@ -23,9 +22,9 @@\n       minimum: 10,\n     },\n   },\n   required: ['firstName', 'lastName', 'age'],\n-  errorMessage: {\n+  messages: {\n     required:{\n         firstName: \"Le prenom est obligatoire\",\n         lastName: \"Le nom est obligatoire\",\n         age: \"l'age est obligatoire\"\n"
+                },
+                {
+                    "date": 1678715152752,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n       minimum: 10,\n     },\n   },\n   required: ['firstName', 'lastName', 'age'],\n-  messages: {\n+  errorMessages: {\n     required:{\n         firstName: \"Le prenom est obligatoire\",\n         lastName: \"Le nom est obligatoire\",\n         age: \"l'age est obligatoire\"\n"
+                },
+                {
+                    "date": 1678715803439,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n       minimum: 10,\n     },\n   },\n   required: ['firstName', 'lastName', 'age'],\n-  errorMessages: {\n+  errorMessage: {\n     required:{\n         firstName: \"Le prenom est obligatoire\",\n         lastName: \"Le nom est obligatoire\",\n         age: \"l'age est obligatoire\"\n"
+                },
+                {
+                    "date": 1678716546074,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   type: 'object',\n   properties: {\n     firstName: { \n         type: 'string',\n-        allOf: [\n+        allof: [\n             {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n             {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n         ]\n     },\n"
+                },
+                {
+                    "date": 1678716562487,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   type: 'object',\n   properties: {\n     firstName: { \n         type: 'string',\n-        allof: [\n+        allOf: [\n             {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n             {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n         ]\n     },\n"
+                },
+                {
+                    "date": 1678717192801,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,20 +15,16 @@\n             {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n         ]\n     },\n     lastName: { type: 'string' },\n-    age: {\n-      description: 'Age in years',\n-      type: 'integer',\n-      minimum: 10,\n-    },\n+    \n   },\n   required: ['firstName', 'lastName', 'age'],\n   errorMessage: {\n     required:{\n         firstName: \"Le prenom est obligatoire\",\n-        lastName: \"Le nom est obligatoire\",\n-        age: \"l'age est obligatoire\"\n+        lastName: \"Le nom est obligatoire\"\n+       \n     }\n     \n   }\n };\n"
+                },
+                {
+                    "date": 1678717901585,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     },\n     lastName: { type: 'string' },\n     \n   },\n-  required: ['firstName', 'lastName', 'age'],\n+  required: ['firstName', 'lastName'],\n   errorMessage: {\n     required:{\n         firstName: \"Le prenom est obligatoire\",\n         lastName: \"Le nom est obligatoire\"\n"
+                },
+                {
+                    "date": 1678733547979,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,23 +7,23 @@\n const schema = {\n   title: 'Contact',\n   type: 'object',\n   properties: {\n-    firstName: { \n+    firstname: { \n         type: 'string',\n         allOf: [\n             {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n             {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n         ]\n     },\n-    lastName: { type: 'string' },\n+    lastname: { type: 'string' },\n     \n   },\n   required: ['firstName', 'lastName'],\n   errorMessage: {\n     required:{\n-        firstName: \"Le prenom est obligatoire\",\n-        lastName: \"Le nom est obligatoire\"\n+        firstname: \"Le prenom est obligatoire\",\n+        lastname: \"Le nom est obligatoire\"\n        \n     }\n     \n   }\n"
+                },
+                {
+                    "date": 1678733674744,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     },\n     lastname: { type: 'string' },\n     \n   },\n-  required: ['firstName', 'lastName'],\n+  required: ['firstname', 'lastname'],\n   errorMessage: {\n     required:{\n         firstname: \"Le prenom est obligatoire\",\n         lastname: \"Le nom est obligatoire\"\n"
+                },
+                {
+                    "date": 1678740040114,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n   type: 'object',\n   properties: {\n     firstname: { \n         type: 'string',\n+        label: 'Prénom',\n         allOf: [\n             {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n             {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n         ]\n"
+                },
+                {
+                    "date": 1678740071147,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n   type: 'object',\n   properties: {\n     firstname: { \n         type: 'string',\n-        label: 'Prénom',\n         allOf: [\n             {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n             {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n         ]\n"
+                },
+                {
+                    "date": 1678740525465,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n   type: 'object',\n   properties: {\n     firstname: { \n         type: 'string',\n+        title: 'Full Name',\n         allOf: [\n             {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n             {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n         ]\n"
+                },
+                {
+                    "date": 1678740562550,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n   properties: {\n     firstname: { \n         type: 'string',\n         title: 'Full Name',\n+        placeholder: 'prenoom',\n         allOf: [\n             {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n             {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n         ]\n"
+                },
+                {
+                    "date": 1678740628302,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n   properties: {\n     firstname: { \n         type: 'string',\n         title: 'Full Name',\n-        placeholder: 'prenoom',\n+        description: 'prenoom',\n         allOf: [\n             {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n             {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n         ]\n"
+                },
+                {
+                    "date": 1678740961059,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,16 +9,18 @@\n   type: 'object',\n   properties: {\n     firstname: { \n         type: 'string',\n-        title: 'Full Name',\n-        description: 'prenoom',\n+        title: 'Prénom',\n         allOf: [\n             {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n             {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n         ]\n     },\n-    lastname: { type: 'string' },\n+    lastname: { \n+        type: 'string',\n+        title: 'Nom',\n+    },\n     \n   },\n   required: ['firstname', 'lastname'],\n   errorMessage: {\n"
+                },
+                {
+                    "date": 1678740971107,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,12 @@\n     },\n     lastname: { \n         type: 'string',\n         title: 'Nom',\n+        allOf: [\n+            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n+            {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n+        ]\n     },\n     \n   },\n   required: ['firstname', 'lastname'],\n"
+                },
+                {
+                    "date": 1678803192483,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n import Ajv from 'ajv';\n import ajvErrors from 'ajv-errors';\n import { JSONSchemaBridge } from 'uniforms-bridge-json-schema';\n+import addFormats from \"ajv-formats\"\n \n+\n const ajv = new Ajv({ allErrors: true, useDefaults: true });\n ajvErrors(ajv);\n const schema = {\n   title: 'Contact',\n@@ -23,8 +25,16 @@\n             {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n             {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n         ]\n     },\n+    email: { \n+        type: 'string',\n+        title: 'Courriel',\n+        allOf: [\n+            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n+            {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n+        ]\n+    },\n     \n   },\n   required: ['firstname', 'lastname'],\n   errorMessage: {\n"
+                },
+                {
+                    "date": 1678803246688,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n \n \n const ajv = new Ajv({ allErrors: true, useDefaults: true });\n ajvErrors(ajv);\n+addFormats(ajv);\n const schema = {\n   title: 'Contact',\n   type: 'object',\n   properties: {\n"
+                },
+                {
+                    "date": 1678806864916,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,38 +12,69 @@\n   type: 'object',\n   properties: {\n     firstname: { \n         type: 'string',\n-        title: 'Prénom',\n+        title: 'Prénom'\n+    },\n+    lastname: { \n+        type: 'string',\n+        title: 'Nom'\n+    },\n+    email: { \n+        type: 'string',\n+        format: \"email\",\n+        title: 'Courriel',\n         allOf: [\n-            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n-            {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n+            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ courriel est obligatoire'}\n         ]\n     },\n-    lastname: { \n+    phone: { \n         type: 'string',\n-        title: 'Nom',\n+        title: 'Téléphone',\n         allOf: [\n-            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n-            {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n+            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n+            {pattern: '^\\(\\d{3}\\) \\d{3}-\\d{4}$', errorMessage: 'Respectez ce format (000) 000-0000'}\n         ]\n     },\n-    email: { \n+    city: { \n         type: 'string',\n-        title: 'Courriel',\n+        title: 'Ville' \n+    },\n+    province: { \n+        type: 'string',\n+        title: 'Province',\n         allOf: [\n-            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le nom est obligatoire'},\n-            {pattern: '^[^0-9]*$', errorMessage: 'Le nom ne doit pas contenir de chiffre'}\n+            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ province est obligatoire'}\n         ]\n     },\n+    zipcode: { \n+        type: 'string',\n+        title: 'Code Postale',\n+        allOf: [\n+            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ Code Postale est obligatoire'},\n+            {pattern: '^[ABCEGHJ-NPRSTVXY]\\d[ABCEGHJ-NPRSTV-Z][ ]\\d[ABCEGHJ-NPRSTV-Z]\\d$/i', errorMessage: 'Mettre un code postale valide dans ce format ex:A9A 9A9'}\n+        ]\n+    },\n+    country: { \n+        type: 'string',\n+        title: 'Pays' \n+    },\n+    comment1: { \n+        type: 'string',\n+        title: 'commmentaires 1'\n+    },\n+    comment2: { \n+        type: 'string',\n+        title: 'commmentaires 2'\n+    },\n     \n   },\n-  required: ['firstname', 'lastname'],\n+  required: ['email', 'phone','zipcode'],\n   errorMessage: {\n     required:{\n-        firstname: \"Le prenom est obligatoire\",\n-        lastname: \"Le nom est obligatoire\"\n-       \n+        email: \"Le champ courriel est obligatoire\",\n+        phone: \"Le champ téléphone est obligatoire\",\n+        zipcode: \"Le champ Code Postale est obligatoire\"\n     }\n     \n   }\n };\n"
+                },
+                {
+                    "date": 1678807599467,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,11 +41,8 @@\n     },\n     province: { \n         type: 'string',\n         title: 'Province',\n-        allOf: [\n-            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ province est obligatoire'}\n-        ]\n     },\n     zipcode: { \n         type: 'string',\n         title: 'Code Postale',\n"
+                },
+                {
+                    "date": 1678807827185,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n         type: 'string',\n         title: 'Code Postale',\n         allOf: [\n             {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ Code Postale est obligatoire'},\n-            {pattern: '^[ABCEGHJ-NPRSTVXY]\\d[ABCEGHJ-NPRSTV-Z][ ]\\d[ABCEGHJ-NPRSTV-Z]\\d$/i', errorMessage: 'Mettre un code postale valide dans ce format ex:A9A 9A9'}\n+            {pattern: '^[ABCEGHJKLMNPRSTVXY]{1}\\d{1}[A-Z]{1}[ -]?\\d{1}[A-Z]{1}\\d{1}$', errorMessage: 'Mettre un code postale valide dans ce format ex:A9A 9A9'}\n         ]\n     },\n     country: { \n         type: 'string',\n"
+                },
+                {
+                    "date": 1678808055223,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,10 @@\n         type: 'string',\n         format: \"email\",\n         title: 'Courriel',\n         allOf: [\n-            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ courriel est obligatoire'}\n+            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ courriel est obligatoire'},\n+            {errorMessage: 'Mettre le bon format email'}\n         ]\n     },\n     phone: { \n         type: 'string',\n"
+                },
+                {
+                    "date": 1678808653491,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n         type: 'string',\n         title: 'Code Postale',\n         allOf: [\n             {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ Code Postale est obligatoire'},\n-            {pattern: '^[ABCEGHJKLMNPRSTVXY]{1}\\d{1}[A-Z]{1}[ -]?\\d{1}[A-Z]{1}\\d{1}$', errorMessage: 'Mettre un code postale valide dans ce format ex:A9A 9A9'}\n+            {pattern: '[ABCEGHJKLMNPRSTVXY]{1}\\d{1}[A-Z]{1}[ ]\\d{1}[A-Z]{1}\\d{1}$', errorMessage: 'Mettre un code postale valide dans ce format ex:A9A 9A9'}\n         ]\n     },\n     country: { \n         type: 'string',\n"
+                },
+                {
+                    "date": 1678808985890,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n         type: 'string',\n         title: 'Téléphone',\n         allOf: [\n             {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n-            {pattern: '^\\(\\d{3}\\) \\d{3}-\\d{4}$', errorMessage: 'Respectez ce format (000) 000-0000'}\n+            {pattern: '^\\(\\d{3}\\)$', errorMessage: 'Respectez ce format (000) 000-0000'}\n         ]\n     },\n     city: { \n         type: 'string',\n"
+                },
+                {
+                    "date": 1678809279100,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n         type: 'string',\n         title: 'Téléphone',\n         allOf: [\n             {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n-            {pattern: '^\\(\\d{3}\\)$', errorMessage: 'Respectez ce format (000) 000-0000'}\n+            {pattern: '\\(\\d{3}\\)', errorMessage: 'Respectez ce format (000) 000-0000'}\n         ]\n     },\n     city: { \n         type: 'string',\n"
+                },
+                {
+                    "date": 1678809321359,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n     phone: { \n         type: 'string',\n         title: 'Téléphone',\n         allOf: [\n-            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n+            // {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n             {pattern: '\\(\\d{3}\\)', errorMessage: 'Respectez ce format (000) 000-0000'}\n         ]\n     },\n     city: { \n"
+                },
+                {
+                    "date": 1678809355477,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n         type: 'string',\n         title: 'Téléphone',\n         allOf: [\n             // {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n-            {pattern: '\\(\\d{3}\\)', errorMessage: 'Respectez ce format (000) 000-0000'}\n+            {pattern: '(\\d{3})', errorMessage: 'Respectez ce format (000) 000-0000'}\n         ]\n     },\n     city: { \n         type: 'string',\n"
+                },
+                {
+                    "date": 1678809393714,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n         type: 'string',\n         title: 'Téléphone',\n         allOf: [\n             // {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n-            {pattern: '(\\d{3})', errorMessage: 'Respectez ce format (000) 000-0000'}\n+            // {pattern: '(\\d{3})', errorMessage: 'Respectez ce format (000) 000-0000'}\n         ]\n     },\n     city: { \n         type: 'string',\n"
+                },
+                {
+                    "date": 1678809414000,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,13 +29,13 @@\n         ]\n     },\n     phone: { \n         type: 'string',\n-        title: 'Téléphone',\n-        allOf: [\n-            // {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n-            // {pattern: '(\\d{3})', errorMessage: 'Respectez ce format (000) 000-0000'}\n-        ]\n+        title: 'Téléphone'\n+        // allOf: [\n+        //     // {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n+        //     // {pattern: '(\\d{3})', errorMessage: 'Respectez ce format (000) 000-0000'}\n+        // ]\n     },\n     city: { \n         type: 'string',\n         title: 'Ville' \n"
+                },
+                {
+                    "date": 1678809458071,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,12 +30,12 @@\n     },\n     phone: { \n         type: 'string',\n         title: 'Téléphone'\n-        // allOf: [\n-        //     // {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n-        //     // {pattern: '(\\d{3})', errorMessage: 'Respectez ce format (000) 000-0000'}\n-        // ]\n+        allOf: [\n+            // {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n+            {pattern: '(\\d{3})', errorMessage: 'Respectez ce format (000) 000-0000'}\n+        ]\n     },\n     city: { \n         type: 'string',\n         title: 'Ville' \n"
+                },
+                {
+                    "date": 1678809514892,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,12 +29,12 @@\n         ]\n     },\n     phone: { \n         type: 'string',\n-        title: 'Téléphone'\n+        title: 'Téléphone',\n         allOf: [\n             // {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n-            {pattern: '(\\d{3})', errorMessage: 'Respectez ce format (000) 000-0000'}\n+            {pattern: '\\d{3}', errorMessage: 'Respectez ce format (000) 000-0000'}\n         ]\n     },\n     city: { \n         type: 'string',\n"
+                },
+                {
+                    "date": 1678809582683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n         type: 'string',\n         title: 'Téléphone',\n         allOf: [\n             // {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n-            {pattern: '\\d{3}', errorMessage: 'Respectez ce format (000) 000-0000'}\n+            {pattern: '[\\d]', errorMessage: 'Respectez ce format (000) 000-0000'}\n         ]\n     },\n     city: { \n         type: 'string',\n"
+                },
+                {
+                    "date": 1678809623635,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n         type: 'string',\n         title: 'Téléphone',\n         allOf: [\n             // {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n-            {pattern: '[\\d]', errorMessage: 'Respectez ce format (000) 000-0000'}\n+            {pattern: '[a-z]', errorMessage: 'Respectez ce format (000) 000-0000'}\n         ]\n     },\n     city: { \n         type: 'string',\n"
+                },
+                {
+                    "date": 1678809661054,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n         type: 'string',\n         title: 'Téléphone',\n         allOf: [\n             // {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n-            {pattern: '[a-z]', errorMessage: 'Respectez ce format (000) 000-0000'}\n+            {pattern: '[0-9]', errorMessage: 'Respectez ce format (000) 000-0000'}\n         ]\n     },\n     city: { \n         type: 'string',\n"
+                },
+                {
+                    "date": 1678809693512,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n         type: 'string',\n         title: 'Téléphone',\n         allOf: [\n             // {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n-            {pattern: '[0-9]', errorMessage: 'Respectez ce format (000) 000-0000'}\n+            {pattern: '[0-9]{3}', errorMessage: 'Respectez ce format (000) 000-0000'}\n         ]\n     },\n     city: { \n         type: 'string',\n"
+                },
+                {
+                    "date": 1678809730307,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n         type: 'string',\n         title: 'Téléphone',\n         allOf: [\n             // {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n-            {pattern: '[0-9]{3}', errorMessage: 'Respectez ce format (000) 000-0000'}\n+            {pattern: '[d]{3}', errorMessage: 'Respectez ce format (000) 000-0000'}\n         ]\n     },\n     city: { \n         type: 'string',\n"
+                },
+                {
+                    "date": 1678809764119,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n         type: 'string',\n         title: 'Téléphone',\n         allOf: [\n             // {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n-            {pattern: '[d]{3}', errorMessage: 'Respectez ce format (000) 000-0000'}\n+            {pattern: '[\\\\d]{3}', errorMessage: 'Respectez ce format (000) 000-0000'}\n         ]\n     },\n     city: { \n         type: 'string',\n"
+                },
+                {
+                    "date": 1678813067516,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n         type: 'string',\n         title: 'Téléphone',\n         allOf: [\n             // {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n-            {pattern: '[\\\\d]{3}', errorMessage: 'Respectez ce format (000) 000-0000'}\n+            {pattern: '^\\(\\\\d{3}\\) \\d{3}-\\d{4}$', errorMessage: 'Respectez ce format (000) 000-0000'}\n         ]\n     },\n     city: { \n         type: 'string',\n@@ -48,9 +48,9 @@\n         type: 'string',\n         title: 'Code Postale',\n         allOf: [\n             {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ Code Postale est obligatoire'},\n-            {pattern: '[ABCEGHJKLMNPRSTVXY]{1}\\d{1}[A-Z]{1}[ ]\\d{1}[A-Z]{1}\\d{1}$', errorMessage: 'Mettre un code postale valide dans ce format ex:A9A 9A9'}\n+            {pattern: '[ABCEGHJKLMNPRSTVXY]{1}\\\\d{1}[A-Z]{1}[ ]\\\\d{1}[A-Z]{1}\\\\d{1}$', errorMessage: 'Mettre un code postale valide dans ce format ex:A9A 9A9'}\n         ]\n     },\n     country: { \n         type: 'string',\n"
+                },
+                {
+                    "date": 1678813111867,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n     phone: { \n         type: 'string',\n         title: 'Téléphone',\n         allOf: [\n-            // {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n+            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n             {pattern: '^\\(\\\\d{3}\\) \\d{3}-\\d{4}$', errorMessage: 'Respectez ce format (000) 000-0000'}\n         ]\n     },\n     city: { \n"
+                },
+                {
+                    "date": 1678813230106,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,91 @@\n+import Ajv from 'ajv';\n+import ajvErrors from 'ajv-errors';\n+import { JSONSchemaBridge } from 'uniforms-bridge-json-schema';\n+import addFormats from \"ajv-formats\"\n+\n+\n+const ajv = new Ajv({ allErrors: true, useDefaults: true });\n+ajvErrors(ajv);\n+addFormats(ajv);\n+const schema = {\n+  title: 'Contact',\n+  type: 'object',\n+  properties: {\n+    firstname: { \n+        type: 'string',\n+        title: 'Prénom'\n+    },\n+    lastname: { \n+        type: 'string',\n+        title: 'Nom'\n+    },\n+    email: { \n+        type: 'string',\n+        format: \"email\",\n+        title: 'Courriel',\n+        allOf: [\n+            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ courriel est obligatoire'},\n+            {errorMessage: 'Mettre le bon format email'}\n+        ]\n+    },\n+    phone: { \n+        type: 'string',\n+        title: 'Téléphone',\n+        allOf: [\n+            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n+            {pattern: '^\\(\\\\d{3}\\\\) \\\\d{3}-\\\\d{4}$', errorMessage: 'Respectez ce format (000) 000-0000'}\n+        ]\n+    },\n+    city: { \n+        type: 'string',\n+        title: 'Ville' \n+    },\n+    province: { \n+        type: 'string',\n+        title: 'Province',\n+    },\n+    zipcode: { \n+        type: 'string',\n+        title: 'Code Postale',\n+        allOf: [\n+            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ Code Postale est obligatoire'},\n+            {pattern: '[ABCEGHJKLMNPRSTVXY]{1}\\\\d{1}[A-Z]{1}[ ]\\\\d{1}[A-Z]{1}\\\\d{1}$', errorMessage: 'Mettre un code postale valide dans ce format ex:A9A 9A9'}\n+        ]\n+    },\n+    country: { \n+        type: 'string',\n+        title: 'Pays' \n+    },\n+    comment1: { \n+        type: 'string',\n+        title: 'commmentaires 1'\n+    },\n+    comment2: { \n+        type: 'string',\n+        title: 'commmentaires 2'\n+    },\n+    \n+  },\n+  required: ['email', 'phone','zipcode'],\n+  errorMessage: {\n+    required:{\n+        email: \"Le champ courriel est obligatoire\",\n+        phone: \"Le champ téléphone est obligatoire\",\n+        zipcode: \"Le champ Code Postale est obligatoire\"\n+    }\n+    \n+  }\n+};\n+\n+function createValidator(schema) {\n+  const validator = ajv.compile(schema);\n+\n+  return (model) => {\n+    validator(model);\n+    return validator.errors?.length ? { details: validator.errors } : null;\n+  };\n+}\n+\n+const schemaValidator = createValidator(schema);\n+\n+export const bridge = new JSONSchemaBridge(schema, schemaValidator);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678813284050,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n         type: 'string',\n         title: 'Téléphone',\n         allOf: [\n             {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n-            {pattern: '^\\(\\\\d{3}\\\\) \\\\d{3}-\\\\d{4}$', errorMessage: 'Respectez ce format (000) 000-0000'}\n+            {pattern: '^\\\\(\\\\d{3}\\\\) \\\\d{3}-\\\\d{4}$', errorMessage: 'Respectez ce format (000) 000-0000'}\n         ]\n     },\n     city: { \n         type: 'string',\n@@ -87,96 +87,5 @@\n }\n \n const schemaValidator = createValidator(schema);\n \n-export const bridge = new JSONSchemaBridge(schema, schemaValidator);\n-import Ajv from 'ajv';\n-import ajvErrors from 'ajv-errors';\n-import { JSONSchemaBridge } from 'uniforms-bridge-json-schema';\n-import addFormats from \"ajv-formats\"\n-\n-\n-const ajv = new Ajv({ allErrors: true, useDefaults: true });\n-ajvErrors(ajv);\n-addFormats(ajv);\n-const schema = {\n-  title: 'Contact',\n-  type: 'object',\n-  properties: {\n-    firstname: { \n-        type: 'string',\n-        title: 'Prénom'\n-    },\n-    lastname: { \n-        type: 'string',\n-        title: 'Nom'\n-    },\n-    email: { \n-        type: 'string',\n-        format: \"email\",\n-        title: 'Courriel',\n-        allOf: [\n-            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ courriel est obligatoire'},\n-            {errorMessage: 'Mettre le bon format email'}\n-        ]\n-    },\n-    phone: { \n-        type: 'string',\n-        title: 'Téléphone',\n-        allOf: [\n-            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ téléphone est obligatoire'},\n-            {pattern: '^\\(\\\\d{3}\\) \\d{3}-\\d{4}$', errorMessage: 'Respectez ce format (000) 000-0000'}\n-        ]\n-    },\n-    city: { \n-        type: 'string',\n-        title: 'Ville' \n-    },\n-    province: { \n-        type: 'string',\n-        title: 'Province',\n-    },\n-    zipcode: { \n-        type: 'string',\n-        title: 'Code Postale',\n-        allOf: [\n-            {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ Code Postale est obligatoire'},\n-            {pattern: '[ABCEGHJKLMNPRSTVXY]{1}\\\\d{1}[A-Z]{1}[ ]\\\\d{1}[A-Z]{1}\\\\d{1}$', errorMessage: 'Mettre un code postale valide dans ce format ex:A9A 9A9'}\n-        ]\n-    },\n-    country: { \n-        type: 'string',\n-        title: 'Pays' \n-    },\n-    comment1: { \n-        type: 'string',\n-        title: 'commmentaires 1'\n-    },\n-    comment2: { \n-        type: 'string',\n-        title: 'commmentaires 2'\n-    },\n-    \n-  },\n-  required: ['email', 'phone','zipcode'],\n-  errorMessage: {\n-    required:{\n-        email: \"Le champ courriel est obligatoire\",\n-        phone: \"Le champ téléphone est obligatoire\",\n-        zipcode: \"Le champ Code Postale est obligatoire\"\n-    }\n-    \n-  }\n-};\n-\n-function createValidator(schema) {\n-  const validator = ajv.compile(schema);\n-\n-  return (model) => {\n-    validator(model);\n-    return validator.errors?.length ? { details: validator.errors } : null;\n-  };\n-}\n-\n-const schemaValidator = createValidator(schema);\n-\n export const bridge = new JSONSchemaBridge(schema, schemaValidator);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678813450777,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,9 @@\n         type: 'string',\n         title: 'Code Postale',\n         allOf: [\n             {pattern: '^(?=\\\\s*\\\\S).*$', errorMessage: 'Le champ Code Postale est obligatoire'},\n-            {pattern: '[ABCEGHJKLMNPRSTVXY]{1}\\\\d{1}[A-Z]{1}[ ]\\\\d{1}[A-Z]{1}\\\\d{1}$', errorMessage: 'Mettre un code postale valide dans ce format ex:A9A 9A9'}\n+            {pattern: '[ABCEGHJKLMNPRSTVXY]{1}\\\\d{1}[A-Z]{1}[ ]\\\\d{1}[A-Z]{1}\\\\d{1}$', errorMessage: 'Mettre un code postale Canadien valide dans ce format ex:A9A 9A9'}\n         ]\n     },\n     country: { \n         type: 'string',\n"
                 }
             ],
             "date": 1678459991429,

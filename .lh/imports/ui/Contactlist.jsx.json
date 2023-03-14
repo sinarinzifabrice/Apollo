@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 82,
+            "activePatchIndex": 91,
             "patches": [
                 {
                     "date": 1677248624464,
@@ -336,6 +336,42 @@
                 {
                     "date": 1678140583500,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n import DeleteOutlineSharpIcon from \"@mui/icons-material/DeleteOutlineSharp\";\n import ModeEditIcon from \"@mui/icons-material/ModeEdit\";\n import gql from 'graphql-tag';\n import { graphql, useMutation } from 'react-apollo';\n+import ButtonAddContact from \"./ButtonAddContact\";\n \n \n \n \n@@ -58,8 +59,9 @@\n \n     if(loading) return null;\n     return (\n         <div>\n+            <ButtonAddContact/>\n             {contacts.map(contact =>(\n                 <Box margin={2} key={contact._id}>\n                     <Card sx={{ minWidth: 275 }} elevation={2}>\n                     <CardContent>\n"
+                },
+                {
+                    "date": 1678815736096,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,12 +69,12 @@\n                         <Typography variant=\"h5\" component=\"div\" fontWeight=\"bold\">\n                             {contact.firstname} {contact.lastname}\n                         </Typography>\n                         <Typography sx={{ mb: 1.5 }} color=\"primary\">\n-                            {contact.email}\n+                        {contact.email ? contact.email : \"\"}\n                         </Typography>\n                         <Typography sx={{ mb: 1.5 }} color=\"text.secondary\">\n-                            {contact.phone}\n+                            {contact.phone ? contact.phone : \"\"}\n                         </Typography>\n                         <Typography variant=\"body2\">well meaning and kindly.</Typography>\n                         <Typography variant=\"body2\">\"a benevolent smile\"</Typography>\n                     </CardContent>\n"
+                },
+                {
+                    "date": 1678815807453,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,9 +66,9 @@\n                     <Card sx={{ minWidth: 275 }} elevation={2}>\n                     <CardContent>\n                         \n                         <Typography variant=\"h5\" component=\"div\" fontWeight=\"bold\">\n-                            {contact.firstname} {contact.lastname}\n+                            {contact.firstname ? contact.firstname : \"\"} {contact.lastname ? contact.lastname : \"\"}\n                         </Typography>\n                         <Typography sx={{ mb: 1.5 }} color=\"primary\">\n                         {contact.email ? contact.email : \"\"}\n                         </Typography>\n"
+                },
+                {
+                    "date": 1678815851279,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n     if(loading) return null;\n     return (\n         <div>\n             <ButtonAddContact/>\n-            {contacts.map(contact =>(\n+            {ListContact.map(contact =>(\n                 <Box margin={2} key={contact._id}>\n                     <Card sx={{ minWidth: 275 }} elevation={2}>\n                     <CardContent>\n                         \n"
+                },
+                {
+                    "date": 1678815870587,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n     if(loading) return null;\n     return (\n         <div>\n             <ButtonAddContact/>\n-            {ListContact.map(contact =>(\n+            {contacts.map(contact =>(\n                 <Box margin={2} key={contact._id}>\n                     <Card sx={{ minWidth: 275 }} elevation={2}>\n                     <CardContent>\n                         \n"
+                },
+                {
+                    "date": 1678815935261,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,8 +57,9 @@\n \n \n \n     if(loading) return null;\n+    console.log(contacts);\n     return (\n         <div>\n             <ButtonAddContact/>\n             {contacts.map(contact =>(\n"
+                },
+                {
+                    "date": 1678816016791,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,9 +57,8 @@\n \n \n \n     if(loading) return null;\n-    console.log(contacts);\n     return (\n         <div>\n             <ButtonAddContact/>\n             {contacts.map(contact =>(\n"
+                },
+                {
+                    "date": 1678816533342,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,15 +66,15 @@\n                     <Card sx={{ minWidth: 275 }} elevation={2}>\n                     <CardContent>\n                         \n                         <Typography variant=\"h5\" component=\"div\" fontWeight=\"bold\">\n-                            {contact.firstname ? contact.firstname : \"\"} {contact.lastname ? contact.lastname : \"\"}\n+                            {contact.firstname} {contact.lastname}\n                         </Typography>\n                         <Typography sx={{ mb: 1.5 }} color=\"primary\">\n-                        {contact.email ? contact.email : \"\"}\n+                        {contact.email}\n                         </Typography>\n                         <Typography sx={{ mb: 1.5 }} color=\"text.secondary\">\n-                            {contact.phone ? contact.phone : \"\"}\n+                            {contact.phone}\n                         </Typography>\n                         <Typography variant=\"body2\">well meaning and kindly.</Typography>\n                         <Typography variant=\"body2\">\"a benevolent smile\"</Typography>\n                     </CardContent>\n"
+                },
+                {
+                    "date": 1678816636634,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n     if(loading) return null;\n     return (\n         <div>\n             <ButtonAddContact/>\n-            {contacts.map(contact =>(\n+            {contacts?.map(contact =>(\n                 <Box margin={2} key={contact._id}>\n                     <Card sx={{ minWidth: 275 }} elevation={2}>\n                     <CardContent>\n                         \n"
+                },
+                {
+                    "date": 1678818240572,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,10 +21,9 @@\n         contacts {\n             _id\n             firstname\n             lastname\n-            email\n-            phone\n+            \n         }\n         \n     }\n `;\n"
                 }
             ],
             "date": 1677248624464,

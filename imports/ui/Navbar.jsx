@@ -18,12 +18,13 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import App from "./App";
 import ContactList from "../ui/ContactList";
 import ContactForm from "./ContactForm";
 import ButtonAddContact from "./ButtonAddContact";
 import { Route, Routes } from 'react-router-dom';
-import { Form } from "../ui/Form";
+import { Form } from "./Form";
+import AddForm from "./AddContact";
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -121,7 +122,7 @@ export default function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component={Link} to="/" textDecoration="none" color="inherit">
             Application de Contact
           </Typography>
         </Toolbar>
@@ -191,7 +192,7 @@ export default function MiniDrawer() {
         
         <Routes>
             <Route path="/" element={<ContactList/>}/>
-            <Route path="/ajouter" element={<Form/>}/>
+            <Route path="/contact/ajouter" element={<AddForm/>}/>
         </Routes>      
       </Box>
     </Box>
