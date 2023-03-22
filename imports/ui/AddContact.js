@@ -38,6 +38,7 @@ const createContact = gql`
             email
             phone
             city
+            province
             country
             zipcode
             comment1

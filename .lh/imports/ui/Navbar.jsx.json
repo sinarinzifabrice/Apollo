@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 35,
+            "activePatchIndex": 37,
             "patches": [
                 {
                     "date": 1677251167810,
@@ -148,6 +148,14 @@
                 {
                     "date": 1678824008999,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -121,9 +121,9 @@\n             }}\n           >\n             <MenuIcon />\n           </IconButton>\n-          <Typography variant=\"h6\" noWrap component={Link} to=\"/\" textdecoration=\"none\" color=\"inherit\">\n+          <Typography variant=\"h6\" noWrap component={Link} to=\"/\" textDecoration=\"none\" color=\"inherit\">\n             Application de Contact\n           </Typography>\n         </Toolbar>\n       </AppBar>\n"
+                },
+                {
+                    "date": 1679076200316,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n import { Route, Routes } from 'react-router-dom';\n import { Form } from \"./Form\";\n import AddForm from \"./AddContact\";\n import { Link } from 'react-router-dom';\n+import UpdateContact from './UpdateContact'\n \n const drawerWidth = 240;\n \n const openedMixin = (theme) => ({\n@@ -191,8 +192,9 @@\n       <Box component=\"main\" sx={{ flexGrow: 1, p: 3 }}>\n         \n         <Routes>\n             <Route path=\"/\" element={<ContactList/>}/>\n+            <Route path=\"/modifier/:contactId\" element={<UpdateContact/>}/>\n             <Route path=\"/contact/ajouter\" element={<AddForm/>}/>\n         </Routes>      \n       </Box>\n     </Box>\n"
+                },
+                {
+                    "date": 1679316573246,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n import { Route, Routes } from 'react-router-dom';\n import { Form } from \"./Form\";\n import AddForm from \"./AddContact\";\n import { Link } from 'react-router-dom';\n-import UpdateContact from './UpdateContact'\n+import UpdateContact from './UpdateContact';\n \n const drawerWidth = 240;\n \n const openedMixin = (theme) => ({\n"
                 }
             ],
             "date": 1677251167810,

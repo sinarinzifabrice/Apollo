@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 55,
+            "activePatchIndex": 57,
             "patches": [
                 {
                     "date": 1676315402318,
@@ -228,6 +228,14 @@
                 {
                     "date": 1678719309020,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,8 @@\n         <ApolloProvider client={client}>\n             <BrowserRouter>\n                 <h1>Page d'accueil</h1>\n                 <Navbar/>\n-                <Form/>\n             </BrowserRouter>\n            \n         </ApolloProvider>\n     \n"
+                },
+                {
+                    "date": 1679499463221,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import React from 'react';\n import { Meteor } from 'meteor/meteor';\n import { createRoot } from 'react-dom/client';\n import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';\n-import { ApolloProvider } from 'react-apollo';\n+import { ApolloProvider } from '@apollo/client';\n import App from '../../ui/App';\n import Navbar from '../../ui/Navbar';\n import {BrowserRouter} from 'react-router-dom';\n import Form from '../../ui/Form';\n"
+                },
+                {
+                    "date": 1679499627457,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import React from 'react';\n import { Meteor } from 'meteor/meteor';\n import { createRoot } from 'react-dom/client';\n import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';\n-import { ApolloProvider } from '@apollo/client';\n+import { ApolloProvider } from 'react-apollo';\n import App from '../../ui/App';\n import Navbar from '../../ui/Navbar';\n import {BrowserRouter} from 'react-router-dom';\n import Form from '../../ui/Form';\n"
                 }
             ],
             "date": 1676315402318,

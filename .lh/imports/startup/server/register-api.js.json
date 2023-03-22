@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 54,
+            "activePatchIndex": 91,
             "patches": [
                 {
                     "date": 1676579990962,
@@ -224,6 +224,154 @@
                 {
                     "date": 1678802700515,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,11 @@\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n-// mis a jour\n \n+// resolver\n+\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1679317073417,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n \n-// resolver\n+// test\n \n const testSchema =  `\n type Query {\n     hi: String\n"
+                },
+                {
+                    "date": 1679323568004,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n import merge from \"lodash/merge\";\n \n \n // test\n+// nouveau\n \n const testSchema =  `\n type Query {\n     hi: String\n"
+                },
+                {
+                    "date": 1679327733076,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n type Query {\n     hi: String\n     resolutions: [Resolution]\n     contacts:[Contact]\n+    getcontact:[GetContact]\n }\n `;\n \n \n"
+                },
+                {
+                    "date": 1679328394727,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,9 @@\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n \n-// test\n-// nouveau\n+// res\n \n const testSchema =  `\n type Query {\n     hi: String\n"
+                },
+                {
+                    "date": 1679328423545,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,11 @@\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n \n-// res\n+// get contact\n \n+\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1679328737055,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,9 @@\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n \n-// get contact\n \n-\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1679328746412,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n \n-\n+// new\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1679329298566,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,11 @@\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n \n-// new\n+\n+\n+\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1679329511024,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n type Query {\n     hi: String\n     resolutions: [Resolution]\n     contacts:[Contact]\n-    getcontact:[GetContact]\n+    getContact(_id: ID!): [GetContact]\n }\n `;\n \n \n"
+                },
+                {
+                    "date": 1679329927807,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n type Query {\n     hi: String\n     resolutions: [Resolution]\n     contacts:[Contact]\n-    getContact(_id: ID!): [GetContact]\n+    getContact(_id: String!): [GetContact]\n }\n `;\n \n \n"
+                },
+                {
+                    "date": 1679329941620,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n type Query {\n     hi: String\n     resolutions: [Resolution]\n     contacts:[Contact]\n-    getContact(_id: String!): [GetContact]\n+    getContact(_id: String!): GetContact\n }\n `;\n \n \n"
+                },
+                {
+                    "date": 1679329952795,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n type Query {\n     hi: String\n     resolutions: [Resolution]\n     contacts:[Contact]\n-    getContact(_id: String!): GetContact\n+    \n }\n `;\n \n \n"
+                },
+                {
+                    "date": 1679330014637,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n type Query {\n     hi: String\n     resolutions: [Resolution]\n     contacts:[Contact]\n-    \n+    getcontact : [GetContact]\n }\n `;\n \n \n"
+                },
+                {
+                    "date": 1679338648577,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,10 @@\n import merge from \"lodash/merge\";\n \n \n \n+// getcontact\n \n-\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1679338767668,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,10 @@\n import merge from \"lodash/merge\";\n \n \n \n-// getcontact\n \n+\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1679338855749,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,10 @@\n import merge from \"lodash/merge\";\n \n \n \n+// sdf\n \n-\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1679339240603,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,10 @@\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n \n+// tst\n \n-// sdf\n-\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1679339860942,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,11 @@\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n \n-// tst\n \n+// kjbu\n+\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1679340362234,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n type Query {\n     hi: String\n     resolutions: [Resolution]\n     contacts:[Contact]\n-    getcontact : [GetContact]\n+    getcontact(_,args) : [GetContact]\n }\n `;\n \n \n"
+                },
+                {
+                    "date": 1679341469607,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n type Query {\n     hi: String\n     resolutions: [Resolution]\n     contacts:[Contact]\n-    getcontact(_,args) : [GetContact]\n+    getcontact : [GetContact]\n }\n `;\n \n \n"
+                },
+                {
+                    "date": 1679341486569,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,10 @@\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n \n+// nur\n \n-// kjbu\n-\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1679341535721,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,8 @@\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n \n-// nur\n \n const testSchema =  `\n type Query {\n     hi: String\n"
+                },
+                {
+                    "date": 1679341545583,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,10 @@\n import merge from \"lodash/merge\";\n \n \n \n+// mjkuh\n+\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1679343481204,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,10 @@\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n \n+// vret\n \n-// mjkuh\n-\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1679344325245,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n type Query {\n     hi: String\n     resolutions: [Resolution]\n     contacts:[Contact]\n-    getcontact : [GetContact]\n+    getcontact(_id: ID!) : [Contact]\n }\n `;\n \n \n"
+                },
+                {
+                    "date": 1679344355819,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n type Query {\n     hi: String\n     resolutions: [Resolution]\n     contacts:[Contact]\n-    getcontact(_id: ID!) : [Contact]\n+    getcontact(_id: ID!) : Contact\n }\n `;\n \n \n"
+                },
+                {
+                    "date": 1679344493918,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n type Query {\n     hi: String\n     resolutions: [Resolution]\n     contacts:[Contact]\n-    getcontact(_id: ID!) : Contact\n+    getcontact(_id: ID!) : [Contact]\n }\n `;\n \n \n"
+                },
+                {
+                    "date": 1679344516779,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n type Query {\n     hi: String\n     resolutions: [Resolution]\n     contacts:[Contact]\n-    getcontact(_id: ID!) : [Contact]\n+    getcontact(_id: ID!) : Contact!\n }\n `;\n \n \n"
+                },
+                {
+                    "date": 1679344764828,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,10 @@\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n+// vre\n \n-// vret\n-\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1679344869512,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n type Query {\n     hi: String\n     resolutions: [Resolution]\n     contacts:[Contact]\n-    getcontact(_id: ID!) : Contact!\n+    \n }\n `;\n \n \n"
+                },
+                {
+                    "date": 1679344883471,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,10 @@\n import ResolutionsSchema from '../../api/resolutions/Resolutions.graphql';\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n-// vre\n \n+\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1679345478220,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n type Query {\n     hi: String\n     resolutions: [Resolution]\n     contacts:[Contact]\n-    \n+    getcontact(_id: ID!): Contact\n }\n `;\n \n \n"
+                },
+                {
+                    "date": 1679345564334,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,10 @@\n import merge from \"lodash/merge\";\n \n \n \n+// fre\n+\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1679410567925,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n import merge from \"lodash/merge\";\n \n \n \n-// fre\n+// update\n \n const testSchema =  `\n type Query {\n     hi: String\n"
+                },
+                {
+                    "date": 1679419817982,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,10 @@\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n \n+// mis a jour \n \n-// update\n-\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1679432390595,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,11 @@\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n \n-// mis a jour \n+// contact\n \n+\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
+                },
+                {
+                    "date": 1679433229693,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,10 @@\n import ResolutionsResolvers from '../../api/resolutions/resolvers';\n import merge from \"lodash/merge\";\n \n \n-// contact\n+// up\n \n-\n const testSchema =  `\n type Query {\n     hi: String\n     resolutions: [Resolution]\n"
                 }
             ],
             "date": 1676579990962,

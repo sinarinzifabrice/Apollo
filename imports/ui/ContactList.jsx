@@ -78,8 +78,8 @@ const ListContact = ({loading, contacts, hi }) => {
                         <Typography variant="body2">"a benevolent smile"</Typography>
                     </CardContent>
                 <CardActions>
-                <Button startIcon={<ModeEditIcon />} color="primary" variant="outlined">
-            changer
+                <Button startIcon={<ModeEditIcon />} href={`/modifier/${contact._id}`} color="primary" variant="outlined">
+            modifier
             </Button>
             <Button
             onClick={() => deleteContact({variables:{id:contact._id}})}

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 23,
+            "activePatchIndex": 42,
             "patches": [
                 {
                     "date": 1676577479735,
@@ -100,6 +100,82 @@
                 {
                     "date": 1678802684446,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,21 +9,32 @@\n }\n \n type Contact {\n     _id: String!\n-    firstname: String!\n+    firstname: String\n     lastname: String\n-    email: String\n-    phone: String\n+    email: String!\n+    phone: String!\n     city: String\n     province: String\n-    zipcode: String\n+    zipcode: String!\n     country: String\n     comment1: String \n     comment2: String\n }\n \n type Mutation {\n-    createContact(firstname: String!, lastname: String!): Contact\n+    createContact(\n+        firstname: String, \n+        lastname: String,\n+        email: String!,\n+        phone: String!,\n+        city: String,\n+        province: String,\n+        zipcode: String!,\n+        country: String,\n+        comment1: String, \n+        comment2: String \n+    ): Contact\n     deleteContact(_id: ID!): Contact\n }\n \n"
+                },
+                {
+                    "date": 1679327158357,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,10 @@\n     comment1: String \n     comment2: String\n }\n \n+\n+\n type Mutation {\n     createContact(\n         firstname: String, \n         lastname: String,\n"
+                },
+                {
+                    "date": 1679327729680,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,22 @@\n     comment1: String \n     comment2: String\n }\n \n+type GetContact{\n+    _id: String!\n+    firstname: String\n+    lastname: String\n+    email: String!\n+    phone: String!\n+    city: String\n+    province: String\n+    zipcode: String!\n+    country: String\n+    comment1: String \n+    comment2: String\n \n+}\n \n type Mutation {\n     createContact(\n         firstname: String, \n"
+                },
+                {
+                    "date": 1679328382036,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     comment1: String \n     comment2: String\n }\n \n-type GetContact{\n+type GetContact(_id: ID!){\n     _id: String!\n     firstname: String\n     lastname: String\n     email: String!\n"
+                },
+                {
+                    "date": 1679328730732,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,10 @@\n     comment1: String \n     comment2: String\n }\n \n-type GetContact(_id: ID!){\n+type GetContact{\n+    getcontact(_id: ID!)\n     _id: String!\n     firstname: String\n     lastname: String\n     email: String!\n"
+                },
+                {
+                    "date": 1679329290683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,8 @@\n     comment2: String\n }\n \n type GetContact{\n-    getcontact(_id: ID!)\n     _id: String!\n     firstname: String\n     lastname: String\n     email: String!\n"
+                },
+                {
+                    "date": 1679338613946,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,19 +22,9 @@\n     comment2: String\n }\n \n type GetContact{\n-    _id: String!\n-    firstname: String\n-    lastname: String\n-    email: String!\n-    phone: String!\n-    city: String\n-    province: String\n-    zipcode: String!\n-    country: String\n-    comment1: String \n-    comment2: String\n+    getcontact(id: ID!): Contact\n \n }\n \n type Mutation {\n@@ -49,7 +39,8 @@\n         country: String,\n         comment1: String, \n         comment2: String \n     ): Contact\n+\n     deleteContact(_id: ID!): Contact\n }\n \n"
+                },
+                {
+                    "date": 1679338757511,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     comment2: String\n }\n \n type GetContact{\n-    getcontact(id: ID!): Contact\n+    (id: ID!): Contact\n \n }\n \n type Mutation {\n"
+                },
+                {
+                    "date": 1679338847741,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     comment2: String\n }\n \n type GetContact{\n-    (id: ID!): Contact\n+    getcontact (id: ID!): Contact\n \n }\n \n type Mutation {\n"
+                },
+                {
+                    "date": 1679339212468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,19 @@\n     comment2: String\n }\n \n type GetContact{\n-    getcontact (id: ID!): Contact\n+    _id: String!\n+    firstname: String\n+    lastname: String\n+    email: String!\n+    phone: String!\n+    city: String\n+    province: String\n+    zipcode: String!\n+    country: String\n+    comment1: String \n+    comment2: String\n \n }\n \n type Mutation {\n"
+                },
+                {
+                    "date": 1679339842131,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,19 +22,9 @@\n     comment2: String\n }\n \n type GetContact{\n-    _id: String!\n-    firstname: String\n-    lastname: String\n-    email: String!\n-    phone: String!\n-    city: String\n-    province: String\n-    zipcode: String!\n-    country: String\n-    comment1: String \n-    comment2: String\n+    getcontact(id: ID!): Contact\n \n }\n \n type Mutation {\n"
+                },
+                {
+                    "date": 1679341472620,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,10 +21,22 @@\n     comment1: String \n     comment2: String\n }\n \n-type GetContact{\n-    getcontact(id: ID!): Contact\n+type GetContact($id: ID!){\n+    contact(id: $id){\n+        _id: String!\n+        firstname: String\n+        lastname: String\n+        email: String!\n+        phone: String!\n+        city: String\n+        province: String\n+        zipcode: String!\n+        country: String\n+        comment1: String \n+        comment2: String\n+    }\n \n }\n \n type Mutation {\n"
+                },
+                {
+                    "date": 1679341669570,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,10 +21,10 @@\n     comment1: String \n     comment2: String\n }\n \n-type GetContact($id: ID!){\n-    contact(id: $id){\n+type GetContact{\n+    \n         _id: String!\n         firstname: String\n         lastname: String\n         email: String!\n@@ -34,9 +34,9 @@\n         zipcode: String!\n         country: String\n         comment1: String \n         comment2: String\n-    }\n+    \n \n }\n \n type Mutation {\n"
+                },
+                {
+                    "date": 1679343150630,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,19 +23,9 @@\n }\n \n type GetContact{\n     \n-        _id: String!\n-        firstname: String\n-        lastname: String\n-        email: String!\n-        phone: String!\n-        city: String\n-        province: String\n-        zipcode: String!\n-        country: String\n-        comment1: String \n-        comment2: String\n+        getContact(_id: ID!): Contact!\n     \n \n }\n \n"
+                },
+                {
+                    "date": 1679343469179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,13 +21,10 @@\n     comment1: String \n     comment2: String\n }\n \n-type GetContact{\n-    \n-        getContact(_id: ID!): Contact!\n-    \n-\n+type Query{\n+    getcontact(_id: ID!): Contact\n }\n \n type Mutation {\n     createContact(\n"
+                },
+                {
+                    "date": 1679344750367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,10 +21,13 @@\n     comment1: String \n     comment2: String\n }\n \n-type Query{\n-    getcontact(_id: ID!): Contact\n+type Getcontact{\n+    _id: String!\n+    firstname: String\n+    lastname: String\n+    email: String!\n }\n \n type Mutation {\n     createContact(\n"
+                },
+                {
+                    "date": 1679344875848,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,15 +21,10 @@\n     comment1: String \n     comment2: String\n }\n \n-type Getcontact{\n-    _id: String!\n-    firstname: String\n-    lastname: String\n-    email: String!\n-}\n \n+\n type Mutation {\n     createContact(\n         firstname: String, \n         lastname: String,\n"
+                },
+                {
+                    "date": 1679410544928,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,7 +37,21 @@\n         comment1: String, \n         comment2: String \n     ): Contact\n \n+    updateContact(\n+        _id: ID!\n+        firstname: String, \n+        lastname: String,\n+        email: String!,\n+        phone: String!,\n+        city: String,\n+        province: String,\n+        zipcode: String!,\n+        country: String,\n+        comment1: String, \n+        comment2: String \n+    ): Contact\n+\n     deleteContact(_id: ID!): Contact\n }\n \n"
+                },
+                {
+                    "date": 1679419799702,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,8 @@\n         comment2: String \n     ): Contact\n \n     updateContact(\n-        _id: ID!\n         firstname: String, \n         lastname: String,\n         email: String!,\n         phone: String!,\n"
+                },
+                {
+                    "date": 1679432370163,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,8 +38,9 @@\n         comment2: String \n     ): Contact\n \n     updateContact(\n+        _id: ID!,\n         firstname: String, \n         lastname: String,\n         email: String!,\n         phone: String!,\n"
                 }
             ],
             "date": 1676577479735,

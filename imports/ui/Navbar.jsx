@@ -25,6 +25,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Form } from "./Form";
 import AddForm from "./AddContact";
 import { Link } from 'react-router-dom';
+import UpdateContact from './UpdateContact';
 
 const drawerWidth = 240;
 
@@ -192,6 +193,7 @@ export default function MiniDrawer() {
         
         <Routes>
             <Route path="/" element={<ContactList/>}/>
+            <Route path="/modifier/:contactId" element={<UpdateContact/>}/>
             <Route path="/contact/ajouter" element={<AddForm/>}/>
         </Routes>      
       </Box>

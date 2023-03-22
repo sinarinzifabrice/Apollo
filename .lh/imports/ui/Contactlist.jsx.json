@@ -1,9 +1,9 @@
 {
-    "sourceFile": "imports/ui/Contactlist.jsx",
+    "sourceFile": "imports/ui/ContactList.jsx",
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 91,
+            "activePatchIndex": 96,
             "patches": [
                 {
                     "date": 1677248624464,
@@ -372,6 +372,26 @@
                 {
                     "date": 1678818240572,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,10 +21,9 @@\n         contacts {\n             _id\n             firstname\n             lastname\n-            email\n-            phone\n+            \n         }\n         \n     }\n `;\n"
+                },
+                {
+                    "date": 1679074328522,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,13 +9,13 @@\n import ModeEditIcon from \"@mui/icons-material/ModeEdit\";\n import gql from 'graphql-tag';\n import { graphql, useMutation } from 'react-apollo';\n import ButtonAddContact from \"./ButtonAddContact\";\n+import { Link } from \"react-router-dom\";\n \n \n \n \n-\n const contactsQuery = gql`\n     query Contacts {\n         hi\n         contacts {\n@@ -78,9 +78,9 @@\n                         <Typography variant=\"body2\">\"a benevolent smile\"</Typography>\n                     </CardContent>\n                 <CardActions>\n                 <Button startIcon={<ModeEditIcon />} color=\"primary\" variant=\"outlined\">\n-            changer\n+            modifier\n             </Button>\n             <Button\n             onClick={() => deleteContact({variables:{id:contact._id}})}\n             startIcon={<DeleteOutlineSharpIcon />}\n"
+                },
+                {
+                    "date": 1679076225652,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n                         <Typography variant=\"body2\">well meaning and kindly.</Typography>\n                         <Typography variant=\"body2\">\"a benevolent smile\"</Typography>\n                     </CardContent>\n                 <CardActions>\n-                <Button startIcon={<ModeEditIcon />} color=\"primary\" variant=\"outlined\">\n+                <Button startIcon={<ModeEditIcon />} href={`/modifier/${contact._id}`} color=\"primary\" variant=\"outlined\">\n             modifier\n             </Button>\n             <Button\n             onClick={() => deleteContact({variables:{id:contact._id}})}\n"
+                },
+                {
+                    "date": 1679406286772,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,13 +9,13 @@\n import ModeEditIcon from \"@mui/icons-material/ModeEdit\";\n import gql from 'graphql-tag';\n import { graphql, useMutation } from 'react-apollo';\n import ButtonAddContact from \"./ButtonAddContact\";\n-import { Link } from \"react-router-dom\";\n \n \n \n \n+\n const contactsQuery = gql`\n     query Contacts {\n         hi\n         contacts {\n"
+                },
+                {
+                    "date": 1679499506579,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n import Typography from \"@mui/material/Typography\";\n import DeleteOutlineSharpIcon from \"@mui/icons-material/DeleteOutlineSharp\";\n import ModeEditIcon from \"@mui/icons-material/ModeEdit\";\n import gql from 'graphql-tag';\n-import { graphql, useMutation } from 'react-apollo';\n+import { graphql, useMutation } from '@apollo/client';\n import ButtonAddContact from \"./ButtonAddContact\";\n \n \n \n"
+                },
+                {
+                    "date": 1679499616234,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n import Typography from \"@mui/material/Typography\";\n import DeleteOutlineSharpIcon from \"@mui/icons-material/DeleteOutlineSharp\";\n import ModeEditIcon from \"@mui/icons-material/ModeEdit\";\n import gql from 'graphql-tag';\n-import { graphql, useMutation } from '@apollo/client';\n+import { graphql, useMutation } from 'react-apollo';\n import ButtonAddContact from \"./ButtonAddContact\";\n \n \n \n"
                 }
             ],
             "date": 1677248624464,

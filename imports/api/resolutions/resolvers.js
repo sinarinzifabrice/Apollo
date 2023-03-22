@@ -8,6 +8,7 @@ const res = ResolutionsCollection.find({}).fetch();
 const contact = ContactsCollection.find({}).fetch();
 
 console.log(contact);
+
 //it's where we put the query 
 //like Meteor.method
 export default {
@@ -39,7 +40,22 @@ export default {
               }
             console.log("resolver contact");
             return ContactsCollection.find({}).fetch();
-        }
+        },
+
+        async getcontact(obj, {_id}){
+
+          try {
+              const resu = ContactsCollection.findOne(_id);
+              console.log("l'id du contact  "+_id);
+              console.log("le contact est "+resu);
+            } catch (error) {
+              
+              console.error("Erreur lors de la récupération du contact:", error);
+            }
+          console.log("renvoie du contact");
+          return ContactsCollection.findOne(_id);
+      },
+
 
     },
 
@@ -121,7 +137,92 @@ export default {
                   console.error("Erreur suppression du contact:", error);
           }
           
-      }
+        },
+
+        async updateContact(obj, {
+          _id,
+          firstname, 
+          lastname, 
+          email,
+          phone,
+          city,
+          province,
+          zipcode,
+          country,
+          comment1, 
+          comment2
+        }, context) {
+          try {
+              
+                  console.log("id contact "+ _id);
+                  console.log("firstname  contact "+ firstname);
+
+                  // Checks if firstname is undefined and replaces it with an empty string
+                  if (typeof firstname === 'undefined') {
+                    firstname = '';
+                  }
+
+                  if (typeof lastname === 'undefined') {
+                    lastname = '';
+                  }
+                  if (typeof city === 'undefined') {
+                    city = '';
+                  }
+                  if (typeof province === 'undefined') {
+                    province = '';
+                  }
+                  if (typeof zipcode === 'undefined') {
+                    zipcode = '';
+                  }
+
+                  if (typeof country === 'undefined') {
+                    country = '';
+                  }
+                  if (typeof comment1 === 'undefined') {
+                    comment1 = '';
+                  }
+                  if (typeof comment2 === 'undefined') {
+                    comment2 = '';
+                  }
+
+
+                  const contact = ContactsCollection.update(
+                    { _id: _id },
+                    { $set: 
+                      { firstname: firstname,
+                        lastname : lastname,
+                        email: email,
+                        phone: phone,
+                        city: city,
+                        province: province,
+                        zipcode: zipcode,
+                        country: country,
+                        comment1: comment1, 
+                        comment2: comment2
+                       } } 
+                  );
+                  return await ContactsCollection.update(
+                    { _id: _id },
+                    { $set: 
+                      { firstname: firstname,
+                        lastname : lastname,
+                        email: email,
+                        phone: phone,
+                        city: city,
+                        province: province,
+                        zipcode: zipcode,
+                        country: country,
+                        comment1: comment1, 
+                        comment2: comment2
+                       } } 
+                  );
+          }
+          catch (error) {
+              
+                  console.error("Erreur de mise à jour du contact:", error);
+          }
+          
+        }
 
     }
 }

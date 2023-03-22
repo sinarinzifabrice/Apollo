@@ -7,13 +7,14 @@ import ResolutionsResolvers from '../../api/resolutions/resolvers';
 import merge from "lodash/merge";
 
 
-// resolver
+// up
 
 const testSchema =  `
 type Query {
     hi: String
     resolutions: [Resolution]
     contacts:[Contact]
+    getcontact(_id: ID!): Contact
 }
 `;
 
